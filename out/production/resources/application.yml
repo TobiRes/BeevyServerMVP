@@ -1,0 +1,17 @@
+springfox.documentation.swagger.v2.path: /api-docs
+server:
+  context-path: /beevy
+  port: 8080
+
+management:
+  port: 8081
+  security:
+    enabled: false
+
+project:
+  artifact-id: beevy
+  name: Beevy Server
+  description: Beevy Server to manage events
+
+spring:
+  jackson.serialization.write_dates_as_timestamps: false

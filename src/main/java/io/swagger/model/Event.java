@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.model.Address;
-import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -71,7 +70,7 @@ public class Event   {
   private Integer memberCount = null;
 
   @JsonProperty("time")
-  private OffsetDateTime time = null;
+  private String time = null;
 
   @JsonProperty("location")
   private Address location = null;
@@ -202,7 +201,7 @@ public class Event   {
     this.memberCount = memberCount;
   }
 
-  public Event time(OffsetDateTime time) {
+  public Event time(String time) {
     this.time = time;
     return this;
   }
@@ -216,11 +215,11 @@ public class Event   {
 
   @Valid
 
-  public OffsetDateTime getTime() {
+  public String getTime() {
     return time;
   }
 
-  public void setTime(OffsetDateTime time) {
+  public void setTime(String time) {
     this.time = time;
   }
 
