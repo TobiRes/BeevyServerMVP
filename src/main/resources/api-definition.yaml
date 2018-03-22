@@ -1,0 +1,97 @@
+swagger: '2.0'
+info:
+  description: Server to manage events for Beevy
+  version: 1.0.0
+  title: Beevy App
+tags:
+  - name: event
+    description: Create and get events
+paths:
+  /event:
+    get:
+      tags:
+        - event
+      summary: Get all events that are available
+      description: Get Events
+      operationId: getEvents
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+        '400':
+          description: Failed to get events
+  /event/create:
+    post:
+      tags:
+        - event
+      summary: Create an event
+      description: Create an event for Beevy
+      operationId: createEvent
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Event Object
+          required: true
+          schema:
+            $ref: '#/definitions/Event'
+      responses:
+        '201':
+          description: Created event
+        '405':
+          description: Failed to create event
+definitions:
+  Event:
+    type: object
+    properties:
+      userID:
+        type: string
+      userSecret:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      category:
+        type: string
+        enum:
+          - category1
+          - category2
+          - category3
+      memberCount:
+        type: integer
+      time:
+        type: string
+        format: date-time
+      location:
+        $ref: '#/definitions/Address'
+    required:
+      - userID
+      - userSecret
+      - title
+      - description
+      - category
+      - memberCount
+      - time
+      - location
+  Address:
+    type: object
+    properties:
+      street:
+        type: string
+      zip:
+        type: integer
+      city:
+        type: string
+    required:
+      - street
+      - zip
+      - city

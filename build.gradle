@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath('io.swagger:swagger-codegen:2.3.1')
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'maven'
 
@@ -26,4 +35,26 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version:'2.7.0'
     compile group: 'com.github.joschi.jackson', name: 'jackson-datatype-threetenbp', version:'2.6.4'
     compile group: 'javax.validation', name: 'validation-api', version:'1.1.0.Final'
+}
+
+
+import io.swagger.codegen.config.CodegenConfigurator
+import io.swagger.codegen.DefaultGenerator
+def swaggerSourceFile = 'src/main/resources/api-definition.yaml'
+def swaggerTargetFolder = 'src/generated/java'
+
+task generateApi {
+    doLast {
+        def config = new CodegenConfigurator()
+        config.setInputSpec("file:///$projectDir/$swaggerSourceFile")
+        config.setOutputDir("$projectDir")
+        config.setLang('spring')
+        config.setAdditionalProperties([
+                'interfaceOnly' : 'true',
+                'apiPackage'    : 'beevy.api',
+                'modelPackage'  : 'beevy.model',
+                'sourceFolder'  : swaggerTargetFolder
+        ])
+        new DefaultGenerator().opts(config.toClientOptInput()).generate()
+    }
 }
