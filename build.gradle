@@ -1,60 +1,113 @@
 buildscript {
+    ext {
+        springBootVersion = '1.5.10.RELEASE'
+    }
     repositories {
         mavenCentral()
     }
     dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath('io.swagger:swagger-codegen:2.3.1')
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'maven'
-
-group = 'io.swagger'
-version = '1.0.0'
-
-description = """swagger-spring"""
-
-sourceCompatibility = 1.5
-targetCompatibility = 1.5
-tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
-}
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
 
 
+group = 'com.hs.beevy'
+project.archivesBaseName = 'beevy-server'
+sourceCompatibility = 1.8
 
 repositories {
-        
-     maven { url "http://repo.maven.apache.org/maven2" }
+    mavenCentral()
+    maven {
+        name 'local repository'
+        url "${rootProject.projectDir}/gradle/repository"
+    }
 }
+
+configurations {
+    generatedCompile
+}
+
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version:'1.5.9.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.5.9.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-tomcat', version:'1.5.9.RELEASE'
-    compile group: 'io.springfox', name: 'springfox-swagger2', version:'2.7.0'
-    compile group: 'io.springfox', name: 'springfox-swagger-ui', version:'2.7.0'
-    compile group: 'com.github.joschi.jackson', name: 'jackson-datatype-threetenbp', version:'2.6.4'
-    compile group: 'javax.validation', name: 'validation-api', version:'1.1.0.Final'
+    compile('org.springframework.boot:spring-boot-starter-validation')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('io.springfox:springfox-swagger2:2.8.0')
+    compile('io.springfox:springfox-swagger-ui:2.8.0')
+    compile('org.yaml:snakeyaml:1.19')
+    compile('io.jsonwebtoken:jjwt:0.9.0')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.3')
+    runtime('org.springframework.boot:spring-boot-devtools')
+
+    compileOnly('org.projectlombok:lombok')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.security:spring-security-test')
+
+    generatedCompile('org.springframework.boot:spring-boot-starter-data-rest')
+    generatedCompile('io.springfox:springfox-swagger2:2.8.0')
+    generatedCompile('io.springfox:springfox-swagger-ui:2.8.0')
 }
 
-
-import io.swagger.codegen.config.CodegenConfigurator
+// Code for API generation based on the API definition
 import io.swagger.codegen.DefaultGenerator
-def swaggerSourceFile = 'src/main/resources/api-definition.yaml'
-def swaggerTargetFolder = 'src/generated/java'
+import io.swagger.codegen.config.CodegenConfigurator
+
+def apiDefinitionSourceFile = 'src/main/resources/api-definition.yaml'
+def apiTargetFolder = 'src/generated/java'
 
 task generateApi {
+    inputs.file("$projectDir/$apiDefinitionSourceFile")
+    outputs.dir("$projectDir/$apiTargetFolder")
     doLast {
         def config = new CodegenConfigurator()
-        config.setInputSpec("file:///$projectDir/$swaggerSourceFile")
+        config.setInputSpec("$projectDir/$apiDefinitionSourceFile")
         config.setOutputDir("$projectDir")
         config.setLang('spring')
         config.setAdditionalProperties([
-                'interfaceOnly' : 'true',
-                'apiPackage'    : 'beevy.api',
-                'modelPackage'  : 'beevy.model',
-                'sourceFolder'  : swaggerTargetFolder
+                'interfaceOnly'  : 'true',
+                'apiPackage'     : 'com.hs.beevy.api',
+                'modelPackage'   : 'com.hs.beevy.model',
+                'modelNameSuffix': 'Resource',
+                'java8'          : 'true',
+                'sourceFolder'   : apiTargetFolder
         ])
         new DefaultGenerator().opts(config.toClientOptInput()).generate()
     }
 }
+
+clean.doFirst {
+    delete("${projectDir}/$apiTargetFolder")
+}
+
+sourceSets {
+    generated {
+        compileClasspath = configurations.generatedCompile
+    }
+    main {
+        compileClasspath += generated.output
+        runtimeClasspath += generated.output
+    }
+    test {
+        compileClasspath += generated.output
+        runtimeClasspath += generated.output
+    }
+}
+
+compileGeneratedJava.dependsOn generateApi
+classes.dependsOn generatedClasses
+compileJava.dependsOn compileGeneratedJava
+
+bootRun {
+    classpath += sourceSets.generated.output
+}
+
+jar {
+    from sourceSets.generated.output
+}
+
+ideaModule.dependsOn generateApi
