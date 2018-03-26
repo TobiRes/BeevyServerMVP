@@ -28,7 +28,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-03-22T13:32:07.962+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-03-26T15:37:57.761+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -55,7 +55,7 @@ public interface EventApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    default ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object" ,required=true )  @Valid @RequestBody EventResource body) {
+    default ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object"  )  @Valid @RequestBody EventResource body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");

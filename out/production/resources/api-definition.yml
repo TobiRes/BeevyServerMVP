@@ -40,7 +40,6 @@ paths:
         - in: body
           name: body
           description: Event Object
-          required: true
           schema:
             $ref: '#/definitions/Event'
       responses:
@@ -72,15 +71,6 @@ definitions:
         type: string
       location:
         $ref: '#/definitions/Address'
-    required:
-      - userID
-      - userSecret
-      - title
-      - description
-      - category
-      - memberCount
-      - time
-      - location
   Address:
     type: object
     properties:
@@ -90,7 +80,3 @@ definitions:
         type: integer
       city:
         type: string
-    required:
-      - street
-      - zip
-      - city

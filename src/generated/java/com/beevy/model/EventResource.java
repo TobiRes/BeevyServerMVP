@@ -15,7 +15,7 @@ import javax.validation.constraints.*;
  * EventResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-03-22T13:32:07.962+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-03-26T15:37:57.761+02:00")
 
 public class EventResource   {
   @JsonProperty("userID")
@@ -84,8 +84,7 @@ public class EventResource   {
    * Get userID
    * @return userID
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getUserID() {
@@ -105,8 +104,7 @@ public class EventResource   {
    * Get userSecret
    * @return userSecret
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getUserSecret() {
@@ -126,8 +124,7 @@ public class EventResource   {
    * Get title
    * @return title
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getTitle() {
@@ -147,8 +144,7 @@ public class EventResource   {
    * Get description
    * @return description
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getDescription() {
@@ -168,8 +164,7 @@ public class EventResource   {
    * Get category
    * @return category
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public CategoryEnum getCategory() {
@@ -189,8 +184,7 @@ public class EventResource   {
    * Get memberCount
    * @return memberCount
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public Integer getMemberCount() {
@@ -210,8 +204,7 @@ public class EventResource   {
    * Get time
    * @return time
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getTime() {
@@ -231,8 +224,7 @@ public class EventResource   {
    * Get location
    * @return location
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
   @Valid
 

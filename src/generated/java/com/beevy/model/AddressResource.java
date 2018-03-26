@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * AddressResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-03-22T13:32:07.962+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-03-26T15:37:57.761+02:00")
 
 public class AddressResource   {
   @JsonProperty("street")
@@ -34,8 +34,7 @@ public class AddressResource   {
    * Get street
    * @return street
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getStreet() {
@@ -55,8 +54,7 @@ public class AddressResource   {
    * Get zip
    * @return zip
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public Integer getZip() {
@@ -76,8 +74,7 @@ public class AddressResource   {
    * Get city
    * @return city
   **/
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
 
   public String getCity() {

@@ -2,7 +2,6 @@ springfox.documentation.swagger.v2.path: /api-docs
 server:
   context-path: /beevy
   port: 8080
-
 management:
   port: 8081
   security:
