@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/beevy-server.iml" filepath="$PROJECT_DIR$/.idea/modules/beevy-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/beevy-server.iml" filepath="$PROJECT_DIR$/beevy-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/beevy-server_generated.iml" filepath="$PROJECT_DIR$/.idea/modules/beevy-server_generated.iml" group="beevy-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/beevy-server_main.iml" filepath="$PROJECT_DIR$/.idea/modules/beevy-server_main.iml" group="beevy-server" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/beevy-server_test.iml" filepath="$PROJECT_DIR$/.idea/modules/beevy-server_test.iml" group="beevy-server" />
     </modules>
   </component>
 </project>
