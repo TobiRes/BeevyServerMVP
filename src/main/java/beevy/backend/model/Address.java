@@ -7,35 +7,15 @@ import org.springframework.validation.annotation.Validated;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
-/**
- * Address
- */
-@Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-03-21T17:25:50.041Z")
-
 public class Address {
-    @JsonProperty("street")
     private String street = null;
-
-    @JsonProperty("zip")
     private Integer zip = null;
-
-    @JsonProperty("city")
     private String city = null;
 
     public Address street(String street) {
         this.street = street;
         return this;
     }
-
-    /**
-     * Get street
-     *
-     * @return street
-     **/
-    @ApiModelProperty(required = true, value = "")
-    @NotNull
-
 
     public String getStreet() {
         return street;
@@ -50,15 +30,6 @@ public class Address {
         return this;
     }
 
-    /**
-     * Get zip
-     *
-     * @return zip
-     **/
-    @ApiModelProperty(required = true, value = "")
-    @NotNull
-
-
     public Integer getZip() {
         return zip;
     }
@@ -72,15 +43,6 @@ public class Address {
         return this;
     }
 
-    /**
-     * Get city
-     *
-     * @return city
-     **/
-    @ApiModelProperty(required = true, value = "")
-    @NotNull
-
-
     public String getCity() {
         return city;
     }
@@ -90,7 +52,6 @@ public class Address {
     }
 
 
-    @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
             return true;
@@ -105,11 +66,6 @@ public class Address {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(street, zip, city);
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class Address {\n");
@@ -119,17 +75,6 @@ public class Address {
         sb.append("    city: ").append(toIndentedString(city)).append("\n");
         sb.append("}");
         return sb.toString();
-    }
-
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(java.lang.Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
     }
 }
 
