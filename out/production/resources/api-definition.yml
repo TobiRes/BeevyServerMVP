@@ -55,22 +55,34 @@ definitions:
         type: string
       userSecret:
         type: string
+      admin:
+        $ref: '#/definitions/User'
       title:
+        type: string
+      summary:
         type: string
       description:
         type: string
-      category:
+      type:
         type: string
         enum:
           - category1
           - category2
           - category3
-      memberCount:
-        type: integer
-      time:
+      date:
         type: string
-      location:
+      endDate:
+        type: string
+      address:
         $ref: '#/definitions/Address'
+      registeredMembers:
+        type: array
+        items:
+          $ref: '#/definitions/User'
+      possibleMemberCount:
+        type: integer
+      currentMemberCount:
+        type: integer
   Address:
     type: object
     properties:
@@ -79,4 +91,13 @@ definitions:
       zip:
         type: integer
       city:
+        type: string
+  User:
+    type: object
+    properties:
+      name:
+        type: string
+      userID:
+        type: string
+      mail:
         type: string

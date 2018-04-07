@@ -13,6 +13,9 @@
       <module name="beevy-server_generated" target="1.8" />
       <module name="beevy-server_main" target="1.8" />
       <module name="beevy-server_test" target="1.8" />
+      <module name="BeevyServer_generated" target="1.8" />
+      <module name="BeevyServer_main" target="1.8" />
+      <module name="BeevyServer_test" target="1.8" />
       <module name="swagger-spring" target="1.7" />
     </bytecodeTargetLevel>
   </component>

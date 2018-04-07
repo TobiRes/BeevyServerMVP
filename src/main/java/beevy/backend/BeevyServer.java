@@ -3,13 +3,17 @@ package beevy.backend;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication
-@EnableSwagger2
+@Configuration
 @ComponentScan //(basePackages = { "io.swagger", "io.swagger.api" })
+@EnableAutoConfiguration
+@EnableSwagger2
+@SpringBootApplication
 public class BeevyServer implements CommandLineRunner {
 
     public static void main(String[] args) throws Exception {
