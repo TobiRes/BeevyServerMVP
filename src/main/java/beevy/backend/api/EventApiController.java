@@ -21,20 +21,19 @@ import java.util.List;
 
 @EnableAutoConfiguration
 @RestController
+@AllArgsConstructor
 public class EventApiController implements EventApi {
 
     @Autowired
     private EventRepository repository;
 
-    private EventResourceToEntityConverter eventResourceToEntityConverter;
-    private EventEntityToResourceConverter eventEntityToResourceConverter;
+    private EventResourceToEntityConverter eventResourceToEntityConverter = new EventResourceToEntityConverter();
+    private EventEntityToResourceConverter eventEntityToResourceConverter = new EventEntityToResourceConverter();
 
     @Override
     public ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object") @Valid @RequestBody EventResource body) {
-
-
-        repository.save(eventResourceToEntityConverter.toEntity(body));
-
+        final Event newEvent = eventResourceToEntityConverter.toEntity(body);
+        repository.save(newEvent);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

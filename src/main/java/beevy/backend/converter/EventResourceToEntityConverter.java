@@ -2,13 +2,14 @@ package beevy.backend.converter;
 
 import beevy.backend.model.Event;
 import com.beevy.model.EventResource;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class EventResourceToEntityConverter {
 
     public Event toEntity(final EventResource source) {
-        Event event = new Event();
        return new Event()
                .userID(source.getUserID())
                .userSecret(source.getUserSecret())
