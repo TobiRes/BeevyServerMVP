@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * EventResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-04-07T16:19:30.660+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-04-30T14:43:37.857+02:00")
 
 public class EventResource   {
   @JsonProperty("userID")
@@ -43,11 +43,9 @@ public class EventResource   {
    * Gets or Sets type
    */
   public enum TypeEnum {
-    CATEGORY1("category1"),
+    EVENT("event"),
     
-    CATEGORY2("category2"),
-    
-    CATEGORY3("category3");
+    PROJECT("project");
 
     private String value;
 
