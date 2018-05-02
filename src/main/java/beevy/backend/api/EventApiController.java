@@ -6,6 +6,7 @@ import beevy.backend.model.Event;
 import beevy.backend.repositories.EventRepository;
 import com.beevy.api.EventApi;
 import com.beevy.model.EventResource;
+import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +48,12 @@ public class EventApiController implements EventApi {
         existingEvents.forEach(event -> {
             events.add(eventEntityToResourceConverter.toResource(event));
         });
-        return new ResponseEntity<>(events, HttpStatus.OK);
+        return new ResponseEntity<>(reverseEventList(events), HttpStatus.OK);
+    }
+
+
+    private List<EventResource> reverseEventList(List<EventResource> oldList) {
+        return Lists.reverse(oldList);
     }
 
 }
