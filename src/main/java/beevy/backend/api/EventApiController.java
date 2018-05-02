@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,7 @@ public class EventApiController implements EventApi {
     private EventEntityToResourceConverter eventEntityToResourceConverter = new EventEntityToResourceConverter();
 
     @Override
+    @CrossOrigin
     public ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object") @Valid @RequestBody EventResource body) {
         final Event newEvent = eventResourceToEntityConverter.toEntity(body);
         repository.save(newEvent);

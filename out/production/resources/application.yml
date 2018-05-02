@@ -6,11 +6,10 @@ management:
   port: 8081
   security:
     enabled: false
-
 project:
   artifact-id: beevy
   name: Beevy Server
   description: Beevy Server to manage events
-
 spring:
   jackson.serialization.write_dates_as_timestamps: false
+  data.mongodb.uri: mongodb://Beevy:be3vyProjekt2k18!@ds261969.mlab.com:61969/beevy-data
