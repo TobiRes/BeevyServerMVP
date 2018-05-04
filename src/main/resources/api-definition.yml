@@ -6,7 +6,39 @@ info:
 tags:
   - name: event
     description: Create and get events
+parameters:
+  userID:
+    name: userID
+    in: path
+    description: ID of a User
+    required: true
+    type: string
+  username:
+    name: username
+    in: path
+    description: username
+    required: true
+    type: string
 paths:
+  /user/{username}/{userID}:
+    parameters:
+      - $ref: '#/parameters/username'
+      - $ref: '#/parameters/userID'
+    get:
+      tags:
+        - user token
+      summary: Return security token for a user and create a user if it doesn't exist
+      description: Get security token
+      operationId: getUserToken
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: string
+        '400':
+          description: Failed to create User
   /event:
     get:
       tags:
@@ -99,4 +131,6 @@ definitions:
       userID:
         type: string
       mail:
+        type: string
+      token:
         type: string

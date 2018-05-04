@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * UserResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-04-30T14:43:37.857+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T14:33:49.888+02:00")
 
 public class UserResource   {
   @JsonProperty("name")
@@ -24,6 +24,9 @@ public class UserResource   {
 
   @JsonProperty("mail")
   private String mail = null;
+
+  @JsonProperty("token")
+  private String token = null;
 
   public UserResource name(String name) {
     this.name = name;
@@ -85,6 +88,26 @@ public class UserResource   {
     this.mail = mail;
   }
 
+  public UserResource token(String token) {
+    this.token = token;
+    return this;
+  }
+
+  /**
+   * Get token
+   * @return token
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -97,12 +120,13 @@ public class UserResource   {
     UserResource user = (UserResource) o;
     return Objects.equals(this.name, user.name) &&
         Objects.equals(this.userID, user.userID) &&
-        Objects.equals(this.mail, user.mail);
+        Objects.equals(this.mail, user.mail) &&
+        Objects.equals(this.token, user.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, userID, mail);
+    return Objects.hash(name, userID, mail, token);
   }
 
   @Override
@@ -113,6 +137,7 @@ public class UserResource   {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    mail: ").append(toIndentedString(mail)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("}");
     return sb.toString();
   }
