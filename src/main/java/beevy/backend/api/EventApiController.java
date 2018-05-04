@@ -6,6 +6,7 @@ import beevy.backend.model.Event;
 import beevy.backend.repositories.EventRepository;
 import com.beevy.api.EventApi;
 import com.beevy.model.EventResource;
+import com.beevy.model.JoinEventDataResource;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -51,6 +52,22 @@ public class EventApiController implements EventApi {
             events.add(eventEntityToResourceConverter.toResource(event));
         });
         return new ResponseEntity<>(reverseEventList(events), HttpStatus.OK);
+    }
+
+    @Override
+    @CrossOrigin
+    public ResponseEntity<Void> joinEvent(@ApiParam(value = "Join Event Data"  )  @Valid @RequestBody JoinEventDataResource body) {
+        Event event= repository.findByEventID(body.getEventID());
+        addMemberToEvent(event, body.getUserID());
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    private void addMemberToEvent(Event event, String userID) {
+        List<String> registeredMembers = event.getRegisteredMembers();
+        registeredMembers.add(userID);
+        event.setRegisteredMembers(registeredMembers);
+        event.setCurrentMemberCount(event.getCurrentMemberCount() +1);
+        repository.save(event);
     }
 
 

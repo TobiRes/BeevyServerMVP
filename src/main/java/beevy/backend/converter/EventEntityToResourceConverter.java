@@ -11,7 +11,7 @@ public class EventEntityToResourceConverter {
 
     public EventResource toResource(final Event source) {
         return new EventResource()
-                .userID(source.getUserID())
+                .eventID(source.getEventID())
                 .userSecret(source.getUserSecret())
                 .admin(source.getAdmin())
                 .title(source.getTitle())

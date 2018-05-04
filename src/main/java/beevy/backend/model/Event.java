@@ -18,7 +18,7 @@ import java.util.List;
 public class Event {
 
     @Id
-    private String userID;
+    private String eventID;
     private String userSecret;
     private UserResource admin;
     private String title;
@@ -28,7 +28,7 @@ public class Event {
     private String date;
     private String endDate;
     private AddressResource address;
-    private List<UserResource> registeredMembers;
+    private List<String> registeredMembers;
     private Integer possibleMemberCount;
     private Integer currentMemberCount;
 

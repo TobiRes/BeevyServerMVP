@@ -18,11 +18,11 @@ import javax.validation.constraints.*;
  * EventResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T15:36:17.782+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T16:39:46.745+02:00")
 
 public class EventResource   {
-  @JsonProperty("userID")
-  private String userID = null;
+  @JsonProperty("eventID")
+  private String eventID = null;
 
   @JsonProperty("userSecret")
   private String userSecret = null;
@@ -84,7 +84,7 @@ public class EventResource   {
 
   @JsonProperty("registeredMembers")
   @Valid
-  private List<UserResource> registeredMembers = null;
+  private List<String> registeredMembers = null;
 
   @JsonProperty("possibleMemberCount")
   private Integer possibleMemberCount = null;
@@ -92,24 +92,24 @@ public class EventResource   {
   @JsonProperty("currentMemberCount")
   private Integer currentMemberCount = null;
 
-  public EventResource userID(String userID) {
-    this.userID = userID;
+  public EventResource eventID(String eventID) {
+    this.eventID = eventID;
     return this;
   }
 
   /**
-   * Get userID
-   * @return userID
+   * Get eventID
+   * @return eventID
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getUserID() {
-    return userID;
+  public String getEventID() {
+    return eventID;
   }
 
-  public void setUserID(String userID) {
-    this.userID = userID;
+  public void setEventID(String eventID) {
+    this.eventID = eventID;
   }
 
   public EventResource userSecret(String userSecret) {
@@ -294,12 +294,12 @@ public class EventResource   {
     this.address = address;
   }
 
-  public EventResource registeredMembers(List<UserResource> registeredMembers) {
+  public EventResource registeredMembers(List<String> registeredMembers) {
     this.registeredMembers = registeredMembers;
     return this;
   }
 
-  public EventResource addRegisteredMembersItem(UserResource registeredMembersItem) {
+  public EventResource addRegisteredMembersItem(String registeredMembersItem) {
     if (this.registeredMembers == null) {
       this.registeredMembers = new ArrayList<>();
     }
@@ -313,13 +313,12 @@ public class EventResource   {
   **/
   @ApiModelProperty(value = "")
 
-  @Valid
 
-  public List<UserResource> getRegisteredMembers() {
+  public List<String> getRegisteredMembers() {
     return registeredMembers;
   }
 
-  public void setRegisteredMembers(List<UserResource> registeredMembers) {
+  public void setRegisteredMembers(List<String> registeredMembers) {
     this.registeredMembers = registeredMembers;
   }
 
@@ -373,7 +372,7 @@ public class EventResource   {
       return false;
     }
     EventResource event = (EventResource) o;
-    return Objects.equals(this.userID, event.userID) &&
+    return Objects.equals(this.eventID, event.eventID) &&
         Objects.equals(this.userSecret, event.userSecret) &&
         Objects.equals(this.admin, event.admin) &&
         Objects.equals(this.title, event.title) &&
@@ -390,7 +389,7 @@ public class EventResource   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(userID, userSecret, admin, title, summary, description, type, date, endDate, address, registeredMembers, possibleMemberCount, currentMemberCount);
+    return Objects.hash(eventID, userSecret, admin, title, summary, description, type, date, endDate, address, registeredMembers, possibleMemberCount, currentMemberCount);
   }
 
   @Override
@@ -398,7 +397,7 @@ public class EventResource   {
     StringBuilder sb = new StringBuilder();
     sb.append("class EventResource {\n");
     
-    sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
+    sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
     sb.append("    userSecret: ").append(toIndentedString(userSecret)).append("\n");
     sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");

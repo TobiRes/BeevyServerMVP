@@ -10,45 +10,22 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * UserResource
+ * JoinEventDataResource
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T16:39:46.745+02:00")
 
-public class UserResource   {
-  @JsonProperty("username")
-  private String username = null;
-
+public class JoinEventDataResource   {
   @JsonProperty("userID")
   private String userID = null;
-
-  @JsonProperty("mail")
-  private String mail = null;
 
   @JsonProperty("token")
   private String token = null;
 
-  public UserResource username(String username) {
-    this.username = username;
-    return this;
-  }
+  @JsonProperty("eventID")
+  private String eventID = null;
 
-  /**
-   * Get username
-   * @return username
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public UserResource userID(String userID) {
+  public JoinEventDataResource userID(String userID) {
     this.userID = userID;
     return this;
   }
@@ -68,27 +45,7 @@ public class UserResource   {
     this.userID = userID;
   }
 
-  public UserResource mail(String mail) {
-    this.mail = mail;
-    return this;
-  }
-
-  /**
-   * Get mail
-   * @return mail
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getMail() {
-    return mail;
-  }
-
-  public void setMail(String mail) {
-    this.mail = mail;
-  }
-
-  public UserResource token(String token) {
+  public JoinEventDataResource token(String token) {
     this.token = token;
     return this;
   }
@@ -108,6 +65,26 @@ public class UserResource   {
     this.token = token;
   }
 
+  public JoinEventDataResource eventID(String eventID) {
+    this.eventID = eventID;
+    return this;
+  }
+
+  /**
+   * Get eventID
+   * @return eventID
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getEventID() {
+    return eventID;
+  }
+
+  public void setEventID(String eventID) {
+    this.eventID = eventID;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -117,27 +94,25 @@ public class UserResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserResource user = (UserResource) o;
-    return Objects.equals(this.username, user.username) &&
-        Objects.equals(this.userID, user.userID) &&
-        Objects.equals(this.mail, user.mail) &&
-        Objects.equals(this.token, user.token);
+    JoinEventDataResource joinEventData = (JoinEventDataResource) o;
+    return Objects.equals(this.userID, joinEventData.userID) &&
+        Objects.equals(this.token, joinEventData.token) &&
+        Objects.equals(this.eventID, joinEventData.eventID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, userID, mail, token);
+    return Objects.hash(userID, token, eventID);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserResource {\n");
+    sb.append("class JoinEventDataResource {\n");
     
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
-    sb.append("    mail: ").append(toIndentedString(mail)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface EventRepository extends MongoRepository<Event, String> {
 
+    public Event findByEventID(String eventID);
     public List<Event> findAllByUserSecretIsTrue();
 }

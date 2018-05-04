@@ -6,6 +6,7 @@
 package com.beevy.api;
 
 import com.beevy.model.EventResource;
+import com.beevy.model.JoinEventDataResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -28,7 +29,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T15:36:17.782+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T16:39:46.745+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -75,12 +76,29 @@ public interface EventApi {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  }, {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  } ],  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\",  \"userID\" : \"userID\",  \"userSecret\" : \"userSecret\"}, {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  }, {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  } ],  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\",  \"userID\" : \"userID\",  \"userSecret\" : \"userSecret\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\",  \"userSecret\" : \"userSecret\"}, {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\",  \"userSecret\" : \"userSecret\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                 }
             }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Join an event", nickname = "joinEvent", notes = "Join an existing event", tags={ "event", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Joined event"),
+        @ApiResponse(code = 405, message = "Failed to join event") })
+    @RequestMapping(value = "/event/join",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> joinEvent(@ApiParam(value = "Join Event Data"  )  @Valid @RequestBody JoinEventDataResource body) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");
         }
