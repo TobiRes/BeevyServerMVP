@@ -13,11 +13,11 @@ import javax.validation.constraints.*;
  * UserResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T14:33:49.888+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T15:36:17.782+02:00")
 
 public class UserResource   {
-  @JsonProperty("name")
-  private String name = null;
+  @JsonProperty("username")
+  private String username = null;
 
   @JsonProperty("userID")
   private String userID = null;
@@ -28,24 +28,24 @@ public class UserResource   {
   @JsonProperty("token")
   private String token = null;
 
-  public UserResource name(String name) {
-    this.name = name;
+  public UserResource username(String username) {
+    this.username = username;
     return this;
   }
 
   /**
-   * Get name
-   * @return name
+   * Get username
+   * @return username
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getName() {
-    return name;
+  public String getUsername() {
+    return username;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public UserResource userID(String userID) {
@@ -118,7 +118,7 @@ public class UserResource   {
       return false;
     }
     UserResource user = (UserResource) o;
-    return Objects.equals(this.name, user.name) &&
+    return Objects.equals(this.username, user.username) &&
         Objects.equals(this.userID, user.userID) &&
         Objects.equals(this.mail, user.mail) &&
         Objects.equals(this.token, user.token);
@@ -126,7 +126,7 @@ public class UserResource   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, userID, mail, token);
+    return Objects.hash(username, userID, mail, token);
   }
 
   @Override
@@ -134,7 +134,7 @@ public class UserResource   {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserResource {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    mail: ").append(toIndentedString(mail)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");

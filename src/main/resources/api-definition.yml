@@ -20,14 +20,36 @@ parameters:
     required: true
     type: string
 paths:
+  /user:
+    post:
+      tags:
+        - user
+      summary:  Create user if not existent
+      description: Create user if not existent
+      operationId: createUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User Object
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: Created user
+        '405':
+          description: Failed to create user
   /user/{username}/{userID}:
     parameters:
       - $ref: '#/parameters/username'
       - $ref: '#/parameters/userID'
     get:
       tags:
-        - user token
-      summary: Return security token for a user and create a user if it doesn't exist
+        - user
+      summary: Return security token for a user
       description: Get security token
       operationId: getUserToken
       produces:
@@ -37,8 +59,8 @@ paths:
           description: successful operation
           schema:
             type: string
-        '400':
-          description: Failed to create User
+        '404':
+          description: User not found
   /event:
     get:
       tags:
@@ -126,7 +148,7 @@ definitions:
   User:
     type: object
     properties:
-      name:
+      username:
         type: string
       userID:
         type: string

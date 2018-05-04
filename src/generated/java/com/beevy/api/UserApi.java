@@ -5,6 +5,7 @@
  */
 package com.beevy.api;
 
+import com.beevy.model.UserResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -27,7 +28,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T14:33:49.888+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T15:36:17.782+02:00")
 
 @Api(value = "user", description = "the user API")
 public interface UserApi {
@@ -46,10 +47,27 @@ public interface UserApi {
         return getRequest().map(r -> r.getHeader("Accept"));
     }
 
-    @ApiOperation(value = "Return security token for a user and create a user if it doesn't exist", nickname = "getUserToken", notes = "Get security token", response = String.class, tags={ "user token", })
+    @ApiOperation(value = "Create user if not existent", nickname = "createUser", notes = "Create user if not existent", tags={ "user", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Created user"),
+        @ApiResponse(code = 405, message = "Failed to create user") })
+    @RequestMapping(value = "/user",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> createUser(@ApiParam(value = "User Object"  )  @Valid @RequestBody UserResource body) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default UserApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Return security token for a user", nickname = "getUserToken", notes = "Get security token", response = String.class, tags={ "user", })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = String.class),
-        @ApiResponse(code = 400, message = "Failed to create User") })
+        @ApiResponse(code = 404, message = "User not found") })
     @RequestMapping(value = "/user/{username}/{userID}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class EventResourceToEntityConverter {
 
     public Event toEntity(final EventResource source) {
-       return new Event()
+       return Event.builder()
                .userID(source.getUserID())
                .userSecret(source.getUserSecret())
                .admin(source.getAdmin())
@@ -23,6 +23,7 @@ public class EventResourceToEntityConverter {
                .address(source.getAddress())
                .registeredMembers(source.getRegisteredMembers())
                .possibleMemberCount(source.getPossibleMemberCount())
-               .currentMemberCount(source.getCurrentMemberCount());
+               .currentMemberCount(source.getCurrentMemberCount())
+               .build();
     }
 }
