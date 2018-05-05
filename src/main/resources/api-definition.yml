@@ -99,6 +99,8 @@ paths:
       responses:
         '201':
           description: Created event
+        '401':
+          description: Unauthorized
         '405':
           description: Failed to create event
   /event/join:

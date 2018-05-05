@@ -3,7 +3,9 @@ package beevy.backend.api;
 import beevy.backend.converter.EventEntityToResourceConverter;
 import beevy.backend.converter.EventResourceToEntityConverter;
 import beevy.backend.model.Event;
+import beevy.backend.model.User;
 import beevy.backend.repositories.EventRepository;
+import beevy.backend.repositories.UserRepository;
 import com.beevy.api.EventApi;
 import com.beevy.model.EventResource;
 import com.beevy.model.JoinEventDataResource;
@@ -28,7 +30,10 @@ import java.util.List;
 public class EventApiController implements EventApi {
 
     @Autowired
-    private EventRepository repository;
+    private EventRepository eventRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     private EventResourceToEntityConverter eventResourceToEntityConverter = new EventResourceToEntityConverter();
     private EventEntityToResourceConverter eventEntityToResourceConverter = new EventEntityToResourceConverter();
@@ -36,17 +41,21 @@ public class EventApiController implements EventApi {
     @Override
     @CrossOrigin
     public ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object") @Valid @RequestBody EventResource body) {
-        final Event newEvent = eventResourceToEntityConverter.toEntity(body);
-        repository.save(newEvent);
-        return new ResponseEntity<>(HttpStatus.OK);
+        if(checkIfUserIsAllowedToCreateEvent(body)){
+            //TODO: Event Validierung
+            final Event newEvent = eventResourceToEntityConverter.toEntity(body);
+            eventRepository.save(newEvent);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
 
     @Override
     public ResponseEntity<List<EventResource>> getEvents() {
-        if(repository.findAll() == null){
+        if(eventRepository.findAll() == null){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        List<Event> existingEvents = repository.findAll();
+        List<Event> existingEvents = eventRepository.findAll();
         List<EventResource> events = new ArrayList<>();
         existingEvents.forEach(event -> {
             events.add(eventEntityToResourceConverter.toResource(event));
@@ -57,9 +66,27 @@ public class EventApiController implements EventApi {
     @Override
     @CrossOrigin
     public ResponseEntity<Void> joinEvent(@ApiParam(value = "Join Event Data"  )  @Valid @RequestBody JoinEventDataResource body) {
-        Event event= repository.findByEventID(body.getEventID());
-        addMemberToEvent(event, body.getUserID());
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Event event= eventRepository.findByEventID(body.getEventID());
+        if(event != null && checkIfUserIsAllowedToJoinEvent(event, body)){
+            addMemberToEvent(event, body.getUserID());
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    private boolean checkIfUserIsAllowedToJoinEvent(Event event, JoinEventDataResource body) {
+        User user = userRepository.findByUserID(body.getUserID());
+        if(user == null || event.getAdmin().getUserID() == body.getUserID() || userAlreadyJoinedEvent(event, user)){
+            return false;
+        }
+        return true;
+    }
+
+    private boolean userAlreadyJoinedEvent(Event event, User user) {
+        if(event.getRegisteredMembers().contains(user.getUserID())){
+            return true;
+        }
+        return false;
     }
 
     private void addMemberToEvent(Event event, String userID) {
@@ -67,7 +94,18 @@ public class EventApiController implements EventApi {
         registeredMembers.add(userID);
         event.setRegisteredMembers(registeredMembers);
         event.setCurrentMemberCount(event.getCurrentMemberCount() +1);
-        repository.save(event);
+        eventRepository.save(event);
+    }
+
+    private boolean checkIfUserIsAllowedToCreateEvent(EventResource body) {
+        User user = userRepository.findByUserID(body.getAdmin().getUserID());
+        if(user == null){
+            return false;
+        }
+        if(user.getToken() == body.getAdmin().getToken() && user.getUsername() == body.getAdmin().getUsername() && user.getUserID() == body.getAdmin().getUserID()){
+            return true;
+        }
+        return false;
     }
 
 

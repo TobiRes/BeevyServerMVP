@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-04T16:39:46.745+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-05T14:03:06.247+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -51,6 +51,7 @@ public interface EventApi {
     @ApiOperation(value = "Create an event", nickname = "createEvent", notes = "Create an event for Beevy", tags={ "event", })
     @ApiResponses(value = { 
         @ApiResponse(code = 201, message = "Created event"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
         @ApiResponse(code = 405, message = "Failed to create event") })
     @RequestMapping(value = "/event/create",
         produces = { "application/json" }, 
