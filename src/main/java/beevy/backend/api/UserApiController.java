@@ -11,6 +11,7 @@ import com.beevy.api.EventApi;
 import com.beevy.api.UserApi;
 import com.beevy.model.EventResource;
 import com.beevy.model.UserResource;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -67,7 +68,8 @@ public class UserApiController implements UserApi {
                 generateTokenAndSaveUser(user);
             }
         }
-        return new ResponseEntity<>(user.getToken(), HttpStatus.OK);
+        //Not pretty, but works.
+        return new ResponseEntity<>("{\"token\":\"" + user.getToken() + "\"}", HttpStatus.OK);
     }
 
     private boolean allRequiredDataAvailable(UserResource userResource) {

@@ -18,14 +18,11 @@ import javax.validation.constraints.*;
  * EventResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-05T14:03:06.247+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-06T15:05:50.995+02:00")
 
 public class EventResource   {
   @JsonProperty("eventID")
   private String eventID = null;
-
-  @JsonProperty("userSecret")
-  private String userSecret = null;
 
   @JsonProperty("admin")
   private UserResource admin = null;
@@ -110,26 +107,6 @@ public class EventResource   {
 
   public void setEventID(String eventID) {
     this.eventID = eventID;
-  }
-
-  public EventResource userSecret(String userSecret) {
-    this.userSecret = userSecret;
-    return this;
-  }
-
-  /**
-   * Get userSecret
-   * @return userSecret
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getUserSecret() {
-    return userSecret;
-  }
-
-  public void setUserSecret(String userSecret) {
-    this.userSecret = userSecret;
   }
 
   public EventResource admin(UserResource admin) {
@@ -373,7 +350,6 @@ public class EventResource   {
     }
     EventResource event = (EventResource) o;
     return Objects.equals(this.eventID, event.eventID) &&
-        Objects.equals(this.userSecret, event.userSecret) &&
         Objects.equals(this.admin, event.admin) &&
         Objects.equals(this.title, event.title) &&
         Objects.equals(this.summary, event.summary) &&
@@ -389,7 +365,7 @@ public class EventResource   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventID, userSecret, admin, title, summary, description, type, date, endDate, address, registeredMembers, possibleMemberCount, currentMemberCount);
+    return Objects.hash(eventID, admin, title, summary, description, type, date, endDate, address, registeredMembers, possibleMemberCount, currentMemberCount);
   }
 
   @Override
@@ -398,7 +374,6 @@ public class EventResource   {
     sb.append("class EventResource {\n");
     
     sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
-    sb.append("    userSecret: ").append(toIndentedString(userSecret)).append("\n");
     sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");

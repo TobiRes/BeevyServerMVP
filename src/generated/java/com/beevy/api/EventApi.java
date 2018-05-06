@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-05T14:03:06.247+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-06T15:05:50.995+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -77,7 +77,7 @@ public interface EventApi {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\",  \"userSecret\" : \"userSecret\"}, {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\",  \"userSecret\" : \"userSecret\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\"}, {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"city\" : \"city\",    \"street\" : \"street\"  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"mail\" : \"mail\",    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

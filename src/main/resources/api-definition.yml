@@ -131,8 +131,6 @@ definitions:
     properties:
       eventID:
         type: string
-      userSecret:
-        type: string
       admin:
         $ref: '#/definitions/User'
       title:

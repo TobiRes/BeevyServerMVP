@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * JoinEventDataResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-05T14:03:06.247+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-06T15:05:50.995+02:00")
 
 public class JoinEventDataResource   {
   @JsonProperty("userID")

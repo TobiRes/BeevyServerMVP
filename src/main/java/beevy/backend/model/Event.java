@@ -19,7 +19,6 @@ public class Event {
 
     @Id
     private String eventID;
-    private String userSecret;
     private UserResource admin;
     private String title;
     private String summary;
