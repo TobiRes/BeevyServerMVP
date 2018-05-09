@@ -102,7 +102,7 @@ public class EventApiController implements EventApi {
         if (user == null) {
             return false;
         }
-        if (user.getToken() == body.getAdmin().getToken() && user.getUsername() == body.getAdmin().getUsername() && user.getUserID() == body.getAdmin().getUserID()) {
+        if (user.getToken().equals(body.getAdmin().getToken()) && user.getUsername().equals(body.getAdmin().getUsername()) && user.getUserID().equals(body.getAdmin().getUserID())) {
             return true;
         }
         return false;

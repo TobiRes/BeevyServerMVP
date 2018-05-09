@@ -2,6 +2,7 @@ package beevy.backend.converter;
 
 import beevy.backend.model.Event;
 import com.beevy.model.EventResource;
+import com.beevy.model.MinimalUserResource;
 import com.beevy.model.UserResource;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ public class EventEntityToResourceConverter {
     public EventResource toResource(final Event source) {
         return new EventResource()
                 .eventID(source.getEventID())
-                .admin(new UserResource().userID(source.getAdmin()))
+                .admin(new MinimalUserResource().userID(source.getAdmin()))
                 .title(source.getTitle())
                 .summary(source.getSummary())
                 .description(source.getDescription())

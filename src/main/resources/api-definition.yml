@@ -161,7 +161,7 @@ definitions:
       eventID:
         type: string
       admin:
-        $ref: '#/definitions/User'
+        $ref: '#/definitions/MinimalUser'
       title:
         type: string
       summary:
@@ -204,6 +204,15 @@ definitions:
         type: array
         items:
           type: string
+  MinimalUser:
+    type: object
+    properties:
+      username:
+        type: string
+      userID:
+        type: string
+      token:
+        type: string
   User:
     type: object
     properties:

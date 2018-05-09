@@ -2,7 +2,7 @@ package com.beevy.model;
 
 import java.util.Objects;
 import com.beevy.model.AddressResource;
-import com.beevy.model.UserResource;
+import com.beevy.model.MinimalUserResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -18,14 +18,14 @@ import javax.validation.constraints.*;
  * EventResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-09T14:28:34.909+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-09T16:40:23.688+02:00")
 
 public class EventResource   {
   @JsonProperty("eventID")
   private String eventID = null;
 
   @JsonProperty("admin")
-  private UserResource admin = null;
+  private MinimalUserResource admin = null;
 
   @JsonProperty("title")
   private String title = null;
@@ -109,7 +109,7 @@ public class EventResource   {
     this.eventID = eventID;
   }
 
-  public EventResource admin(UserResource admin) {
+  public EventResource admin(MinimalUserResource admin) {
     this.admin = admin;
     return this;
   }
@@ -122,11 +122,11 @@ public class EventResource   {
 
   @Valid
 
-  public UserResource getAdmin() {
+  public MinimalUserResource getAdmin() {
     return admin;
   }
 
-  public void setAdmin(UserResource admin) {
+  public void setAdmin(MinimalUserResource admin) {
     this.admin = admin;
   }
 
