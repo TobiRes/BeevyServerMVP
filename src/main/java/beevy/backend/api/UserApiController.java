@@ -51,7 +51,7 @@ public class UserApiController implements UserApi {
     @CrossOrigin
     public ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object"  )  @Valid @RequestBody UserSecurityResource body) {
         final User user = repository.findByUserID(body.getUserID());
-        if (user == null || !allRequiredDataAvailable(user) ) {
+        if (user == null || !allRequiredDataAvailable(user) || !(user.getUsername().equals(body.getUsername()))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             user.setTempAccessToken(body.getTempToken());
@@ -66,7 +66,7 @@ public class UserApiController implements UserApi {
         final User user = repository.findByUserID(userID);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (user.getTempAccessToken() != tempAccessToken){
+        } else if (!user.getTempAccessToken().equals(tempAccessToken)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
             if (user.getToken() == null) {
