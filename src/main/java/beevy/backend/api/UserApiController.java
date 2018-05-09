@@ -5,6 +5,7 @@ import beevy.backend.model.User;
 import beevy.backend.repositories.UserRepository;
 import com.beevy.api.UserApi;
 import com.beevy.model.UserResource;
+import com.beevy.model.UserSecurityResource;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,17 +47,33 @@ public class UserApiController implements UserApi {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Override
+    @CrossOrigin
+    public ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object"  )  @Valid @RequestBody UserSecurityResource body) {
+        final User user = repository.findByUserID(body.getUserID());
+        if (user == null || !allRequiredDataAvailable(user) ) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } else {
+            user.setTempAccessToken(body.getTempToken());
+            repository.save(user);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+    }
 
     @Override
     @CrossOrigin
-    public ResponseEntity<String> getUserToken(@PathVariable("username") final String username, @PathVariable("userID") final String userID) {
+    public ResponseEntity<String> getUserToken(@PathVariable("username") final String username, @PathVariable("userID") final String userID, @PathVariable("tempAccessToken") final String tempAccessToken) {
         final User user = repository.findByUserID(userID);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else if (user.getTempAccessToken() != tempAccessToken){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
             if (user.getToken() == null) {
                 generateTokenAndSaveUser(user);
             }
+            user.setTempAccessToken(null);
+            repository.save(user);
         }
         //Not pretty, but works.
         return new ResponseEntity<>("{\"token\":\"" + user.getToken() + "\"}", HttpStatus.OK);

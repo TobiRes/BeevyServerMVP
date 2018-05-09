@@ -6,6 +6,7 @@
 package com.beevy.api;
 
 import com.beevy.model.UserResource;
+import com.beevy.model.UserSecurityResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -28,7 +29,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-06T15:05:50.995+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-09T14:28:34.909+02:00")
 
 @Api(value = "user", description = "the user API")
 public interface UserApi {
@@ -68,10 +69,10 @@ public interface UserApi {
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "successful operation", response = String.class),
         @ApiResponse(code = 404, message = "User not found") })
-    @RequestMapping(value = "/user/{username}/{userID}",
+    @RequestMapping(value = "/user/{username}/{userID}/{tempAccessToken}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    default ResponseEntity<String> getUserToken(@ApiParam(value = "username",required=true) @PathVariable("username") String username,@ApiParam(value = "ID of a User",required=true) @PathVariable("userID") String userID) {
+    default ResponseEntity<String> getUserToken(@ApiParam(value = "username",required=true) @PathVariable("username") String username,@ApiParam(value = "ID of a User",required=true) @PathVariable("userID") String userID,@ApiParam(value = "tempAccessToken",required=true) @PathVariable("tempAccessToken") String tempAccessToken) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
@@ -81,6 +82,23 @@ public interface UserApi {
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
                 }
             }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default UserApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Set a temporary access token for a user", nickname = "setTempAccessTokenForUser", notes = "Set a temporary access token to make sure only the right user can get data", tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Saved temporary access token"),
+        @ApiResponse(code = 405, message = "Failed to create temporary access token") })
+    @RequestMapping(value = "/user/access",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object"  )  @Valid @RequestBody UserSecurityResource body) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default UserApi interface so no example is generated");
         }

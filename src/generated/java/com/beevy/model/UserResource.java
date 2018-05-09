@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,7 +15,7 @@ import javax.validation.constraints.*;
  * UserResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-06T15:05:50.995+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-09T14:28:34.909+02:00")
 
 public class UserResource   {
   @JsonProperty("username")
@@ -27,6 +29,17 @@ public class UserResource   {
 
   @JsonProperty("token")
   private String token = null;
+
+  @JsonProperty("tempAccessToken")
+  private String tempAccessToken = null;
+
+  @JsonProperty("joinedEvents")
+  @Valid
+  private List<String> joinedEvents = null;
+
+  @JsonProperty("createdEvents")
+  @Valid
+  private List<String> createdEvents = null;
 
   public UserResource username(String username) {
     this.username = username;
@@ -108,6 +121,82 @@ public class UserResource   {
     this.token = token;
   }
 
+  public UserResource tempAccessToken(String tempAccessToken) {
+    this.tempAccessToken = tempAccessToken;
+    return this;
+  }
+
+  /**
+   * Get tempAccessToken
+   * @return tempAccessToken
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getTempAccessToken() {
+    return tempAccessToken;
+  }
+
+  public void setTempAccessToken(String tempAccessToken) {
+    this.tempAccessToken = tempAccessToken;
+  }
+
+  public UserResource joinedEvents(List<String> joinedEvents) {
+    this.joinedEvents = joinedEvents;
+    return this;
+  }
+
+  public UserResource addJoinedEventsItem(String joinedEventsItem) {
+    if (this.joinedEvents == null) {
+      this.joinedEvents = new ArrayList<>();
+    }
+    this.joinedEvents.add(joinedEventsItem);
+    return this;
+  }
+
+  /**
+   * Get joinedEvents
+   * @return joinedEvents
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public List<String> getJoinedEvents() {
+    return joinedEvents;
+  }
+
+  public void setJoinedEvents(List<String> joinedEvents) {
+    this.joinedEvents = joinedEvents;
+  }
+
+  public UserResource createdEvents(List<String> createdEvents) {
+    this.createdEvents = createdEvents;
+    return this;
+  }
+
+  public UserResource addCreatedEventsItem(String createdEventsItem) {
+    if (this.createdEvents == null) {
+      this.createdEvents = new ArrayList<>();
+    }
+    this.createdEvents.add(createdEventsItem);
+    return this;
+  }
+
+  /**
+   * Get createdEvents
+   * @return createdEvents
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public List<String> getCreatedEvents() {
+    return createdEvents;
+  }
+
+  public void setCreatedEvents(List<String> createdEvents) {
+    this.createdEvents = createdEvents;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -121,12 +210,15 @@ public class UserResource   {
     return Objects.equals(this.username, user.username) &&
         Objects.equals(this.userID, user.userID) &&
         Objects.equals(this.mail, user.mail) &&
-        Objects.equals(this.token, user.token);
+        Objects.equals(this.token, user.token) &&
+        Objects.equals(this.tempAccessToken, user.tempAccessToken) &&
+        Objects.equals(this.joinedEvents, user.joinedEvents) &&
+        Objects.equals(this.createdEvents, user.createdEvents);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, userID, mail, token);
+    return Objects.hash(username, userID, mail, token, tempAccessToken, joinedEvents, createdEvents);
   }
 
   @Override
@@ -138,6 +230,9 @@ public class UserResource   {
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    mail: ").append(toIndentedString(mail)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    tempAccessToken: ").append(toIndentedString(tempAccessToken)).append("\n");
+    sb.append("    joinedEvents: ").append(toIndentedString(joinedEvents)).append("\n");
+    sb.append("    createdEvents: ").append(toIndentedString(createdEvents)).append("\n");
     sb.append("}");
     return sb.toString();
   }

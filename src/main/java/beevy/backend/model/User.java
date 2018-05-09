@@ -12,8 +12,9 @@ public class User {
 
     @Id
     private String userID;
-    private String username = null;
-    private String mail = null;
-    private String token = null;
+    private String username;
+    private String mail;
+    private String token;
+    private String tempAccessToken;
 
 }
