@@ -76,7 +76,7 @@ public class EventApiController implements EventApi {
 
     private boolean checkIfUserIsAllowedToJoinEvent(Event event, JoinEventDataResource body) {
         User user = userRepository.findByUserID(body.getUserID());
-        if (user == null || event.getAdmin().getUserID() == body.getUserID() || userAlreadyJoinedEvent(event, user)) {
+        if (user == null || event.getAdmin() == body.getUserID() || userAlreadyJoinedEvent(event, user)) {
             return false;
         }
         return true;

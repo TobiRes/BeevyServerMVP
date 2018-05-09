@@ -17,7 +17,7 @@ public class Event {
 
     @Id
     private String eventID;
-    private UserResource admin;
+    private String admin;
     private String title;
     private String summary;
     private String description;
