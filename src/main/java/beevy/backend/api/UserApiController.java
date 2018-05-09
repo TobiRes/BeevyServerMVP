@@ -1,18 +1,10 @@
 package beevy.backend.api;
 
-import beevy.backend.converter.EventEntityToResourceConverter;
-import beevy.backend.converter.EventResourceToEntityConverter;
 import beevy.backend.converter.UserResourceToEntityConverter;
-import beevy.backend.model.Event;
 import beevy.backend.model.User;
-import beevy.backend.repositories.EventRepository;
 import beevy.backend.repositories.UserRepository;
-import com.beevy.api.EventApi;
 import com.beevy.api.UserApi;
-import com.beevy.model.EventResource;
 import com.beevy.model.UserResource;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @EnableAutoConfiguration
@@ -41,15 +31,15 @@ public class UserApiController implements UserApi {
 
     @Override
     @CrossOrigin
-    public ResponseEntity<Void> createUser(@ApiParam(value = "User Object"  )  @Valid @RequestBody UserResource body) {
-        if(!allRequiredDataAvailable(body)){
+    public ResponseEntity<Void> createUser(@ApiParam(value = "User Object") @Valid @RequestBody UserResource body) {
+        if (!allRequiredDataAvailable(body)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         final User user = repository.findByUserID(body.getUserID());
-        if(user == null){
+        if (user == null) {
             generateTokenAndSaveUser(body);
         } else {
-            if(!allRequiredDataAvailable(user) || user.getToken() == null){
+            if (!allRequiredDataAvailable(user) || user.getToken() == null) {
                 generateTokenAndSaveUser(body);
             }
         }
@@ -61,10 +51,10 @@ public class UserApiController implements UserApi {
     @CrossOrigin
     public ResponseEntity<String> getUserToken(@PathVariable("username") final String username, @PathVariable("userID") final String userID) {
         final User user = repository.findByUserID(userID);
-        if(user == null) {
+        if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            if(user.getToken() == null){
+            if (user.getToken() == null) {
                 generateTokenAndSaveUser(user);
             }
         }

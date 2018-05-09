@@ -41,7 +41,7 @@ public class EventApiController implements EventApi {
     @Override
     @CrossOrigin
     public ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object") @Valid @RequestBody EventResource body) {
-        if(checkIfUserIsAllowedToCreateEvent(body)){
+        if (checkIfUserIsAllowedToCreateEvent(body)) {
             //TODO: Event Validierung
             final Event newEvent = eventResourceToEntityConverter.toEntity(body);
             eventRepository.save(newEvent);
@@ -52,7 +52,7 @@ public class EventApiController implements EventApi {
 
     @Override
     public ResponseEntity<List<EventResource>> getEvents() {
-        if(eventRepository.findAll() == null){
+        if (eventRepository.findAll() == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         List<Event> existingEvents = eventRepository.findAll();
@@ -65,9 +65,9 @@ public class EventApiController implements EventApi {
 
     @Override
     @CrossOrigin
-    public ResponseEntity<Void> joinEvent(@ApiParam(value = "Join Event Data"  )  @Valid @RequestBody JoinEventDataResource body) {
-        Event event= eventRepository.findByEventID(body.getEventID());
-        if(event != null && checkIfUserIsAllowedToJoinEvent(event, body)){
+    public ResponseEntity<Void> joinEvent(@ApiParam(value = "Join Event Data") @Valid @RequestBody JoinEventDataResource body) {
+        Event event = eventRepository.findByEventID(body.getEventID());
+        if (event != null && checkIfUserIsAllowedToJoinEvent(event, body)) {
             addMemberToEvent(event, body.getUserID());
             return new ResponseEntity<>(HttpStatus.OK);
         }
@@ -76,14 +76,14 @@ public class EventApiController implements EventApi {
 
     private boolean checkIfUserIsAllowedToJoinEvent(Event event, JoinEventDataResource body) {
         User user = userRepository.findByUserID(body.getUserID());
-        if(user == null || event.getAdmin().getUserID() == body.getUserID() || userAlreadyJoinedEvent(event, user)){
+        if (user == null || event.getAdmin().getUserID() == body.getUserID() || userAlreadyJoinedEvent(event, user)) {
             return false;
         }
         return true;
     }
 
     private boolean userAlreadyJoinedEvent(Event event, User user) {
-        if(event.getRegisteredMembers().contains(user.getUserID())){
+        if (event.getRegisteredMembers().contains(user.getUserID())) {
             return true;
         }
         return false;
@@ -93,16 +93,16 @@ public class EventApiController implements EventApi {
         List<String> registeredMembers = event.getRegisteredMembers();
         registeredMembers.add(userID);
         event.setRegisteredMembers(registeredMembers);
-        event.setCurrentMemberCount(event.getCurrentMemberCount() +1);
+        event.setCurrentMemberCount(event.getCurrentMemberCount() + 1);
         eventRepository.save(event);
     }
 
     private boolean checkIfUserIsAllowedToCreateEvent(EventResource body) {
         User user = userRepository.findByUserID(body.getAdmin().getUserID());
-        if(user == null){
+        if (user == null) {
             return false;
         }
-        if(user.getToken() == body.getAdmin().getToken() && user.getUsername() == body.getAdmin().getUsername() && user.getUserID() == body.getAdmin().getUserID()){
+        if (user.getToken() == body.getAdmin().getToken() && user.getUsername() == body.getAdmin().getUsername() && user.getUserID() == body.getAdmin().getUserID()) {
             return true;
         }
         return false;

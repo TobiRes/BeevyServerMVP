@@ -3,8 +3,6 @@ package beevy.backend.model;
 import com.beevy.model.AddressResource;
 import com.beevy.model.EventResource;
 import com.beevy.model.UserResource;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
