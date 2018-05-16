@@ -7,6 +7,7 @@ package com.beevy.api;
 
 import com.beevy.model.EventResource;
 import com.beevy.model.JoinEventDataResource;
+import com.beevy.model.UserEventsResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -29,7 +30,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-09T16:40:23.688+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-16T17:20:49.644+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -78,6 +79,30 @@ public interface EventApi {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
                     return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"joinedEvents\" : [ \"joinedEvents\", \"joinedEvents\" ],    \"city\" : \"city\",    \"street\" : \"street\",    \"createdEvents\" : [ \"createdEvents\", \"createdEvents\" ]  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\"}, {  \"summary\" : \"summary\",  \"date\" : \"date\",  \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],  \"eventID\" : \"eventID\",  \"address\" : {    \"zip\" : 0,    \"joinedEvents\" : [ \"joinedEvents\", \"joinedEvents\" ],    \"city\" : \"city\",    \"street\" : \"street\",    \"createdEvents\" : [ \"createdEvents\", \"createdEvents\" ]  },  \"currentMemberCount\" : 1,  \"possibleMemberCount\" : 6,  \"endDate\" : \"endDate\",  \"admin\" : {    \"userID\" : \"userID\",    \"username\" : \"username\",    \"token\" : \"token\"  },  \"description\" : \"description\",  \"title\" : \"title\",  \"type\" : \"event\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                } catch (IOException e) {
+                    log.error("Couldn't serialize response for content type application/json", e);
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Return a users events", nickname = "getUserEvents", notes = "Get events of a user", response = UserEventsResource.class, tags={ "event", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation", response = UserEventsResource.class),
+        @ApiResponse(code = 405, message = "Failed to get events") })
+    @RequestMapping(value = "/event/{userID}/{tempAccessToken}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<UserEventsResource> getUserEvents(@ApiParam(value = "ID of a User",required=true) @PathVariable("userID") String userID,@ApiParam(value = "tempAccessToken",required=true) @PathVariable("tempAccessToken") String tempAccessToken) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+            if (getAcceptHeader().get().contains("application/json")) {
+                try {
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("{  \"joinedEvents\" : [ {    \"summary\" : \"summary\",    \"date\" : \"date\",    \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],    \"eventID\" : \"eventID\",    \"address\" : {      \"zip\" : 0,      \"joinedEvents\" : [ \"joinedEvents\", \"joinedEvents\" ],      \"city\" : \"city\",      \"street\" : \"street\",      \"createdEvents\" : [ \"createdEvents\", \"createdEvents\" ]    },    \"currentMemberCount\" : 1,    \"possibleMemberCount\" : 6,    \"endDate\" : \"endDate\",    \"admin\" : {      \"userID\" : \"userID\",      \"username\" : \"username\",      \"token\" : \"token\"    },    \"description\" : \"description\",    \"title\" : \"title\",    \"type\" : \"event\"  }, {    \"summary\" : \"summary\",    \"date\" : \"date\",    \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],    \"eventID\" : \"eventID\",    \"address\" : {      \"zip\" : 0,      \"joinedEvents\" : [ \"joinedEvents\", \"joinedEvents\" ],      \"city\" : \"city\",      \"street\" : \"street\",      \"createdEvents\" : [ \"createdEvents\", \"createdEvents\" ]    },    \"currentMemberCount\" : 1,    \"possibleMemberCount\" : 6,    \"endDate\" : \"endDate\",    \"admin\" : {      \"userID\" : \"userID\",      \"username\" : \"username\",      \"token\" : \"token\"    },    \"description\" : \"description\",    \"title\" : \"title\",    \"type\" : \"event\"  } ],  \"createdEvents\" : [ {    \"summary\" : \"summary\",    \"date\" : \"date\",    \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],    \"eventID\" : \"eventID\",    \"address\" : {      \"zip\" : 0,      \"joinedEvents\" : [ \"joinedEvents\", \"joinedEvents\" ],      \"city\" : \"city\",      \"street\" : \"street\",      \"createdEvents\" : [ \"createdEvents\", \"createdEvents\" ]    },    \"currentMemberCount\" : 1,    \"possibleMemberCount\" : 6,    \"endDate\" : \"endDate\",    \"admin\" : {      \"userID\" : \"userID\",      \"username\" : \"username\",      \"token\" : \"token\"    },    \"description\" : \"description\",    \"title\" : \"title\",    \"type\" : \"event\"  }, {    \"summary\" : \"summary\",    \"date\" : \"date\",    \"registeredMembers\" : [ \"registeredMembers\", \"registeredMembers\" ],    \"eventID\" : \"eventID\",    \"address\" : {      \"zip\" : 0,      \"joinedEvents\" : [ \"joinedEvents\", \"joinedEvents\" ],      \"city\" : \"city\",      \"street\" : \"street\",      \"createdEvents\" : [ \"createdEvents\", \"createdEvents\" ]    },    \"currentMemberCount\" : 1,    \"possibleMemberCount\" : 6,    \"endDate\" : \"endDate\",    \"admin\" : {      \"userID\" : \"userID\",      \"username\" : \"username\",      \"token\" : \"token\"    },    \"description\" : \"description\",    \"title\" : \"title\",    \"type\" : \"event\"  } ]}", UserEventsResource.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

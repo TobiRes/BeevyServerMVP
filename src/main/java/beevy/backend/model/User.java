@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -16,5 +18,6 @@ public class User {
     private String mail;
     private String token;
     private String tempAccessToken;
-
+    private List<String> joinedEvents;
+    private List<String> createdEvents;
 }

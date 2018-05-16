@@ -10,22 +10,42 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * JoinEventDataResource
+ * MinimalUserResource
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-16T17:20:49.644+02:00")
 
-public class JoinEventDataResource   {
+public class MinimalUserResource   {
+  @JsonProperty("username")
+  private String username = null;
+
   @JsonProperty("userID")
   private String userID = null;
 
   @JsonProperty("token")
   private String token = null;
 
-  @JsonProperty("eventID")
-  private String eventID = null;
+  public MinimalUserResource username(String username) {
+    this.username = username;
+    return this;
+  }
 
-  public JoinEventDataResource userID(String userID) {
+  /**
+   * Get username
+   * @return username
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public MinimalUserResource userID(String userID) {
     this.userID = userID;
     return this;
   }
@@ -45,7 +65,7 @@ public class JoinEventDataResource   {
     this.userID = userID;
   }
 
-  public JoinEventDataResource token(String token) {
+  public MinimalUserResource token(String token) {
     this.token = token;
     return this;
   }
@@ -65,26 +85,6 @@ public class JoinEventDataResource   {
     this.token = token;
   }
 
-  public JoinEventDataResource eventID(String eventID) {
-    this.eventID = eventID;
-    return this;
-  }
-
-  /**
-   * Get eventID
-   * @return eventID
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getEventID() {
-    return eventID;
-  }
-
-  public void setEventID(String eventID) {
-    this.eventID = eventID;
-  }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,25 +94,25 @@ public class JoinEventDataResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JoinEventDataResource joinEventData = (JoinEventDataResource) o;
-    return Objects.equals(this.userID, joinEventData.userID) &&
-        Objects.equals(this.token, joinEventData.token) &&
-        Objects.equals(this.eventID, joinEventData.eventID);
+    MinimalUserResource minimalUser = (MinimalUserResource) o;
+    return Objects.equals(this.username, minimalUser.username) &&
+        Objects.equals(this.userID, minimalUser.userID) &&
+        Objects.equals(this.token, minimalUser.token);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userID, token, eventID);
+    return Objects.hash(username, userID, token);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JoinEventDataResource {\n");
+    sb.append("class MinimalUserResource {\n");
     
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
     sb.append("}");
     return sb.toString();
   }

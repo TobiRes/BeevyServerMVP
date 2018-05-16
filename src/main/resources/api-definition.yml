@@ -154,6 +154,25 @@ paths:
             description: Joined event
           '405':
             description: Failed to join event
+  /event/{userID}/{tempAccessToken}:
+      parameters:
+        - $ref: '#/parameters/userID'
+        - $ref: '#/parameters/tempAccessToken'
+      get:
+        tags:
+          - event
+        summary: Return a users events
+        description: Get events of a user
+        operationId: getUserEvents
+        produces:
+          - application/json
+        responses:
+          '200':
+            description: successful operation
+            schema:
+              $ref: '#/definitions/UserEvents'
+          '405':
+            description: Failed to get events
 definitions:
   Event:
     type: object
@@ -252,3 +271,14 @@ definitions:
         type: string
       eventID:
         type: string
+  UserEvents:
+    type: object
+    properties:
+      joinedEvents:
+        type: array
+        items:
+          $ref: '#/definitions/Event'
+      createdEvents:
+        type: array
+        items:
+          $ref: '#/definitions/Event'

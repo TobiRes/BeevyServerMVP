@@ -10,22 +10,42 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * JoinEventDataResource
+ * UserSecurityResource
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-16T17:20:49.644+02:00")
 
-public class JoinEventDataResource   {
+public class UserSecurityResource   {
+  @JsonProperty("username")
+  private String username = null;
+
   @JsonProperty("userID")
   private String userID = null;
 
-  @JsonProperty("token")
-  private String token = null;
+  @JsonProperty("tempToken")
+  private String tempToken = null;
 
-  @JsonProperty("eventID")
-  private String eventID = null;
+  public UserSecurityResource username(String username) {
+    this.username = username;
+    return this;
+  }
 
-  public JoinEventDataResource userID(String userID) {
+  /**
+   * Get username
+   * @return username
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public UserSecurityResource userID(String userID) {
     this.userID = userID;
     return this;
   }
@@ -45,44 +65,24 @@ public class JoinEventDataResource   {
     this.userID = userID;
   }
 
-  public JoinEventDataResource token(String token) {
-    this.token = token;
+  public UserSecurityResource tempToken(String tempToken) {
+    this.tempToken = tempToken;
     return this;
   }
 
   /**
-   * Get token
-   * @return token
+   * Get tempToken
+   * @return tempToken
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getToken() {
-    return token;
+  public String getTempToken() {
+    return tempToken;
   }
 
-  public void setToken(String token) {
-    this.token = token;
-  }
-
-  public JoinEventDataResource eventID(String eventID) {
-    this.eventID = eventID;
-    return this;
-  }
-
-  /**
-   * Get eventID
-   * @return eventID
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getEventID() {
-    return eventID;
-  }
-
-  public void setEventID(String eventID) {
-    this.eventID = eventID;
+  public void setTempToken(String tempToken) {
+    this.tempToken = tempToken;
   }
 
 
@@ -94,25 +94,25 @@ public class JoinEventDataResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JoinEventDataResource joinEventData = (JoinEventDataResource) o;
-    return Objects.equals(this.userID, joinEventData.userID) &&
-        Objects.equals(this.token, joinEventData.token) &&
-        Objects.equals(this.eventID, joinEventData.eventID);
+    UserSecurityResource userSecurity = (UserSecurityResource) o;
+    return Objects.equals(this.username, userSecurity.username) &&
+        Objects.equals(this.userID, userSecurity.userID) &&
+        Objects.equals(this.tempToken, userSecurity.tempToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userID, token, eventID);
+    return Objects.hash(username, userID, tempToken);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JoinEventDataResource {\n");
+    sb.append("class UserSecurityResource {\n");
     
+    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
-    sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
+    sb.append("    tempToken: ").append(toIndentedString(tempToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }
