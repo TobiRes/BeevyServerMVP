@@ -76,6 +76,7 @@ public class UserApiController implements UserApi {
     }
 
     private Boolean sendMail(String mail, String username, String registerToken) {
+        //https://www.quickprogrammingtips.com/spring-boot/how-to-send-email-from-spring-boot-applications.html
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
