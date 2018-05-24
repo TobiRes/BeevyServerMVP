@@ -48,10 +48,32 @@ paths:
           description: Created user
         '405':
           description: Failed to create user
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: Register user
+      description: Register a user via mail
+      operationId: registerUser
+      consumes:
+          - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Minimal User
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: Send registration mail
+        '405':
+          description: Failed to send registration mail
   /user/access:
     post:
       tags:
-        -user
+        - user
       summary: Set a temporary access token for a user
       description: Set a temporary access token to make sure only the right user can get data
       operationId: setTempAccessTokenForUser

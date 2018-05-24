@@ -8,16 +8,21 @@ import com.beevy.model.UserResource;
 import com.beevy.model.UserSecurityResource;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
+import java.util.Random;
 import java.util.UUID;
 
 @EnableAutoConfiguration
@@ -27,6 +32,9 @@ public class UserApiController implements UserApi {
 
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    JavaMailSender sender;
 
     private UserResourceToEntityConverter userResourceToEntityConverter = new UserResourceToEntityConverter();
 
@@ -45,6 +53,53 @@ public class UserApiController implements UserApi {
             }
         }
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    @CrossOrigin
+    public ResponseEntity<Void> registerUser(@ApiParam(value = "Security Object"  )  @Valid @RequestBody UserResource body) {
+        if(body.getUserID() != null && body.getMail() != null && body.getUsername() != null){
+            if(!mailValid(body.getMail())){
+                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            }
+            if(!sendMail(body.getMail(), body.getUsername())){
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    private Boolean sendMail(String mail, String username) {
+        final String registerToken = generateRandomString();
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            helper.setTo(mail);
+            helper.setText("Hallo " + username + "<br><br> Hier der Registrierungs-Code, denn du in der Beevy-App eingeben musst umd deine Registrierung abzuschließen: <br><br>" + "<b>" + registerToken + "</b>" + "<br><br> Viel Spaß! <br><br> Dein Beevy Team", true);
+            helper.setSubject("Beevy App Registrierung");
+            sender.send(message);
+            return true;
+        } catch(Exception ex) {
+            System.out.println(ex);
+            return false;
+        }
+    }
+
+    private String generateRandomString() {
+        String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < 5) { // length of the random string.
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+    }
+
+    private boolean mailValid(String mail) {
+        return (mail.toLowerCase().contains("@stud.hs-offenburg.de") || mail.toLowerCase().contains("@hs-offenburg.de"));
     }
 
     @Override

@@ -13,3 +13,16 @@ project:
 spring:
   jackson.serialization.write_dates_as_timestamps: false
   data.mongodb.uri: mongodb://Beevy:be3vyProjekt2k18!@ds261969.mlab.com:61969/beevy-data
+  mail:
+    host:
+    port:
+    username:
+    password:
+    properties.mail.smtp:
+      starttls:
+        enable: true
+        required: true
+      auth: true
+      connectiontimeout: 5000
+      timeout: 5000
+      writetimeout: 5000

@@ -21,12 +21,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="BeevyServer_generated" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-mongodb:1.5.10.RELEASE" level="project" />
+    <orderEntry type="module" module-name="BeevyServer_generated" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-data-rest:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-web:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: io.springfox:springfox-swagger2:2.8.0" level="project" />
     <orderEntry type="library" name="Gradle: io.springfox:springfox-swagger-ui:2.8.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter-mail:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-starter:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.19" level="project" />
     <orderEntry type="library" name="Gradle: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.10" level="project" />
@@ -63,9 +64,11 @@
     <orderEntry type="library" name="Gradle: org.slf4j:log4j-over-slf4j:1.7.25" level="project" />
     <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Gradle: org.mapstruct:mapstruct:1.2.0.Final" level="project" />
+    <orderEntry type="library" name="Gradle: org.springframework:spring-context-support:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot-autoconfigure:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework.boot:spring-boot:1.5.10.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-context:4.3.14.RELEASE" level="project" />
+    <orderEntry type="library" name="Gradle: com.sun.mail:javax.mail:1.5.6" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-aop:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-tx:4.3.14.RELEASE" level="project" />
     <orderEntry type="library" name="Gradle: org.springframework:spring-beans:4.3.14.RELEASE" level="project" />
@@ -78,6 +81,7 @@
     <orderEntry type="library" name="Gradle: org.apache.tomcat.embed:tomcat-embed-el:8.5.27" level="project" />
     <orderEntry type="library" name="Gradle: javax.validation:validation-api:1.1.0.Final" level="project" />
     <orderEntry type="library" name="Gradle: org.jboss.logging:jboss-logging:3.3.1.Final" level="project" />
+    <orderEntry type="library" name="Gradle: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="Gradle: org.atteo:evo-inflector:1.2.2" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tomcat:tomcat-annotations-api:8.5.27" level="project" />
     <orderEntry type="library" name="Gradle: net.bytebuddy:byte-buddy:1.7.9" level="project" />
