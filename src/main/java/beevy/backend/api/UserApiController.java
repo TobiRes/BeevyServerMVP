@@ -57,25 +57,30 @@ public class UserApiController implements UserApi {
     @Override
     @CrossOrigin
     public ResponseEntity<Void> registerUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserResource body) {
-        if (body.getUserID() != null && body.getMail() != null && body.getUsername() != null) {
-            if (!mailValid(body.getMail())) {
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        if (allRequiredDataAvailable(body) && mailValid(body.getMail())) {
+            final User user = repository.findByUserID(body.getUserID());
+            if(user != null){
+                //TODO: Handle case where user is already registered
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            if (!sendMail(body.getMail(), body.getUsername())) {
+            final String registerToken = generateRandomString();
+            User newUser = userResourceToEntityConverter.toEntity(body);
+            newUser.setTempAccessToken(registerToken);
+            if (!sendMail(body.getMail(), body.getUsername(), registerToken)) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
+            repository.save(newUser);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    private Boolean sendMail(String mail, String username) {
-        final String registerToken = generateRandomString();
+    private Boolean sendMail(String mail, String username, String registerToken) {
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         try {
             helper.setTo(mail);
-            helper.setText("Hallo " + username + "<br><br> Hier der Registrierungs-Code, denn du in der Beevy-App eingeben musst umd deine Registrierung abzuschließen: <br><br>" + "<b>" + registerToken + "</b>" + "<br><br> Viel Spaß! <br><br> Dein Beevy Team", true);
+            helper.setText("Hallo " + username + "<br><br> Hier der Registrierungs-Code, denn du in der Beevy-App eingeben musst um deine Registrierung abzuschließen: <br><br>" + "<b>" + registerToken + "</b>" + "<br><br> Viel Spaß! <br><br> Dein Beevy Team", true);
             helper.setSubject("Beevy App Registrierung");
             sender.send(message);
             return true;
@@ -120,7 +125,7 @@ public class UserApiController implements UserApi {
         final User user = repository.findByUserID(userID);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (!user.getTempAccessToken().equals(tempAccessToken)) {
+        } else if (user.getTempAccessToken() == null || !user.getTempAccessToken().equals(tempAccessToken)) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
             if (user.getToken() == null) {

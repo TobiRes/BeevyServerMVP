@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ca4be7e-8a64-4943-a57e-093e1f11355b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -38,7 +35,7 @@
       <file leaf-file-name="api-definition.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="-321">
               <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
               <folding>
                 <element signature="e#2816#3249#0" expanded="false" />
@@ -68,13 +65,12 @@
       <file leaf-file-name="UserApiController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="81" column="32" lean-forward="false" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
+            <state relative-caret-position="806">
+              <caret line="130" column="35" lean-forward="false" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#createUser#0;class#UserApiController#0" expanded="false" />
-                <element signature="method#getUserToken#0;class#UserApiController#0" expanded="false" />
-                <element signature="method#allRequiredDataAvailable#0;class#UserApiController#0" expanded="false" />
+                <element signature="method#generateRandomString#0;class#UserApiController#0" expanded="false" />
+                <element signature="method#mailValid#0;class#UserApiController#0" expanded="false" />
                 <element signature="method#allRequiredDataAvailable#1;class#UserApiController#0" expanded="false" />
                 <element signature="method#generateTokenAndSaveUser#0;class#UserApiController#0" expanded="false" />
                 <element signature="method#generateTokenAndSaveUser#1;class#UserApiController#0" expanded="false" />
@@ -755,6 +751,15 @@
               <item name="BeevyServer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+              <item name="converter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BeevyServer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BeevyServer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -1034,15 +1039,16 @@
       <workItem from="1524821579469" duration="659000" />
       <workItem from="1525092126483" duration="123000" />
       <workItem from="1526474032079" duration="5002000" />
-      <workItem from="1527154611990" duration="3708000" />
+      <workItem from="1527154611990" duration="4750000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39595000" />
+    <option name="totallyTimeSpent" value="40637000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1061,11 +1067,11 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3221406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3221406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1122,7 +1128,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="23" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1381,24 +1387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
-          <folding>
-            <element signature="e#2816#3249#0" expanded="false" />
-            <element signature="e#3252#3830#0" expanded="false" />
-            <element signature="e#3833#4401#0" expanded="false" />
-            <element signature="e#4404#4959#0" expanded="false" />
-            <element signature="e#4975#5602#0" expanded="false" />
-            <element signature="e#5605#5904#0" expanded="false" />
-            <element signature="e#6442#6598#0" expanded="false" />
-            <element signature="e#6601#6753#0" expanded="false" />
-            <element signature="e#6756#6987#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1425,15 +1413,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-321">
+          <caret line="61" column="17" lean-forward="false" selection-start-line="61" selection-start-column="17" selection-end-line="61" selection-end-column="17" />
+          <folding>
+            <element signature="e#2816#3249#0" expanded="false" />
+            <element signature="e#3252#3830#0" expanded="false" />
+            <element signature="e#3833#4401#0" expanded="false" />
+            <element signature="e#4404#4959#0" expanded="false" />
+            <element signature="e#4975#5602#0" expanded="false" />
+            <element signature="e#5605#5904#0" expanded="false" />
+            <element signature="e#6442#6598#0" expanded="false" />
+            <element signature="e#6601#6753#0" expanded="false" />
+            <element signature="e#6756#6987#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="81" column="32" lean-forward="false" selection-start-line="81" selection-start-column="32" selection-end-line="81" selection-end-column="32" />
+        <state relative-caret-position="806">
+          <caret line="130" column="35" lean-forward="false" selection-start-line="130" selection-start-column="35" selection-end-line="130" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#createUser#0;class#UserApiController#0" expanded="false" />
-            <element signature="method#getUserToken#0;class#UserApiController#0" expanded="false" />
-            <element signature="method#allRequiredDataAvailable#0;class#UserApiController#0" expanded="false" />
+            <element signature="method#generateRandomString#0;class#UserApiController#0" expanded="false" />
+            <element signature="method#mailValid#0;class#UserApiController#0" expanded="false" />
             <element signature="method#allRequiredDataAvailable#1;class#UserApiController#0" expanded="false" />
             <element signature="method#generateTokenAndSaveUser#0;class#UserApiController#0" expanded="false" />
             <element signature="method#generateTokenAndSaveUser#1;class#UserApiController#0" expanded="false" />
