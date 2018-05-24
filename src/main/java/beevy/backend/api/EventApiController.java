@@ -79,11 +79,11 @@ public class EventApiController implements EventApi {
 
     @Override
     @CrossOrigin
-    public ResponseEntity<UserEventsResource> getUserEvents(@PathVariable("userID") String userID, @ApiParam(value = "tempAccessToken",required=true) @PathVariable("tempAccessToken") String tempAccessToken) {
+    public ResponseEntity<UserEventsResource> getUserEvents(@PathVariable("userID") String userID, @ApiParam(value = "tempAccessToken", required = true) @PathVariable("tempAccessToken") String tempAccessToken) {
         final User user = userRepository.findByUserID(userID);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (!user.getTempAccessToken().equals(tempAccessToken)){
+        } else if (!user.getTempAccessToken().equals(tempAccessToken)) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
             user.setTempAccessToken(null);
@@ -100,7 +100,7 @@ public class EventApiController implements EventApi {
 
     private List<EventResource> findCreatedEvents(List<String> createdEvents) {
         List<EventResource> allCreatedEvents = new ArrayList<>();
-        if(createdEvents != null){
+        if (createdEvents != null) {
             createdEvents.forEach(eventID -> {
                 Event createdEvent = eventRepository.findByEventID(eventID);
                 allCreatedEvents.add(eventEntityToResourceConverter.toResource(createdEvent));
@@ -127,7 +127,7 @@ public class EventApiController implements EventApi {
     }
 
     private boolean userAlreadyJoinedEvent(Event event, User user) {
-        if(event.getRegisteredMembers() == null){
+        if (event.getRegisteredMembers() == null) {
             return false;
         }
         if (event.getRegisteredMembers().contains(user.getUserID())) {
@@ -143,12 +143,12 @@ public class EventApiController implements EventApi {
 
     private void addUserToRegisteredMembersOfEvent(Event event, String userID) {
         List<String> registeredMembers = new ArrayList<>();
-        if(event.getRegisteredMembers() != null){
-           registeredMembers = event.getRegisteredMembers();
+        if (event.getRegisteredMembers() != null) {
+            registeredMembers = event.getRegisteredMembers();
         }
         registeredMembers.add(userID);
         event.setRegisteredMembers(registeredMembers);
-        if(event.getCurrentMemberCount() == null){
+        if (event.getCurrentMemberCount() == null) {
             event.setCurrentMemberCount(1);
         } else {
             event.setCurrentMemberCount(event.getCurrentMemberCount() + 1);
@@ -156,11 +156,11 @@ public class EventApiController implements EventApi {
         eventRepository.save(event);
     }
 
-    private void addEventToJoinedEventsOfUser(String userID, String eventID){
+    private void addEventToJoinedEventsOfUser(String userID, String eventID) {
         User user = userRepository.findByUserID(userID);
         List<String> joinedEvents = new ArrayList<>();
-        if(user.getJoinedEvents() != null){
-           joinedEvents = user.getJoinedEvents();
+        if (user.getJoinedEvents() != null) {
+            joinedEvents = user.getJoinedEvents();
         }
         joinedEvents.add(eventID);
         user.setJoinedEvents(joinedEvents);

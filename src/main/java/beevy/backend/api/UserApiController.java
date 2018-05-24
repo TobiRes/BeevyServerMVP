@@ -8,7 +8,6 @@ import com.beevy.model.UserResource;
 import com.beevy.model.UserSecurityResource;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
-import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -57,12 +56,12 @@ public class UserApiController implements UserApi {
 
     @Override
     @CrossOrigin
-    public ResponseEntity<Void> registerUser(@ApiParam(value = "Security Object"  )  @Valid @RequestBody UserResource body) {
-        if(body.getUserID() != null && body.getMail() != null && body.getUsername() != null){
-            if(!mailValid(body.getMail())){
+    public ResponseEntity<Void> registerUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserResource body) {
+        if (body.getUserID() != null && body.getMail() != null && body.getUsername() != null) {
+            if (!mailValid(body.getMail())) {
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
             }
-            if(!sendMail(body.getMail(), body.getUsername())){
+            if (!sendMail(body.getMail(), body.getUsername())) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
             return new ResponseEntity<>(HttpStatus.OK);
@@ -80,7 +79,7 @@ public class UserApiController implements UserApi {
             helper.setSubject("Beevy App Registrierung");
             sender.send(message);
             return true;
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex);
             return false;
         }
@@ -104,7 +103,7 @@ public class UserApiController implements UserApi {
 
     @Override
     @CrossOrigin
-    public ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object"  )  @Valid @RequestBody UserSecurityResource body) {
+    public ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserSecurityResource body) {
         final User user = repository.findByUserID(body.getUserID());
         if (user == null || !allRequiredDataAvailable(user) || !(user.getUsername().equals(body.getUsername()))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -121,7 +120,7 @@ public class UserApiController implements UserApi {
         final User user = repository.findByUserID(userID);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (!user.getTempAccessToken().equals(tempAccessToken)){
+        } else if (!user.getTempAccessToken().equals(tempAccessToken)) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
             if (user.getToken() == null) {

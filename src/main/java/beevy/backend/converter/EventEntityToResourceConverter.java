@@ -3,7 +3,6 @@ package beevy.backend.converter;
 import beevy.backend.model.Event;
 import com.beevy.model.EventResource;
 import com.beevy.model.MinimalUserResource;
-import com.beevy.model.UserResource;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
