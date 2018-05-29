@@ -47,9 +47,23 @@ public class EventApiController implements EventApi {
             //TODO: Event Validierung
             final Event newEvent = eventResourceToEntityConverter.toEntity(body);
             eventRepository.save(newEvent);
+            addEventToCreatedEventsOfUser(newEvent.getEventID(), body.getAdmin().getUserID());
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    private void addEventToCreatedEventsOfUser(String eventID, String userID) {
+        User user = userRepository.findByUserID(userID);
+        List<String> createdEvents = new ArrayList<>();
+        if(user.getCreatedEvents() != null) {
+            createdEvents = user.getCreatedEvents();
+            createdEvents.add(eventID);
+        } else {
+            createdEvents.add(eventID);
+        }
+        user.setCreatedEvents(createdEvents);
+        userRepository.save(user);
     }
 
     @Override
@@ -88,11 +102,15 @@ public class EventApiController implements EventApi {
         } else {
             user.setTempAccessToken(null);
             userRepository.save(user);
-            List<EventResource> joinedEvents = findJoinedEvents(user.getJoinedEvents());
-            List<EventResource> createdEvents = findCreatedEvents(user.getCreatedEvents());
             UserEventsResource userEventsResource = new UserEventsResource();
-            userEventsResource.setCreatedEvents(createdEvents);
-            userEventsResource.setJoinedEvents(joinedEvents);
+            if(user.getJoinedEvents() != null){
+                List<EventResource> joinedEvents = findJoinedEvents(user.getJoinedEvents());
+                userEventsResource.setJoinedEvents(joinedEvents);
+            }
+            if(user.getCreatedEvents() != null) {
+                List<EventResource> createdEvents = findCreatedEvents(user.getCreatedEvents());
+                userEventsResource.setCreatedEvents(createdEvents);
+            }
             return new ResponseEntity<>(userEventsResource, HttpStatus.OK);
         }
 

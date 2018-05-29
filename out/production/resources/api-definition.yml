@@ -212,8 +212,9 @@ definitions:
       type:
         type: string
         enum:
-          - event
           - project
+          - activity
+          - hangout
       date:
         type: string
       endDate:
