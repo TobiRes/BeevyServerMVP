@@ -48,32 +48,41 @@ public class CommentApiController implements CommentApi {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
-        Comment comment = buildComment(body, user.getUsername());
+        Comment newComment = buildComment(body, user.getUsername());
         if(body.getRepliedTo() == null || event.getBaseComments() == null){
-            List<String> commentList = new ArrayList<>();
-            if(event.getBaseComments() != null){
-                commentList = event.getBaseComments();
-            }
-            commentList.add(comment.getCommentID());
-            event.setBaseComments(commentList);
-            commentRepository.save(comment);
-            eventRepository.save(event);
+            addCommentToBaseOfEvent(event, newComment);
         } else {
             Comment existingComment = commentRepository.findByCommentID(body.getRepliedTo());
-            List<Comment> commentsOfComment = new ArrayList<>();
             if(existingComment == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            if(existingComment.getComments() != null){
-                commentsOfComment = existingComment.getComments();
-            }
-            commentsOfComment.add(comment);
-            existingComment.setComments(commentsOfComment);
-            commentRepository.save(existingComment);
+            addCommentToExistingComment(newComment, existingComment);
         }
 
         //TODO: Add comments to user?
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private void addCommentToExistingComment(Comment newComment, Comment existingComment) {
+        List<Comment> commentsOfExistingComment = new ArrayList<>();
+
+        if(existingComment.getComments() != null){
+            commentsOfExistingComment = existingComment.getComments();
+        }
+        commentsOfExistingComment.add(newComment);
+        existingComment.setComments(commentsOfExistingComment);
+        commentRepository.save(existingComment);
+    }
+
+    private void addCommentToBaseOfEvent(Event event, Comment comment){
+        List<String> commentList = new ArrayList<>();
+        if(event.getBaseComments() != null){
+            commentList = event.getBaseComments();
+        }
+        commentList.add(comment.getCommentID());
+        event.setBaseComments(commentList);
+        commentRepository.save(comment);
+        eventRepository.save(event);
     }
 
     private Comment buildComment(CommentDTOResource body, String username) {
