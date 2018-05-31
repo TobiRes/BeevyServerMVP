@@ -89,6 +89,7 @@ public class CommentApiController implements CommentApi {
         UUID uuid = UUID.randomUUID();
         return Comment.builder()
                 .commentAuthor(username)
+                .authorID(body.getUserID())
                 .commentBody(body.getCommentBody())
                 .commentTime(body.getCommentTime())
                 .commentID(uuid.toString())

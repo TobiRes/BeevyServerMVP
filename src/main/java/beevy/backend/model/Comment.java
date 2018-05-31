@@ -16,6 +16,7 @@ public class Comment {
     private String commentID;
     private String eventID;
     private String commentAuthor;
+    private String authorID;
     private String commentBody;
     private String commentTime;
     private List<Comment> comments;
