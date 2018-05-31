@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * UserSecurityResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-31T16:01:39.156+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-31T16:31:35.567+02:00")
 
 public class UserSecurityResource   {
   @JsonProperty("username")
@@ -21,6 +21,9 @@ public class UserSecurityResource   {
 
   @JsonProperty("userID")
   private String userID = null;
+
+  @JsonProperty("token")
+  private String token = null;
 
   @JsonProperty("tempToken")
   private String tempToken = null;
@@ -65,6 +68,26 @@ public class UserSecurityResource   {
     this.userID = userID;
   }
 
+  public UserSecurityResource token(String token) {
+    this.token = token;
+    return this;
+  }
+
+  /**
+   * Get token
+   * @return token
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
   public UserSecurityResource tempToken(String tempToken) {
     this.tempToken = tempToken;
     return this;
@@ -97,12 +120,13 @@ public class UserSecurityResource   {
     UserSecurityResource userSecurity = (UserSecurityResource) o;
     return Objects.equals(this.username, userSecurity.username) &&
         Objects.equals(this.userID, userSecurity.userID) &&
+        Objects.equals(this.token, userSecurity.token) &&
         Objects.equals(this.tempToken, userSecurity.tempToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, userID, tempToken);
+    return Objects.hash(username, userID, token, tempToken);
   }
 
   @Override
@@ -112,6 +136,7 @@ public class UserSecurityResource   {
     
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
+    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    tempToken: ").append(toIndentedString(tempToken)).append("\n");
     sb.append("}");
     return sb.toString();

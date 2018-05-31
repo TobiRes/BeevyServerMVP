@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-31T16:01:39.156+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-31T16:31:35.567+02:00")
 
 @Api(value = "user", description = "the user API")
 public interface UserApi {
@@ -47,23 +47,6 @@ public interface UserApi {
     default Optional<String> getAcceptHeader() {
         return getRequest().map(r -> r.getHeader("Accept"));
     }
-
-    @ApiOperation(value = "Create user if not existent", nickname = "createUser", notes = "Create user if not existent", tags={ "user", })
-    @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Created user"),
-        @ApiResponse(code = 405, message = "Failed to create user") })
-    @RequestMapping(value = "/user",
-        produces = { "application/json" }, 
-        consumes = { "application/json" },
-        method = RequestMethod.POST)
-    default ResponseEntity<Void> createUser(@ApiParam(value = "User Object"  )  @Valid @RequestBody UserResource body) {
-        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
-        } else {
-            log.warn("ObjectMapper or HttpServletRequest not configured in default UserApi interface so no example is generated");
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
 
     @ApiOperation(value = "Return security token for a user", nickname = "getUserToken", notes = "Get security token", response = String.class, tags={ "user", })
     @ApiResponses(value = { 
@@ -91,7 +74,7 @@ public interface UserApi {
 
     @ApiOperation(value = "Register user", nickname = "registerUser", notes = "Register a user via mail", tags={ "user", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "Send registration mail"),
+        @ApiResponse(code = 201, message = "Sent registration mail"),
         @ApiResponse(code = 405, message = "Failed to send registration mail") })
     @RequestMapping(value = "/user/register",
         produces = { "application/json" }, 

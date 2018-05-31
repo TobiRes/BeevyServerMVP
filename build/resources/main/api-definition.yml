@@ -7,6 +7,12 @@ tags:
   - name: event
     description: Create and get events
 parameters:
+  eventID:
+    name: eventID
+    in: path
+    description: ID of a User
+    required: true
+    type: string
   userID:
     name: userID
     in: path
@@ -26,28 +32,6 @@ parameters:
     required: true
     type: string
 paths:
-  /user:
-    post:
-      tags:
-        - user
-      summary:  Create user if not existent
-      description: Create user if not existent
-      operationId: createUser
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - in: body
-          name: body
-          description: User Object
-          schema:
-            $ref: '#/definitions/User'
-      responses:
-        '201':
-          description: Created user
-        '405':
-          description: Failed to create user
   /user/register:
     post:
       tags:
@@ -67,7 +51,7 @@ paths:
             $ref: '#/definitions/User'
       responses:
         '201':
-          description: Send registration mail
+          description: Sent registration mail
         '405':
           description: Failed to send registration mail
   /user/access:
@@ -155,27 +139,27 @@ paths:
         '405':
           description: Failed to create event
   /event/join:
-      post:
-        tags:
-          - event
-        summary: Join an event
-        description: Join an existing event
-        operationId: joinEvent
-        consumes:
-          - application/json
-        produces:
-          - application/json
-        parameters:
-          - in: body
-            name: body
-            description: Join Event Data
-            schema:
-              $ref: '#/definitions/JoinEventData'
-        responses:
-          '201':
-            description: Joined event
-          '405':
-            description: Failed to join event
+    post:
+      tags:
+        - event
+      summary: Join an event
+      description: Join an existing event
+      operationId: joinEvent
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Join Event Data
+          schema:
+            $ref: '#/definitions/JoinEventData'
+      responses:
+        '201':
+          description: Joined event
+        '405':
+          description: Failed to join event
   /event/{userID}/{tempAccessToken}:
       parameters:
         - $ref: '#/parameters/userID'
@@ -195,6 +179,50 @@ paths:
               $ref: '#/definitions/UserEvents'
           '405':
             description: Failed to get events
+  /comment:
+    post:
+      tags:
+        - comment
+      summary: Add a comment
+      description: Add a comment to an event or another comment
+      operationId: addComment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Comment Data
+          schema:
+            $ref: '#/definitions/CommentDTO'
+      responses:
+        '201':
+          description: Added comment
+        '405':
+          description: Failed to add comment
+  /comment/{eventID}/{userID}/{tempAccessToken}:
+    parameters:
+      - $ref: '#/parameters/eventID'
+      - $ref: '#/parameters/userID'
+      - $ref: '#/parameters/tempAccessToken'
+    get:
+      tags:
+        - comment
+      summary: Get comments on an event
+      description: Load all comments on an eventr
+      operationId: getComments
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Comment'
+        '405':
+          description: Failed to get comments
 definitions:
   Event:
     type: object
@@ -283,6 +311,8 @@ definitions:
         type: string
       userID:
         type: string
+      token:
+        type: string
       tempToken:
         type: string
   JoinEventData:
@@ -305,3 +335,33 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Event'
+  CommentDTO:
+    type: object
+    properties:
+      userID:
+        type: string
+      userToken:
+        type: string
+      eventID:
+        type: string
+      repliedTo:
+        type: string
+      commentBody:
+        type: string
+      commentTime:
+        type: string
+  Comment:
+    type: object
+    properties:
+      author:
+        type: string
+      authorID:
+        type: string
+      createdAt:
+        type: string
+      commentBody:
+        type: string
+      comments:
+        type: array
+        items:
+          $ref: '#/definitions/Comment'

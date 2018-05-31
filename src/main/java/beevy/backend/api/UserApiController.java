@@ -37,7 +37,7 @@ public class UserApiController implements UserApi {
 
     private UserResourceToEntityConverter userResourceToEntityConverter = new UserResourceToEntityConverter();
 
-    @Override
+/*    @Override
     @CrossOrigin
     public ResponseEntity<Void> createUser(@ApiParam(value = "User Object") @Valid @RequestBody UserResource body) {
         if (!allRequiredDataAvailable(body)) {
@@ -52,7 +52,7 @@ public class UserApiController implements UserApi {
             }
         }
         return new ResponseEntity<>(HttpStatus.OK);
-    }
+    }*/
 
     @Override
     @CrossOrigin
@@ -111,7 +111,7 @@ public class UserApiController implements UserApi {
     @CrossOrigin
     public ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserSecurityResource body) {
         final User user = repository.findByUserID(body.getUserID());
-        if (user == null || !allRequiredDataAvailable(user) || !(user.getUsername().equals(body.getUsername()))) {
+        if (user == null || !allRequiredDataAvailable(user) || !(user.getUsername().equals(body.getUsername()) || !(user.getToken().equals(body.getToken())))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             user.setTempAccessToken(body.getTempToken());
