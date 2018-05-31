@@ -27,6 +27,7 @@ public class Event {
     private List<String> registeredMembers;
     private Integer possibleMemberCount;
     private Integer currentMemberCount;
+    private List<String> baseComments;
 
 }
 

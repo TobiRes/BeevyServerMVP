@@ -1,5 +1,6 @@
 package beevy.backend.api;
 
+import beevy.backend.model.Comment;
 import beevy.backend.model.Event;
 import beevy.backend.model.User;
 import beevy.backend.repositories.CommentRepository;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @EnableAutoConfiguration
 @RestController
@@ -37,26 +40,56 @@ public class CommentApiController implements CommentApi {
 
     @Override
     public ResponseEntity<Void> addComment(@ApiParam(value = "Comment Data"  )  @Valid @RequestBody CommentDTOResource body) {
-        if(notAllRequiredDataAvailableAndValidFormat(body)){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
 
-
-        //TODO: Implement
-        //Check if event already has comments, or if replied to is not set
-        //If not, add this comment to event
-        //Else add comment to list of repliedTo Comments
-
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    private boolean notAllRequiredDataAvailableAndValidFormat(CommentDTOResource body) {
         final User user = userRepository.findByUserID(body.getUserID());
         final Event event = eventRepository.findByEventID(body.getEventID());
 
-        return (notAllCommentDataAvailable(body)) 
-                || (user.getToken() != body.getUserToken())
-                || (event == null)
+        if(user == null || event == null || notAllRequiredDataAvailableOrNotValidFormat(body, user, event)){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        Comment comment = buildComment(body, user.getUsername());
+        if(body.getRepliedTo() == null || event.getBaseComments() == null){
+            List<String> commentList = new ArrayList<>();
+            if(event.getBaseComments() != null){
+                commentList = event.getBaseComments();
+            }
+            commentList.add(comment.getCommentID());
+            event.setBaseComments(commentList);
+            commentRepository.save(comment);
+            eventRepository.save(event);
+        } else {
+            Comment existingComment = commentRepository.findByCommentID(body.getRepliedTo());
+            List<Comment> commentsOfComment = new ArrayList<>();
+            if(existingComment == null) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(existingComment.getComments() != null){
+                commentsOfComment = existingComment.getComments();
+            }
+            commentsOfComment.add(comment);
+            existingComment.setComments(commentsOfComment);
+            commentRepository.save(existingComment);
+        }
+
+        //TODO: Add comments to user?
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private Comment buildComment(CommentDTOResource body, String username) {
+        UUID uuid = UUID.randomUUID();
+        return Comment.builder()
+                .commentAuthor(username)
+                .commentBody(body.getCommentBody())
+                .commentTime(body.getCommentTime())
+                .commentID(uuid.toString())
+                .eventID(body.getEventID())
+                .build();
+    }
+
+    private boolean notAllRequiredDataAvailableOrNotValidFormat(CommentDTOResource body, User user, Event event) {
+        return (notAllCommentDataAvailable(body))
+                || !(user.getToken().equals(body.getUserToken()))
                 || userNotAllowedToComment(event.getRegisteredMembers(), event.getAdmin(), user.getUserID());
     }
 
@@ -69,8 +102,6 @@ public class CommentApiController implements CommentApi {
                 || comment.getUserToken() == null
                 || comment.getCommentBody() == null
                 || comment.getCommentTime() == null
-                || comment.getEventID() == null
-                || comment.getCommentBody() == null
-                || comment.getRepliedTo() == null);
+                || comment.getEventID() == null);
     }
 }

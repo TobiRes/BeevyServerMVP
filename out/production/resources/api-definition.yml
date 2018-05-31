@@ -155,27 +155,27 @@ paths:
         '405':
           description: Failed to create event
   /event/join:
-      post:
-        tags:
-          - event
-        summary: Join an event
-        description: Join an existing event
-        operationId: joinEvent
-        consumes:
-          - application/json
-        produces:
-          - application/json
-        parameters:
-          - in: body
-            name: body
-            description: Join Event Data
-            schema:
-              $ref: '#/definitions/JoinEventData'
-        responses:
-          '201':
-            description: Joined event
-          '405':
-            description: Failed to join event
+    post:
+      tags:
+        - event
+      summary: Join an event
+      description: Join an existing event
+      operationId: joinEvent
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Join Event Data
+          schema:
+            $ref: '#/definitions/JoinEventData'
+      responses:
+        '201':
+          description: Joined event
+        '405':
+          description: Failed to join event
   /event/{userID}/{tempAccessToken}:
       parameters:
         - $ref: '#/parameters/userID'
@@ -195,6 +195,28 @@ paths:
               $ref: '#/definitions/UserEvents'
           '405':
             description: Failed to get events
+  /comment:
+    post:
+      tags:
+        - comment
+      summary: Add a comment
+      description: Add a comment to an event or another comment
+      operationId: addComment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Comment Data
+          schema:
+            $ref: '#/definitions/CommentDTO'
+      responses:
+        '201':
+          description: Added comment
+        '405':
+          description: Failed to add comment
 definitions:
   Event:
     type: object
@@ -305,3 +327,18 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/Event'
+  CommentDTO:
+    type: object
+    properties:
+      userID:
+        type: string
+      userToken:
+        type: string
+      eventID:
+        type: string
+      repliedTo:
+        type: string
+      commentBody:
+        type: string
+      commentTime:
+        type: string
