@@ -45,6 +45,7 @@ public class EventApiController implements EventApi {
     public ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object") @Valid @RequestBody EventResource body) {
         if (checkIfUserIsAllowedToCreateEvent(body)) {
             //TODO: Event Validierung
+            //TODO: Add user to registered members
             final Event newEvent = eventResourceToEntityConverter.toEntity(body);
             eventRepository.save(newEvent);
             addEventToCreatedEventsOfUser(newEvent.getEventID(), body.getAdmin().getUserID());

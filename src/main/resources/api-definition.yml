@@ -353,6 +353,8 @@ definitions:
   Comment:
     type: object
     properties:
+      commentID:
+        type: string
       author:
         type: string
       authorID:

@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-31T16:31:35.567+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-01T11:48:15.938+02:00")
 
 @Api(value = "comment", description = "the comment API")
 public interface CommentApi {
@@ -76,7 +76,7 @@ public interface CommentApi {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
             if (getAcceptHeader().get().contains("application/json")) {
                 try {
-                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"createdAt\" : \"createdAt\",  \"comments\" : [ null, null ],  \"author\" : \"author\",  \"commentBody\" : \"commentBody\",  \"authorID\" : \"authorID\"}, {  \"createdAt\" : \"createdAt\",  \"comments\" : [ null, null ],  \"author\" : \"author\",  \"commentBody\" : \"commentBody\",  \"authorID\" : \"authorID\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
+                    return new ResponseEntity<>(getObjectMapper().get().readValue("[ {  \"createdAt\" : \"createdAt\",  \"comments\" : [ null, null ],  \"author\" : \"author\",  \"commentBody\" : \"commentBody\",  \"commentID\" : \"commentID\",  \"authorID\" : \"authorID\"}, {  \"createdAt\" : \"createdAt\",  \"comments\" : [ null, null ],  \"author\" : \"author\",  \"commentBody\" : \"commentBody\",  \"commentID\" : \"commentID\",  \"authorID\" : \"authorID\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
                 } catch (IOException e) {
                     log.error("Couldn't serialize response for content type application/json", e);
                     return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

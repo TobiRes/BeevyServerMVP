@@ -16,9 +16,12 @@ import javax.validation.constraints.*;
  * CommentResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-05-31T16:31:35.567+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-01T11:48:15.938+02:00")
 
 public class CommentResource   {
+  @JsonProperty("commentID")
+  private String commentID = null;
+
   @JsonProperty("author")
   private String author = null;
 
@@ -34,6 +37,26 @@ public class CommentResource   {
   @JsonProperty("comments")
   @Valid
   private List<CommentResource> comments = null;
+
+  public CommentResource commentID(String commentID) {
+    this.commentID = commentID;
+    return this;
+  }
+
+  /**
+   * Get commentID
+   * @return commentID
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getCommentID() {
+    return commentID;
+  }
+
+  public void setCommentID(String commentID) {
+    this.commentID = commentID;
+  }
 
   public CommentResource author(String author) {
     this.author = author;
@@ -154,7 +177,8 @@ public class CommentResource   {
       return false;
     }
     CommentResource comment = (CommentResource) o;
-    return Objects.equals(this.author, comment.author) &&
+    return Objects.equals(this.commentID, comment.commentID) &&
+        Objects.equals(this.author, comment.author) &&
         Objects.equals(this.authorID, comment.authorID) &&
         Objects.equals(this.createdAt, comment.createdAt) &&
         Objects.equals(this.commentBody, comment.commentBody) &&
@@ -163,7 +187,7 @@ public class CommentResource   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(author, authorID, createdAt, commentBody, comments);
+    return Objects.hash(commentID, author, authorID, createdAt, commentBody, comments);
   }
 
   @Override
@@ -171,6 +195,7 @@ public class CommentResource   {
     StringBuilder sb = new StringBuilder();
     sb.append("class CommentResource {\n");
     
+    sb.append("    commentID: ").append(toIndentedString(commentID)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    authorID: ").append(toIndentedString(authorID)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");

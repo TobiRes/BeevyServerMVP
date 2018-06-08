@@ -14,6 +14,7 @@ public class CommentEntityToResourceConverter {
 
     public CommentResource toResource (Comment comment){
         return new CommentResource()
+                .commentID(comment.getCommentID())
                 .author(comment.getCommentAuthor())
                 .authorID(comment.getAuthorID())
                 .commentBody(comment.getCommentBody())
