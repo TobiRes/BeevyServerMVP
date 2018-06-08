@@ -47,7 +47,10 @@ public class EventApiController implements EventApi {
             //TODO: Event Validierung
             //TODO: Add user to registered members
             final Event newEvent = eventResourceToEntityConverter.toEntity(body);
-            eventRepository.save(newEvent);
+
+            //This also saves the event
+            addUserToRegisteredMembersOfEvent(newEvent, body.getAdmin().getUserID());
+
             addEventToCreatedEventsOfUser(newEvent.getEventID(), body.getAdmin().getUserID());
             return new ResponseEntity<>(HttpStatus.OK);
         }
