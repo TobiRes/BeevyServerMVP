@@ -2,6 +2,7 @@ package beevy.backend.model;
 
 import com.beevy.model.AddressResource;
 import com.beevy.model.EventResource;
+import com.beevy.model.MinimalUserResource;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ public class Event {
 
     @Id
     private String eventID;
-    private String admin;
+    private MinimalUserResource admin;
     private String title;
     private String summary;
     private String description;

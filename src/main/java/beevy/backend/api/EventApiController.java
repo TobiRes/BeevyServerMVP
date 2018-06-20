@@ -9,6 +9,7 @@ import beevy.backend.repositories.UserRepository;
 import com.beevy.api.EventApi;
 import com.beevy.model.EventResource;
 import com.beevy.model.JoinEventDataResource;
+import com.beevy.model.MinimalUserResource;
 import com.beevy.model.UserEventsResource;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiParam;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @EnableAutoConfiguration
 @RestController
@@ -45,9 +47,8 @@ public class EventApiController implements EventApi {
     public ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object") @Valid @RequestBody EventResource body) {
         if (checkIfUserIsAllowedToCreateEvent(body)) {
             //TODO: Event Validierung
-            //TODO: Add user to registered members
-            final Event newEvent = eventResourceToEntityConverter.toEntity(body);
-
+            EventResource eventResource = createEventResourceWithID(body);
+            final Event newEvent = eventResourceToEntityConverter.toEntity(eventResource);
             //This also saves the event
             addUserToRegisteredMembersOfEvent(newEvent, body.getAdmin().getUserID());
 
@@ -55,6 +56,23 @@ public class EventApiController implements EventApi {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    private EventResource createEventResourceWithID(EventResource body) {
+        String eventID = UUID.randomUUID().toString();
+        return new EventResource()
+                .eventID(eventID)
+                .admin(new MinimalUserResource().userID(body.getAdmin().getUserID()).username(body.getAdmin().getUsername()))
+                .title(body.getTitle())
+                .summary(body.getSummary())
+                .description(body.getDescription())
+                .type(body.getType())
+                .date(body.getDate())
+                .endDate(body.getEndDate())
+                .address(body.getAddress())
+                .registeredMembers(body.getRegisteredMembers())
+                .possibleMemberCount(body.getPossibleMemberCount())
+                .currentMemberCount(body.getCurrentMemberCount());
     }
 
     private void addEventToCreatedEventsOfUser(String eventID, String userID) {
@@ -142,7 +160,7 @@ public class EventApiController implements EventApi {
 
     private boolean checkIfUserIsAllowedToJoinEvent(Event event, JoinEventDataResource body) {
         User user = userRepository.findByUserID(body.getUserID());
-        if (user == null || event.getAdmin() == body.getUserID() || userAlreadyJoinedEvent(event, user)) {
+        if (user == null || event.getAdmin().getUserID() == body.getUserID() || userAlreadyJoinedEvent(event, user)) {
             return false;
         }
         return true;

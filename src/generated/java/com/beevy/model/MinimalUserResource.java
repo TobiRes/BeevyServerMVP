@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * MinimalUserResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-01T11:48:15.938+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-20T15:45:15.112+02:00")
 
 public class MinimalUserResource   {
   @JsonProperty("username")

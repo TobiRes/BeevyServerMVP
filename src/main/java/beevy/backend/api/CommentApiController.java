@@ -134,13 +134,13 @@ public class CommentApiController implements CommentApi {
                 || event == null
                 || user.getTempAccessToken() == null
                 || !user.getTempAccessToken().equals(tempAccessToken)
-                || userNotAllowedToInteractWithComments(event.getRegisteredMembers(), event.getAdmin(), user.getUserID()));
+                || userNotAllowedToInteractWithComments(event.getRegisteredMembers(), event.getAdmin().getUserID(), user.getUserID()));
     }
 
     private boolean notAllRequiredDataAvailableOrNotValidFormat(CommentDTOResource body, User user, Event event) {
         return (notAllCommentDataAvailable(body))
                 || !(user.getToken().equals(body.getUserToken()))
-                || userNotAllowedToInteractWithComments(event.getRegisteredMembers(), event.getAdmin(), user.getUserID());
+                || userNotAllowedToInteractWithComments(event.getRegisteredMembers(), event.getAdmin().getUserID(), user.getUserID());
     }
 
     private boolean userNotAllowedToInteractWithComments(List<String> registeredMembers, String admin, String userID) {

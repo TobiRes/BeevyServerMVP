@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ca4be7e-8a64-4943-a57e-093e1f11355b" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/converter/CommentEntityToResourceConverter.java" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileContent/fileContent.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileContent/fileContent.lock" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" />
@@ -11,23 +10,26 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/api/UserApi.class" afterPath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/api/UserApi.class" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/model/UserSecurityResource.class" afterPath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/model/UserSecurityResource.class" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/api/CommentApi.class" afterPath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/api/CommentApi.class" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/model/CommentResource.class" afterPath="$PROJECT_DIR$/build/classes/java/generated/com/beevy/model/CommentResource.class" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/api/CommentApiController.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/api/CommentApiController.class" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/api/EventApiController.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/api/EventApiController.class" />
-      <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/api/UserApiController.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/api/UserApiController.class" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/converter/CommentEntityToResourceConverter.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/converter/CommentEntityToResourceConverter.class" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/converter/EventEntityToResourceConverter.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/converter/EventEntityToResourceConverter.class" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/converter/EventResourceToEntityConverter.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/converter/EventResourceToEntityConverter.class" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/model/Event$EventBuilder.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/model/Event$EventBuilder.class" />
       <change beforePath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/model/Event.class" afterPath="$PROJECT_DIR$/build/classes/java/main/beevy/backend/model/Event.class" />
       <change beforePath="$PROJECT_DIR$/build/libs/beevy-server.jar" afterPath="$PROJECT_DIR$/build/libs/beevy-server.jar" />
       <change beforePath="$PROJECT_DIR$/build/libs/beevy-server.jar.original" afterPath="$PROJECT_DIR$/build/libs/beevy-server.jar.original" />
       <change beforePath="$PROJECT_DIR$/build/resources/main/api-definition.yml" afterPath="$PROJECT_DIR$/build/resources/main/api-definition.yml" />
       <change beforePath="$PROJECT_DIR$/out/generated/classes/com/beevy/api/CommentApi.class" afterPath="$PROJECT_DIR$/out/generated/classes/com/beevy/api/CommentApi.class" />
-      <change beforePath="$PROJECT_DIR$/out/generated/classes/com/beevy/api/UserApi.class" afterPath="$PROJECT_DIR$/out/generated/classes/com/beevy/api/UserApi.class" />
-      <change beforePath="$PROJECT_DIR$/out/generated/classes/com/beevy/model/UserSecurityResource.class" afterPath="$PROJECT_DIR$/out/generated/classes/com/beevy/model/UserSecurityResource.class" />
+      <change beforePath="$PROJECT_DIR$/out/generated/classes/com/beevy/model/CommentResource.class" afterPath="$PROJECT_DIR$/out/generated/classes/com/beevy/model/CommentResource.class" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/CommentApiController.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/CommentApiController.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/UserApiController.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/UserApiController.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Comment$CommentBuilder.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Comment$CommentBuilder.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Comment.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Comment.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/api-definition.yml" afterPath="$PROJECT_DIR$/out/production/resources/api-definition.yml" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/EventApiController.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/EventApiController.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/converter/EventEntityToResourceConverter.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/converter/EventEntityToResourceConverter.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/converter/EventResourceToEntityConverter.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/converter/EventResourceToEntityConverter.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Event$EventBuilder.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Event$EventBuilder.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Event.class" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Event.class" />
       <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/CommentApi.java" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/CommentApi.java" />
       <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/EventApi.java" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/EventApi.java" />
       <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/UserApi.java" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/UserApi.java" />
@@ -41,8 +43,10 @@
       <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserResource.java" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserResource.java" />
       <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserSecurityResource.java" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserSecurityResource.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/api-definition.yml" afterPath="$PROJECT_DIR$/src/main/resources/api-definition.yml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventResourceToEntityConverter.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventResourceToEntityConverter.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -72,14 +76,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Comment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/Comment.java">
+      <file leaf-file-name="EventApiController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="287">
+              <caret line="47" column="54" lean-forward="true" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,7 +89,7 @@
       <file leaf-file-name="api-definition.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
+            <state relative-caret-position="514">
               <caret line="278" column="15" lean-forward="false" selection-start-line="278" selection-start-column="15" selection-end-line="278" selection-end-column="15" />
               <folding>
                 <element signature="e#1842#2390#0" expanded="false" />
@@ -105,47 +107,67 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommentApiController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java">
+      <file leaf-file-name="InvocableHandlerMethod.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.14.RELEASE/f1db8f14d67bdcd0655d7ccd274e9f9f14b6aa7/spring-web-4.3.14.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="77" column="42" lean-forward="false" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
+              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventEntityToResourceConverter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="25" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommentApiController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="670">
+              <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#addComment#0;class#CommentApiController#0" expanded="false" />
                 <element signature="method#addCommentToExistingComment#0;class#CommentApiController#0" expanded="false" />
                 <element signature="method#addCommentToBaseOfEvent#0;class#CommentApiController#0" expanded="false" />
                 <element signature="method#buildComment#0;class#CommentApiController#0" expanded="false" />
-                <element signature="method#notAllRequiredDataAvailableOrNotValidFormat#0;class#CommentApiController#0" expanded="false" />
-                <element signature="method#userNotAllowedToInteractWithComments#0;class#CommentApiController#0" expanded="false" />
                 <element signature="method#notAllCommentDataAvailable#0;class#CommentApiController#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserApiController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java">
+      <file leaf-file-name="EventResourceToEntityConverter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventResourceToEntityConverter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="110" column="16" lean-forward="false" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
-              <folding>
-                <element signature="method#sendMail#0;class#UserApiController#0" expanded="false" />
-                <element signature="method#generateRandomString#0;class#UserApiController#0" expanded="false" />
-                <element signature="method#mailValid#0;class#UserApiController#0" expanded="false" />
-                <element signature="method#allRequiredDataAvailable#1;class#UserApiController#0" expanded="false" />
-                <element signature="method#generateTokenAndSaveUser#0;class#UserApiController#0" expanded="false" />
-                <element signature="method#generateTokenAndSaveUser#1;class#UserApiController#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentDTOResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentDTOResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="15" column="129" lean-forward="false" selection-start-line="15" selection-start-column="129" selection-end-line="15" selection-end-column="129" />
               <folding />
             </state>
           </provider>
@@ -174,6 +196,7 @@
       <find>address</find>
       <find>set</find>
       <find>MinimalUser</find>
+      <find>UUID</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -688,22 +711,22 @@
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/configuration/SwaggerDocumentationConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/model/Profile.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/converter/UserResourceToEntityConverter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventResourceToEntityConverter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/model/User.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/repositories/EventRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/repositories/CommentRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/repositories/UserRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/converter/CommentDTOToCommentConverter.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/model/Comment.java" />
         <option value="$PROJECT_DIR$/src/main/resources/api-definition.yml" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/converter/CommentEntityToResourceConverter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java" />
+        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventResourceToEntityConverter.java" />
         <option value="$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" />
       </list>
     </option>
   </component>
@@ -745,6 +768,8 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -782,24 +807,6 @@
               <item name="generated" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="beevy" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BeevyServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeevyServer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="generated" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="beevy" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="BeevyServer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="BeevyServer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="generated" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="beevy" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BeevyServer" type="b2602c69:ProjectViewProjectNode" />
@@ -870,8 +877,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1155,11 +1160,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62612000" />
+    <option name="totallyTimeSpent" value="63851000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1181,19 +1185,45 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3221406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39874083" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3221406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1239,7 +1269,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="31" />
+      <option name="time" value="32" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1410,17 +1440,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
-          <folding>
-            <element signature="e#1271#1272#0" expanded="false" />
-            <element signature="e#1303#1304#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1471,38 +1490,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventResourceToEntityConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="25" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/CommentDTOToCommentConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="5" lean-forward="false" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.14.RELEASE/f1db8f14d67bdcd0655d7ccd274e9f9f14b6aa7/spring-web-4.3.14.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="27" column="40" lean-forward="true" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/CommentDTOToCommentConverter.java" />
     <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/api/CommentApi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1535,29 +1523,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/Comment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1566,25 +1538,6 @@
         <state relative-caret-position="85">
           <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="278" column="15" lean-forward="false" selection-start-line="278" selection-start-column="15" selection-end-line="278" selection-end-column="15" />
-          <folding>
-            <element signature="e#1842#2390#0" expanded="false" />
-            <element signature="e#2829#3407#0" expanded="false" />
-            <element signature="e#3410#3936#0" expanded="false" />
-            <element signature="e#3939#4494#0" expanded="false" />
-            <element signature="e#4497#5041#0" expanded="false" />
-            <element signature="e#5685#6335#0" expanded="false" />
-            <element signature="e#6338#6637#0" expanded="false" />
-            <element signature="e#6794#7172#0" expanded="false" />
-            <element signature="e#7368#7520#0" expanded="false" />
-            <element signature="e#7757#8028#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1603,20 +1556,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="278" column="15" lean-forward="false" selection-start-line="278" selection-start-column="15" selection-end-line="278" selection-end-column="15" />
+          <folding>
+            <element signature="e#1842#2390#0" expanded="false" />
+            <element signature="e#2829#3407#0" expanded="false" />
+            <element signature="e#3410#3936#0" expanded="false" />
+            <element signature="e#3939#4494#0" expanded="false" />
+            <element signature="e#4497#5041#0" expanded="false" />
+            <element signature="e#5685#6335#0" expanded="false" />
+            <element signature="e#6338#6637#0" expanded="false" />
+            <element signature="e#6794#7172#0" expanded="false" />
+            <element signature="e#7368#7520#0" expanded="false" />
+            <element signature="e#7757#8028#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="19" column="38" lean-forward="false" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.14.RELEASE/f1db8f14d67bdcd0655d7ccd274e9f9f14b6aa7/spring-web-4.3.14.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="15" lean-forward="false" selection-start-line="13" selection-start-column="15" selection-end-line="25" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="77" column="42" lean-forward="false" selection-start-line="77" selection-start-column="42" selection-end-line="77" selection-end-column="42" />
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#addComment#0;class#CommentApiController#0" expanded="false" />
             <element signature="method#addCommentToExistingComment#0;class#CommentApiController#0" expanded="false" />
             <element signature="method#addCommentToBaseOfEvent#0;class#CommentApiController#0" expanded="false" />
             <element signature="method#buildComment#0;class#CommentApiController#0" expanded="false" />
-            <element signature="method#notAllRequiredDataAvailableOrNotValidFormat#0;class#CommentApiController#0" expanded="false" />
-            <element signature="method#userNotAllowedToInteractWithComments#0;class#CommentApiController#0" expanded="false" />
             <element signature="method#notAllCommentDataAvailable#0;class#CommentApiController#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventResourceToEntityConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="129" lean-forward="false" selection-start-line="15" selection-start-column="129" selection-end-line="15" selection-end-column="129" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="47" column="54" lean-forward="true" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
