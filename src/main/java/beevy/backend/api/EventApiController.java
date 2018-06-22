@@ -7,10 +7,7 @@ import beevy.backend.model.User;
 import beevy.backend.repositories.EventRepository;
 import beevy.backend.repositories.UserRepository;
 import com.beevy.api.EventApi;
-import com.beevy.model.EventResource;
-import com.beevy.model.JoinEventDataResource;
-import com.beevy.model.MinimalUserResource;
-import com.beevy.model.UserEventsResource;
+import com.beevy.model.*;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
@@ -41,6 +38,43 @@ public class EventApiController implements EventApi {
 
     private EventResourceToEntityConverter eventResourceToEntityConverter = new EventResourceToEntityConverter();
     private EventEntityToResourceConverter eventEntityToResourceConverter = new EventEntityToResourceConverter();
+
+    @Override
+    @CrossOrigin
+    public ResponseEntity<Void> deleteEvent(@ApiParam(value = "Delete Event Object"  )  @Valid @RequestBody DeleteEventDTOResource body) {
+        //Check if User is admin
+        User user = userRepository.findByUserID(body.getUserID());
+        Event event = eventRepository.findByEventID(body.getEventID());
+        if(user == null || !userIsAdminAndAllowedToDelete(body, user.getToken(), event.getAdmin().getUserID())) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        //Delete Event in user event
+        List<String> createdEvents = user.getCreatedEvents();
+        if(createdEvents.remove(body.getEventID())){
+            user.setCreatedEvents(createdEvents);
+            userRepository.save(user);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        //Delete event from all joined members
+        List<String> registeredMembers = event.getRegisteredMembers();
+        registeredMembers.forEach(member -> {
+            User joinedMember = userRepository.findByUserID(member);
+            List<String> joinedEvents = joinedMember.getJoinedEvents();
+            joinedEvents.remove(body.getEventID());
+            joinedMember.setJoinedEvents(joinedEvents);
+            userRepository.save(joinedMember);
+        });
+
+        //Delete event
+        eventRepository.delete(body.getEventID());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private boolean userIsAdminAndAllowedToDelete(DeleteEventDTOResource body, String token, String admin) {
+        return (body.getToken().equals(token) && body.getUserID().equals(admin));
+    }
 
     @Override
     @CrossOrigin

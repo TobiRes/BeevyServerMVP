@@ -10,12 +10,12 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * JoinEventDataResource
+ * DeleteEventDTOResource
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-22T15:44:13.065+02:00")
 
-public class JoinEventDataResource   {
+public class DeleteEventDTOResource   {
   @JsonProperty("userID")
   private String userID = null;
 
@@ -25,7 +25,7 @@ public class JoinEventDataResource   {
   @JsonProperty("eventID")
   private String eventID = null;
 
-  public JoinEventDataResource userID(String userID) {
+  public DeleteEventDTOResource userID(String userID) {
     this.userID = userID;
     return this;
   }
@@ -45,7 +45,7 @@ public class JoinEventDataResource   {
     this.userID = userID;
   }
 
-  public JoinEventDataResource token(String token) {
+  public DeleteEventDTOResource token(String token) {
     this.token = token;
     return this;
   }
@@ -65,7 +65,7 @@ public class JoinEventDataResource   {
     this.token = token;
   }
 
-  public JoinEventDataResource eventID(String eventID) {
+  public DeleteEventDTOResource eventID(String eventID) {
     this.eventID = eventID;
     return this;
   }
@@ -94,10 +94,10 @@ public class JoinEventDataResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JoinEventDataResource joinEventData = (JoinEventDataResource) o;
-    return Objects.equals(this.userID, joinEventData.userID) &&
-        Objects.equals(this.token, joinEventData.token) &&
-        Objects.equals(this.eventID, joinEventData.eventID);
+    DeleteEventDTOResource deleteEventDTO = (DeleteEventDTOResource) o;
+    return Objects.equals(this.userID, deleteEventDTO.userID) &&
+        Objects.equals(this.token, deleteEventDTO.token) &&
+        Objects.equals(this.eventID, deleteEventDTO.eventID);
   }
 
   @Override
@@ -108,7 +108,7 @@ public class JoinEventDataResource   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JoinEventDataResource {\n");
+    sb.append("class DeleteEventDTOResource {\n");
     
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");

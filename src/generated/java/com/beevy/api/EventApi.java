@@ -5,6 +5,7 @@
  */
 package com.beevy.api;
 
+import com.beevy.model.DeleteEventDTOResource;
 import com.beevy.model.EventResource;
 import com.beevy.model.JoinEventDataResource;
 import com.beevy.model.UserEventsResource;
@@ -30,7 +31,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-20T15:45:15.112+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-22T15:44:13.065+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -59,6 +60,24 @@ public interface EventApi {
         consumes = { "application/json" },
         method = RequestMethod.POST)
     default ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object"  )  @Valid @RequestBody EventResource body) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Delete an event", nickname = "deleteEvent", notes = "Delete an event from Beevy", tags={ "event", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Deleted event"),
+        @ApiResponse(code = 401, message = "Unauthorized"),
+        @ApiResponse(code = 405, message = "Failed to delete event") })
+    @RequestMapping(value = "/event/delete",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.DELETE)
+    default ResponseEntity<Void> deleteEvent(@ApiParam(value = "Delete Event Object"  )  @Valid @RequestBody DeleteEventDTOResource body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");

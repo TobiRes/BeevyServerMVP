@@ -16,7 +16,7 @@ import javax.validation.constraints.*;
  * CommentResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-20T15:45:15.112+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-22T15:44:13.065+02:00")
 
 public class CommentResource   {
   @JsonProperty("commentID")
