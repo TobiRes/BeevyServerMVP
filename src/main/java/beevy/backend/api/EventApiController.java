@@ -4,6 +4,7 @@ import beevy.backend.converter.EventEntityToResourceConverter;
 import beevy.backend.converter.EventResourceToEntityConverter;
 import beevy.backend.model.Event;
 import beevy.backend.model.User;
+import beevy.backend.repositories.CommentRepository;
 import beevy.backend.repositories.EventRepository;
 import beevy.backend.repositories.UserRepository;
 import com.beevy.api.EventApi;
@@ -36,18 +37,23 @@ public class EventApiController implements EventApi {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     private EventResourceToEntityConverter eventResourceToEntityConverter = new EventResourceToEntityConverter();
     private EventEntityToResourceConverter eventEntityToResourceConverter = new EventEntityToResourceConverter();
 
     @Override
     @CrossOrigin
     public ResponseEntity<Void> deleteEvent(@ApiParam(value = "Delete Event Object"  )  @Valid @RequestBody DeleteEventDTOResource body) {
+
         //Check if User is admin
         User user = userRepository.findByUserID(body.getUserID());
         Event event = eventRepository.findByEventID(body.getEventID());
-        if(user == null || !userIsAdminAndAllowedToDelete(body, user.getToken(), event.getAdmin().getUserID())) {
+        if(user == null || event == null || !userIsAdminAndAllowedToDelete(body, user.getToken(), event.getAdmin().getUserID())) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
+
         //Delete Event in user event
         List<String> createdEvents = user.getCreatedEvents();
         if(createdEvents.remove(body.getEventID())){
@@ -66,6 +72,14 @@ public class EventApiController implements EventApi {
             joinedMember.setJoinedEvents(joinedEvents);
             userRepository.save(joinedMember);
         });
+
+        //Delete comments
+        List<String> baseComments = event.getBaseComments();
+        if(baseComments != null){
+            baseComments.forEach(comment -> {
+                commentRepository.delete(comment);
+            });
+        }
 
         //Delete event
         eventRepository.delete(body.getEventID());
@@ -177,7 +191,9 @@ public class EventApiController implements EventApi {
         if (createdEvents != null) {
             createdEvents.forEach(eventID -> {
                 Event createdEvent = eventRepository.findByEventID(eventID);
-                allCreatedEvents.add(eventEntityToResourceConverter.toResource(createdEvent));
+                if(createdEvent != null){
+                    allCreatedEvents.add(eventEntityToResourceConverter.toResource(createdEvent));
+                }
             });
         }
         return allCreatedEvents;
