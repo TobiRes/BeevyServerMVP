@@ -69,7 +69,7 @@ public class EventApiController implements EventApi {
             baseComments.forEach(comment -> {
                 commentRepository.delete(comment);
             });
-        }2
+        }
     }
 
     private void deleteEventFromAllJoinedMembers(List<String> registeredMembers, String eventID) {
