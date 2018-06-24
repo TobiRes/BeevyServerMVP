@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ca4be7e-8a64-4943-a57e-093e1f11355b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -32,11 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="EventApiController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EventApiController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="71" column="10" lean-forward="false" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
+            <state relative-caret-position="395">
+              <caret line="68" column="45" lean-forward="true" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
               <folding>
                 <element signature="method#createEvent#0;class#EventApiController#0" expanded="false" />
                 <element signature="method#createEventResourceWithID#0;class#EventApiController#0" expanded="false" />
@@ -47,6 +47,29 @@
                 <element signature="method#checkIfUserIsAllowedToCreateEvent#0;class#EventApiController#0" expanded="false" />
                 <element signature="e#11523#11524#0" expanded="true" />
                 <element signature="e#11568#11569#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="api-definition.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-563">
+              <caret line="148" column="26" lean-forward="false" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
+              <folding>
+                <element signature="e#1842#2390#0" expanded="false" />
+                <element signature="e#4010#4536#0" expanded="false" />
+                <element signature="e#4539#5094#0" expanded="false" />
+                <element signature="e#5097#5641#0" expanded="false" />
+                <element signature="e#6285#6935#0" expanded="false" />
+                <element signature="e#6938#7237#0" expanded="false" />
+                <element signature="e#7550#7928#0" expanded="false" />
+                <element signature="e#7931#8121#0" expanded="false" />
+                <element signature="e#8124#8276#0" expanded="false" />
+                <element signature="e#8279#8510#0" expanded="false" />
+                <element signature="e#8513#8784#0" expanded="false" />
+                <element signature="e#8787#9107#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -1024,7 +1047,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67997000" />
+    <option name="totallyTimeSpent" value="68013000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
@@ -1337,9 +1360,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1347,7 +1367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1362,13 +1381,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1190">
           <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding>
-            <element signature="method#addComment#0;class#CommentApiController#0" expanded="false" />
-            <element signature="method#addCommentToExistingComment#0;class#CommentApiController#0" expanded="false" />
-            <element signature="method#addCommentToBaseOfEvent#0;class#CommentApiController#0" expanded="false" />
-            <element signature="method#buildComment#0;class#CommentApiController#0" expanded="false" />
-            <element signature="method#notAllCommentDataAvailable#0;class#CommentApiController#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1376,7 +1388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="15" column="129" lean-forward="false" selection-start-line="15" selection-start-column="129" selection-end-line="15" selection-end-column="129" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1384,13 +1395,93 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
           <caret line="79" column="139" lean-forward="false" selection-start-line="79" selection-start-column="12" selection-end-line="79" selection-end-column="139" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/JoinEventDataResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1038">
+          <caret line="110" column="16" lean-forward="false" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/UserEventsResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.14.RELEASE/8d46bec3782f84ed0a74ab4d3527f58ad2850e98/spring-webmvc-4.3.14.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.14.RELEASE/f1db8f14d67bdcd0655d7ccd274e9f9f14b6aa7/spring-web-4.3.14.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.14.RELEASE/37d9c4ddf088364b9d9b77b12f4d1c957bb163ed/spring-aop-4.3.14.RELEASE-sources.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="395">
+          <caret line="68" column="45" lean-forward="true" selection-start-line="68" selection-start-column="45" selection-end-line="68" selection-end-column="45" />
+          <folding>
+            <element signature="method#createEvent#0;class#EventApiController#0" expanded="false" />
+            <element signature="method#createEventResourceWithID#0;class#EventApiController#0" expanded="false" />
+            <element signature="method#addEventToCreatedEventsOfUser#0;class#EventApiController#0" expanded="false" />
+            <element signature="method#getEvents#0;class#EventApiController#0" expanded="false" />
+            <element signature="method#userAlreadyJoinedEvent#0;class#EventApiController#0" expanded="false" />
+            <element signature="method#addUserToRegisteredMembersOfEvent#0;class#EventApiController#0" expanded="false" />
+            <element signature="method#checkIfUserIsAllowedToCreateEvent#0;class#EventApiController#0" expanded="false" />
+            <element signature="e#11523#11524#0" expanded="true" />
+            <element signature="e#11568#11569#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/api-definition.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-665">
+        <state relative-caret-position="-563">
           <caret line="148" column="26" lean-forward="false" selection-start-line="148" selection-start-column="26" selection-end-line="148" selection-end-column="26" />
           <folding>
             <element signature="e#1842#2390#0" expanded="false" />
@@ -1405,107 +1496,6 @@
             <element signature="e#8279#8510#0" expanded="false" />
             <element signature="e#8513#8784#0" expanded="false" />
             <element signature="e#8787#9107#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/JoinEventDataResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#997#998#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1038">
-          <caret line="110" column="16" lean-forward="false" selection-start-line="110" selection-start-column="16" selection-end-line="110" selection-end-column="16" />
-          <folding>
-            <element signature="method#sendMail#0;class#UserApiController#0" expanded="false" />
-            <element signature="method#generateRandomString#0;class#UserApiController#0" expanded="false" />
-            <element signature="method#mailValid#0;class#UserApiController#0" expanded="false" />
-            <element signature="method#allRequiredDataAvailable#1;class#UserApiController#0" expanded="false" />
-            <element signature="method#generateTokenAndSaveUser#0;class#UserApiController#0" expanded="false" />
-            <element signature="method#generateTokenAndSaveUser#1;class#UserApiController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/UserEventsResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding>
-            <element signature="e#1475#1476#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.14.RELEASE/8d46bec3782f84ed0a74ab4d3527f58ad2850e98/spring-webmvc-4.3.14.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.14.RELEASE/f1db8f14d67bdcd0655d7ccd274e9f9f14b6aa7/spring-web-4.3.14.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29">
-          <caret line="204" column="0" lean-forward="false" selection-start-line="204" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-aop/4.3.14.RELEASE/37d9c4ddf088364b9d9b77b12f4d1c957bb163ed/spring-aop-4.3.14.RELEASE-sources.jar!/org/springframework/aop/framework/JdkDynamicAopProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="156" column="0" lean-forward="false" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="71" column="10" lean-forward="false" selection-start-line="71" selection-start-column="10" selection-end-line="71" selection-end-column="10" />
-          <folding>
-            <element signature="method#createEvent#0;class#EventApiController#0" expanded="false" />
-            <element signature="method#createEventResourceWithID#0;class#EventApiController#0" expanded="false" />
-            <element signature="method#addEventToCreatedEventsOfUser#0;class#EventApiController#0" expanded="false" />
-            <element signature="method#getEvents#0;class#EventApiController#0" expanded="false" />
-            <element signature="method#userAlreadyJoinedEvent#0;class#EventApiController#0" expanded="false" />
-            <element signature="method#addUserToRegisteredMembersOfEvent#0;class#EventApiController#0" expanded="false" />
-            <element signature="method#checkIfUserIsAllowedToCreateEvent#0;class#EventApiController#0" expanded="false" />
-            <element signature="e#11523#11524#0" expanded="true" />
-            <element signature="e#11568#11569#0" expanded="true" />
           </folding>
         </state>
       </provider>
