@@ -47,43 +47,49 @@ public class EventApiController implements EventApi {
     @CrossOrigin
     public ResponseEntity<Void> deleteEvent(@ApiParam(value = "Delete Event Object"  )  @Valid @RequestBody DeleteEventDTOResource body) {
 
-        //Check if User is admin
         User user = userRepository.findByUserID(body.getUserID());
         Event event = eventRepository.findByEventID(body.getEventID());
+
+        //Check if User is admin
         if(user == null || event == null || !userIsAdminAndAllowedToDelete(body, user.getToken(), event.getAdmin().getUserID())) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        //Delete Event in user event
-        List<String> createdEvents = user.getCreatedEvents();
-        if(createdEvents.remove(body.getEventID())){
-            user.setCreatedEvents(createdEvents);
-            userRepository.save(user);
-        } else {
+        if(!deleteEventInUserCreatedEvents(user, body.getEventID())){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        deleteEventFromAllJoinedMembers(event.getRegisteredMembers(), body.getEventID());
+        deleteComments(event.getBaseComments());
+        eventRepository.delete(body.getEventID());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
-        //Delete event from all joined members
-        List<String> registeredMembers = event.getRegisteredMembers();
-        registeredMembers.forEach(member -> {
-            User joinedMember = userRepository.findByUserID(member);
-            List<String> joinedEvents = joinedMember.getJoinedEvents();
-            joinedEvents.remove(body.getEventID());
-            joinedMember.setJoinedEvents(joinedEvents);
-            userRepository.save(joinedMember);
-        });
-
-        //Delete comments
-        List<String> baseComments = event.getBaseComments();
+    private void deleteComments(List<String> baseComments) {
         if(baseComments != null){
             baseComments.forEach(comment -> {
                 commentRepository.delete(comment);
             });
-        }
+        }2
+    }
 
-        //Delete event
-        eventRepository.delete(body.getEventID());
-        return new ResponseEntity<>(HttpStatus.OK);
+    private void deleteEventFromAllJoinedMembers(List<String> registeredMembers, String eventID) {
+        registeredMembers.forEach(member -> {
+            User joinedMember = userRepository.findByUserID(member);
+            List<String> joinedEvents = joinedMember.getJoinedEvents();
+            joinedEvents.remove(eventID);
+            joinedMember.setJoinedEvents(joinedEvents);
+            userRepository.save(joinedMember);
+        });
+    }
+
+    private boolean deleteEventInUserCreatedEvents(User user, String eventID) {
+        List<String> createdEvents = user.getCreatedEvents();
+        if(createdEvents.remove(eventID)) {
+            user.setCreatedEvents(createdEvents);
+            userRepository.save(user);
+            return true;
+        }
+        return false;
     }
 
     private boolean userIsAdminAndAllowedToDelete(DeleteEventDTOResource body, String token, String admin) {
