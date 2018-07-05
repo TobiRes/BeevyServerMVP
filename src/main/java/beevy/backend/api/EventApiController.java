@@ -58,7 +58,7 @@ public class EventApiController implements EventApi {
         if(!deleteEventInUserCreatedEvents(user, body.getEventID())){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        deleteEventFromAllJoinedMembers(event.getRegisteredMembers(), body.getEventID());
+        deleteEventFromAllJoinedMembers(event.getRegisteredMembers(), body.getEventID(), body.getUserID());
         deleteComments(event.getBaseComments());
         eventRepository.delete(body.getEventID());
         return new ResponseEntity<>(HttpStatus.OK);
@@ -72,13 +72,15 @@ public class EventApiController implements EventApi {
         }
     }
 
-    private void deleteEventFromAllJoinedMembers(List<String> registeredMembers, String eventID) {
+    private void deleteEventFromAllJoinedMembers(List<String> registeredMembers, String eventID, String adminID) {
         registeredMembers.forEach(member -> {
-            User joinedMember = userRepository.findByUserID(member);
-            List<String> joinedEvents = joinedMember.getJoinedEvents();
-            joinedEvents.remove(eventID);
-            joinedMember.setJoinedEvents(joinedEvents);
-            userRepository.save(joinedMember);
+            if(!member.equals(adminID)){
+                User joinedMember = userRepository.findByUserID(member);
+                List<String> joinedEvents = joinedMember.getJoinedEvents();
+                joinedEvents.remove(eventID);
+                joinedMember.setJoinedEvents(joinedEvents);
+                userRepository.save(joinedMember);
+            }
         });
     }
 

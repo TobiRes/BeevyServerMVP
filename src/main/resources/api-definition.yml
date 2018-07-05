@@ -139,7 +139,7 @@ paths:
         '405':
           description: Failed to create event
   /event/delete:
-    delete:
+    post:
       tags:
         - event
       summary: Delete an event

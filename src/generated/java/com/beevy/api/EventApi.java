@@ -31,7 +31,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-06-22T15:44:13.065+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-04T16:13:30.815+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -76,7 +76,7 @@ public interface EventApi {
     @RequestMapping(value = "/event/delete",
         produces = { "application/json" }, 
         consumes = { "application/json" },
-        method = RequestMethod.DELETE)
+        method = RequestMethod.POST)
     default ResponseEntity<Void> deleteEvent(@ApiParam(value = "Delete Event Object"  )  @Valid @RequestBody DeleteEventDTOResource body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
