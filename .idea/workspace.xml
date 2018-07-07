@@ -7,29 +7,11 @@
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/fileSnapshots.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BeevyServer_generated.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BeevyServer_generated.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BeevyServer_test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/BeevyServer_test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/generated/classes/com/beevy/api/EventApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/generated/classes/com/beevy/api/EventApi.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/converter/CommentEntityToResourceConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/converter/CommentEntityToResourceConverter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Address.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/model/Event$CategoryEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/api-definition.yml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/resources/api-definition.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/CommentApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/CommentApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/EventApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/EventApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/UserApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/AddressResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/AddressResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentDTOResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentDTOResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/DeleteEventDTOResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/DeleteEventDTOResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/JoinEventDataResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/JoinEventDataResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/MinimalUserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/MinimalUserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserEventsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserEventsResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserSecurityResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserSecurityResource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/api-definition.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/api-definition.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -72,16 +54,43 @@
       <file leaf-file-name="EventApiController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="291">
+              <caret line="181" column="42" lean-forward="true" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#deleteEvent#0;class#EventApiController#0" />
+                <element signature="method#deleteComments#0;class#EventApiController#0" />
+                <element signature="method#deleteEventFromAllJoinedMembers#0;class#EventApiController#0" />
+                <element signature="method#deleteEventInUserCreatedEvents#0;class#EventApiController#0" />
+                <element signature="method#createEvent#0;class#EventApiController#0" />
                 <element signature="method#createEventResourceWithID#0;class#EventApiController#0" />
                 <element signature="method#addEventToCreatedEventsOfUser#0;class#EventApiController#0" />
                 <element signature="method#getEvents#0;class#EventApiController#0" />
+                <element signature="method#joinEvent#0;class#EventApiController#0" />
+                <element signature="method#findCreatedEvents#0;class#EventApiController#0" />
+                <element signature="method#checkIfUserIsAllowedToJoinEvent#0;class#EventApiController#0" />
                 <element signature="method#userAlreadyJoinedEvent#0;class#EventApiController#0" />
+                <element signature="method#addMemberToEvent#0;class#EventApiController#0" />
                 <element signature="method#addUserToRegisteredMembersOfEvent#0;class#EventApiController#0" />
+                <element signature="method#addEventToJoinedEventsOfUser#0;class#EventApiController#0" />
                 <element signature="method#checkIfUserIsAllowedToCreateEvent#0;class#EventApiController#0" />
+                <element signature="method#sortEventList#0;class#EventApiController#0" />
+                <element signature="method#sortEventsByDate#0;class#EventApiController#0" />
+                <element signature="method#getEventsNotInThePast#0;class#EventApiController#0" />
+                <element signature="method#getDateFromISOSTring#0;class#EventApiController#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="301">
+              <caret line="226" column="16" selection-start-line="226" selection-start-column="16" selection-end-line="226" selection-end-column="16" />
+              <folding>
+                <element signature="e#4251#4252#0" expanded="true" />
+                <element signature="e#4272#4273#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -672,8 +681,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-8" />
+    <option name="x" value="-482" />
+    <option name="y" value="364" />
     <option name="width" value="1936" />
     <option name="height" value="1066" />
   </component>
@@ -688,7 +697,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -777,8 +785,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -795,7 +804,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1021,14 +1030,15 @@
       <workItem from="1530709401156" duration="10000" />
       <workItem from="1530710115772" duration="1949000" />
       <workItem from="1530719359200" duration="604000" />
+      <workItem from="1530952894281" duration="4232000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72788000" />
+    <option name="totallyTimeSpent" value="77020000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -1110,7 +1120,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="43" />
+      <option name="time" value="50" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -1279,13 +1289,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/CommentApiController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1190">
@@ -1336,13 +1339,6 @@
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.14.RELEASE/8d46bec3782f84ed0a74ab4d3527f58ad2850e98/spring-webmvc-4.3.14.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/ServletInvocableHandlerMethod.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/converter/EventEntityToResourceConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1361,6 +1357,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="226" column="16" selection-start-line="226" selection-start-column="16" selection-end-line="226" selection-end-column="16" />
+          <folding>
+            <element signature="e#4251#4252#0" expanded="true" />
+            <element signature="e#4272#4273#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.14.RELEASE/f1db8f14d67bdcd0655d7ccd274e9f9f14b6aa7/spring-web-4.3.14.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -1368,18 +1375,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="291">
+          <caret line="181" column="42" lean-forward="true" selection-start-line="181" selection-start-column="42" selection-end-line="181" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#deleteEvent#0;class#EventApiController#0" />
+            <element signature="method#deleteComments#0;class#EventApiController#0" />
+            <element signature="method#deleteEventFromAllJoinedMembers#0;class#EventApiController#0" />
+            <element signature="method#deleteEventInUserCreatedEvents#0;class#EventApiController#0" />
+            <element signature="method#createEvent#0;class#EventApiController#0" />
             <element signature="method#createEventResourceWithID#0;class#EventApiController#0" />
             <element signature="method#addEventToCreatedEventsOfUser#0;class#EventApiController#0" />
             <element signature="method#getEvents#0;class#EventApiController#0" />
+            <element signature="method#joinEvent#0;class#EventApiController#0" />
+            <element signature="method#findCreatedEvents#0;class#EventApiController#0" />
+            <element signature="method#checkIfUserIsAllowedToJoinEvent#0;class#EventApiController#0" />
             <element signature="method#userAlreadyJoinedEvent#0;class#EventApiController#0" />
+            <element signature="method#addMemberToEvent#0;class#EventApiController#0" />
             <element signature="method#addUserToRegisteredMembersOfEvent#0;class#EventApiController#0" />
+            <element signature="method#addEventToJoinedEventsOfUser#0;class#EventApiController#0" />
             <element signature="method#checkIfUserIsAllowedToCreateEvent#0;class#EventApiController#0" />
+            <element signature="method#sortEventList#0;class#EventApiController#0" />
+            <element signature="method#sortEventsByDate#0;class#EventApiController#0" />
+            <element signature="method#getEventsNotInThePast#0;class#EventApiController#0" />
+            <element signature="method#getDateFromISOSTring#0;class#EventApiController#0" />
           </folding>
         </state>
       </provider>
@@ -1424,7 +1452,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>9.0</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

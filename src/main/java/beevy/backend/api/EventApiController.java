@@ -9,7 +9,6 @@ import beevy.backend.repositories.EventRepository;
 import beevy.backend.repositories.UserRepository;
 import com.beevy.api.EventApi;
 import com.beevy.model.*;
-import com.google.common.collect.Lists;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @EnableAutoConfiguration
 @RestController
@@ -155,7 +156,7 @@ public class EventApiController implements EventApi {
         existingEvents.forEach(event -> {
             events.add(eventEntityToResourceConverter.toResource(event));
         });
-        return new ResponseEntity<>(reverseEventList(events), HttpStatus.OK);
+        return new ResponseEntity<>(sortEventList(events), HttpStatus.OK);
     }
 
     @Override
@@ -180,18 +181,25 @@ public class EventApiController implements EventApi {
         } else {
             user.setTempAccessToken(null);
             userRepository.save(user);
-            UserEventsResource userEventsResource = new UserEventsResource();
-            if(user.getJoinedEvents() != null){
-                List<EventResource> joinedEvents = findJoinedEvents(user.getJoinedEvents());
-                userEventsResource.setJoinedEvents(joinedEvents);
-            }
-            if(user.getCreatedEvents() != null) {
-                List<EventResource> createdEvents = findCreatedEvents(user.getCreatedEvents());
-                userEventsResource.setCreatedEvents(createdEvents);
-            }
+            UserEventsResource userEventsResource = getJoinedAndCreatedEventsOfUser(user.getJoinedEvents(), user.getCreatedEvents());
             return new ResponseEntity<>(userEventsResource, HttpStatus.OK);
         }
 
+    }
+
+    private UserEventsResource getJoinedAndCreatedEventsOfUser(List<String> joinedEventIDs, List<String> createdEventIDs) {
+        UserEventsResource userEventsResource = new UserEventsResource();
+        if(joinedEventIDs != null){
+            List<EventResource> joinedEvents = findJoinedEvents(joinedEventIDs);
+            List<EventResource> sortedJoinedEvents = sortEventsByDate(joinedEvents);
+            userEventsResource.setJoinedEvents(sortedJoinedEvents);
+        }
+        if(createdEventIDs != null) {
+            List<EventResource> createdEvents = findCreatedEvents(createdEventIDs);
+            List<EventResource> sortedCreatedEvents = sortEventsByDate(createdEvents);
+            userEventsResource.setCreatedEvents(sortedCreatedEvents);
+        }
+        return userEventsResource;
     }
 
     private List<EventResource> findCreatedEvents(List<String> createdEvents) {
@@ -276,7 +284,44 @@ public class EventApiController implements EventApi {
         return false;
     }
 
-    private List<EventResource> reverseEventList(List<EventResource> oldList) {
-        return Lists.reverse(oldList);
+    private List<EventResource> sortEventList(List<EventResource> unsortedListWithAllEvents) {
+        List<EventResource> oldEventsRemoved = getEventsNotInThePast(unsortedListWithAllEvents);
+        List<EventResource> sortedEventList = sortEventsByDate(oldEventsRemoved);
+        return sortedEventList;
+    }
+
+    private List<EventResource> sortEventsByDate(List<EventResource> unsortedList){
+        List<EventResource> newEventList = unsortedList.stream().collect(Collectors.toList());
+        Collections.sort(newEventList, new Comparator<EventResource>() {
+            public int compare(EventResource event1, EventResource event2) {
+                if (event1.getDate() == null || event2.getDate() == null)
+                    return 0;
+                Date eventDate1 = getDateFromISOSTring(event1.getDate());
+                Date eventDate2 = getDateFromISOSTring(event2.getDate());
+                return eventDate1.compareTo(eventDate2);
+            }
+        });
+        return newEventList;
+    }
+
+    private List<EventResource> getEventsNotInThePast(List<EventResource> allEvents) {
+        //Returning true adds the event to the list
+        List<EventResource> filteredList = allEvents.stream().filter(eventResource -> {
+            try {
+                Date eventDate = getDateFromISOSTring(eventResource.getDate());
+                //0 if same Date, -1 if before, 1 if after
+                return eventDate.compareTo(new Date()) > -1;
+            } catch (Exception e){
+                return false;
+            }
+        }).collect(Collectors.toList());
+        return filteredList;
+    }
+
+    private Date getDateFromISOSTring(String ISODate){
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME;
+        OffsetDateTime offsetDateTime = OffsetDateTime.parse(ISODate, dateTimeFormatter);
+        Date formattedDate = Date.from(Instant.from(offsetDateTime));
+        return formattedDate;
     }
 }
