@@ -102,17 +102,48 @@ public class EventApiController implements EventApi {
     @Override
     @CrossOrigin
     public ResponseEntity<Void> createEvent(@ApiParam(value = "Event Object") @Valid @RequestBody EventResource body) {
-        if (checkIfUserIsAllowedToCreateEvent(body)) {
-            //TODO: Event Validierung
+        if (userAllowedToCreateEvent(body) && allEventDataCorrect(body)) {
             EventResource eventResource = createEventResourceWithID(body);
             final Event newEvent = eventResourceToEntityConverter.toEntity(eventResource);
             //This also saves the event
             addUserToRegisteredMembersOfEvent(newEvent, body.getAdmin().getUserID());
-
             addEventToCreatedEventsOfUser(newEvent.getEventID(), body.getAdmin().getUserID());
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    }
+
+    private boolean allEventDataCorrect(EventResource body) {
+        //TODO: ALWAYS KEEP CONSISTENT WITH FRONTEND
+        if(notAllDataEntered(body)){
+            return false;
+        }
+        if(body.getTitle().length() > 22 || body.getTitle().length() < 3) {
+            return false;
+        }
+        if(body.getSummary().length() > 42 || body.getSummary().length() < 10){
+            return false;
+        }
+        if(body.getDescription().length() > 500 || body.getDescription().length() < 15){
+            return false;
+        }
+        if(body.getAddress().getZip().toString().length() != 5){
+            return false;
+        }
+        if(body.getAddress().getCity().length() < 5 || body.getAddress().getCity().length() > 25) {
+            return false;
+        }
+        if(body.getAddress().getStreet().length() < 5 || body.getAddress().getStreet().length() > 25) {
+            return false;
+        }
+        if(body.getType() != EventResource.TypeEnum.ACTIVITY || body.getType() != EventResource.TypeEnum.HANGOUT || body.getType() != EventResource.TypeEnum.PROJECT){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean notAllDataEntered(EventResource body) {
+        return (body.getTitle() == null || body.getSummary() == null || body.getDescription() == null || body.getType() == null || body.getDate() == null || body.getAddress() == null || body.getAddress().getStreet() == null || body.getAddress().getCity() == null || body.getAddress().getZip() == null);
     }
 
     private EventResource createEventResourceWithID(EventResource body) {
@@ -273,7 +304,7 @@ public class EventApiController implements EventApi {
         userRepository.save(user);
     }
 
-    private boolean checkIfUserIsAllowedToCreateEvent(EventResource body) {
+    private boolean userAllowedToCreateEvent(EventResource body) {
         User user = userRepository.findByUserID(body.getAdmin().getUserID());
         if (user == null) {
             return false;
