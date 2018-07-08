@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * MinimalUserResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-04T16:13:30.815+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T12:58:08.193+02:00")
 
 public class MinimalUserResource   {
   @JsonProperty("username")
@@ -24,6 +24,9 @@ public class MinimalUserResource   {
 
   @JsonProperty("token")
   private String token = null;
+
+  @JsonProperty("avatar")
+  private String avatar = null;
 
   public MinimalUserResource username(String username) {
     this.username = username;
@@ -85,6 +88,26 @@ public class MinimalUserResource   {
     this.token = token;
   }
 
+  public MinimalUserResource avatar(String avatar) {
+    this.avatar = avatar;
+    return this;
+  }
+
+  /**
+   * Get avatar
+   * @return avatar
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getAvatar() {
+    return avatar;
+  }
+
+  public void setAvatar(String avatar) {
+    this.avatar = avatar;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -97,12 +120,13 @@ public class MinimalUserResource   {
     MinimalUserResource minimalUser = (MinimalUserResource) o;
     return Objects.equals(this.username, minimalUser.username) &&
         Objects.equals(this.userID, minimalUser.userID) &&
-        Objects.equals(this.token, minimalUser.token);
+        Objects.equals(this.token, minimalUser.token) &&
+        Objects.equals(this.avatar, minimalUser.avatar);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, userID, token);
+    return Objects.hash(username, userID, token, avatar);
   }
 
   @Override
@@ -113,6 +137,7 @@ public class MinimalUserResource   {
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
+    sb.append("    avatar: ").append(toIndentedString(avatar)).append("\n");
     sb.append("}");
     return sb.toString();
   }

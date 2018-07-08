@@ -54,6 +54,28 @@ paths:
           description: Sent registration mail
         '405':
           description: Failed to send registration mail
+  /user/avatar:
+    post:
+      tags:
+        - user
+      summary: Update user avatar
+      description: Set a new user avatar
+      operationId: updateAvatar
+      consumes:
+          - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: AvatarDTO
+          schema:
+            $ref: '#/definitions/AvatarDTO'
+      responses:
+        '201':
+          description: Updated user avatar
+        '405':
+          description: Failed to update avatar
   /user/access:
     post:
       tags:
@@ -306,6 +328,17 @@ definitions:
       userID:
         type: string
       token:
+        type: string
+      avatar:
+        type: string
+  AvatarDTO:
+    type: object
+    properties:
+      userID:
+        type: string
+      token:
+        type: string
+      avatar:
         type: string
   DeleteEventDTO:
     type: object

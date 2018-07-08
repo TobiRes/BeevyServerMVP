@@ -18,6 +18,7 @@ public class User {
     private String mail;
     private String token;
     private String tempAccessToken;
+    private String currentAvatar;
     private List<String> joinedEvents;
     private List<String> createdEvents;
 }

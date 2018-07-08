@@ -150,7 +150,10 @@ public class EventApiController implements EventApi {
         String eventID = UUID.randomUUID().toString();
         return new EventResource()
                 .eventID(eventID)
-                .admin(new MinimalUserResource().userID(body.getAdmin().getUserID()).username(body.getAdmin().getUsername()))
+                .admin(new MinimalUserResource()
+                        .userID(body.getAdmin().getUserID())
+                        .username(body.getAdmin().getUsername())
+                        .avatar(body.getAdmin().getAvatar()))
                 .title(body.getTitle())
                 .summary(body.getSummary())
                 .description(body.getDescription())
@@ -179,10 +182,10 @@ public class EventApiController implements EventApi {
     @Override
     @CrossOrigin
     public ResponseEntity<List<EventResource>> getEvents() {
-        if (eventRepository.findAll() == null) {
+        List<Event> existingEvents = eventRepository.findAll();
+        if (existingEvents == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        List<Event> existingEvents = eventRepository.findAll();
         List<EventResource> events = new ArrayList<>();
         existingEvents.forEach(event -> {
             events.add(eventEntityToResourceConverter.toResource(event));

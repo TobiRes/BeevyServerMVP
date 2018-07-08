@@ -1,11 +1,12 @@
 package beevy.backend.api;
 
 import beevy.backend.converter.UserResourceToEntityConverter;
+import beevy.backend.model.Event;
 import beevy.backend.model.User;
+import beevy.backend.repositories.EventRepository;
 import beevy.backend.repositories.UserRepository;
 import com.beevy.api.UserApi;
-import com.beevy.model.UserResource;
-import com.beevy.model.UserSecurityResource;
+import com.beevy.model.*;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
 
 @EnableAutoConfiguration
 @RestController
@@ -30,35 +30,21 @@ import java.util.UUID;
 public class UserApiController implements UserApi {
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Autowired
     JavaMailSender sender;
 
     private UserResourceToEntityConverter userResourceToEntityConverter = new UserResourceToEntityConverter();
 
-/*    @Override
-    @CrossOrigin
-    public ResponseEntity<Void> createUser(@ApiParam(value = "User Object") @Valid @RequestBody UserResource body) {
-        if (!allRequiredDataAvailable(body)) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-        final User user = repository.findByUserID(body.getUserID());
-        if (user == null) {
-            generateTokenAndSaveUser(body);
-        } else {
-            if (!allRequiredDataAvailable(user) || user.getToken() == null) {
-                generateTokenAndSaveUser(body);
-            }
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
-    }*/
-
     @Override
     @CrossOrigin
     public ResponseEntity<Void> registerUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserResource body) {
         if (allRequiredDataAvailable(body) && mailValid(body.getMail())) {
-            final User user = repository.findByUserID(body.getUserID());
+            final User user = userRepository.findByUserID(body.getUserID());
             if(user != null){
                 //TODO: Handle case where user is already registered
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -66,10 +52,11 @@ public class UserApiController implements UserApi {
             final String registerToken = generateRandomString();
             User newUser = userResourceToEntityConverter.toEntity(body);
             newUser.setTempAccessToken(registerToken);
+            newUser.setCurrentAvatar("avatar_1");
             if (!sendMail(body.getMail(), body.getUsername(), registerToken)) {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            repository.save(newUser);
+            userRepository.save(newUser);
             return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -110,12 +97,12 @@ public class UserApiController implements UserApi {
     @Override
     @CrossOrigin
     public ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserSecurityResource body) {
-        final User user = repository.findByUserID(body.getUserID());
+        final User user = userRepository.findByUserID(body.getUserID());
         if (user == null || !allRequiredDataAvailable(user) || !(user.getUsername().equals(body.getUsername()) || !(user.getToken().equals(body.getToken())))) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             user.setTempAccessToken(body.getTempToken());
-            repository.save(user);
+            userRepository.save(user);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
@@ -123,7 +110,7 @@ public class UserApiController implements UserApi {
     @Override
     @CrossOrigin
     public ResponseEntity<String> getUserToken(@PathVariable("username") final String username, @PathVariable("userID") final String userID, @PathVariable("tempAccessToken") final String tempAccessToken) {
-        final User user = repository.findByUserID(userID);
+        final User user = userRepository.findByUserID(userID);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else if (user.getTempAccessToken() == null || !user.getTempAccessToken().equals(tempAccessToken)) {
@@ -133,7 +120,7 @@ public class UserApiController implements UserApi {
                 generateTokenAndSaveUser(user);
             }
             user.setTempAccessToken(null);
-            repository.save(user);
+            userRepository.save(user);
         }
         //Not pretty, but works.
         return new ResponseEntity<>("{\"token\":\"" + user.getToken() + "\"}", HttpStatus.OK);
@@ -147,15 +134,45 @@ public class UserApiController implements UserApi {
         return (userResource.getMail() != null && userResource.getUsername() != null && userResource.getUserID() != null);
     }
 
-    private void generateTokenAndSaveUser(UserResource body) {
-        final String securityToken = UUID.randomUUID().toString().replace("-", "");
-        body.setToken(securityToken);
-        repository.save(userResourceToEntityConverter.toEntity(body));
-    }
-
     private void generateTokenAndSaveUser(User body) {
         final String securityToken = UUID.randomUUID().toString().replace("-", "");
         body.setToken(securityToken);
-        repository.save(body);
+        userRepository.save(body);
+    }
+
+    @Override
+    @CrossOrigin
+    public ResponseEntity<Void> updateAvatar(@ApiParam(value = "AvatarDTO"  )  @Valid @RequestBody AvatarDTOResource body) {
+        User user = userRepository.findByUserID(body.getUserID());
+        if(user == null || !user.getToken().equals(body.getToken()) || body.getAvatar() == null || !avatarIsValidFormat(body)){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        user.setCurrentAvatar(body.getAvatar());
+        userRepository.save(user);
+        updateAvatarInEvents(user);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private void updateAvatarInEvents(User user) {
+        List<String> createdEventsOfUser = user.getCreatedEvents();
+        if(createdEventsOfUser != null){
+            createdEventsOfUser.forEach(eventID -> {
+                Event createdEvent = eventRepository.findByEventID(eventID);
+                MinimalUserResource eventAdmin = createdEvent.getAdmin();
+                eventAdmin.setAvatar(user.getCurrentAvatar());
+                createdEvent.setAdmin(eventAdmin);
+                eventRepository.save(createdEvent);
+            });
+        }
+    }
+
+    private boolean avatarIsValidFormat(AvatarDTOResource body) {
+        try {
+            //Get the number after 'avatar_'
+            final int i = new Scanner(body.getAvatar().substring(7)).useDelimiter("\\D+").nextInt();
+            return body.getAvatar().toLowerCase().contains("avatar_") && i > 0 && i < 13;
+        } catch (NoSuchElementException e){
+            return false;
+        }
     }
 }

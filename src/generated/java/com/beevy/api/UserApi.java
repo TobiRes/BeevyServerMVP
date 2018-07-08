@@ -5,6 +5,7 @@
  */
 package com.beevy.api;
 
+import com.beevy.model.AvatarDTOResource;
 import com.beevy.model.UserResource;
 import com.beevy.model.UserSecurityResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -29,7 +30,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-04T16:13:30.815+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T12:58:08.193+02:00")
 
 @Api(value = "user", description = "the user API")
 public interface UserApi {
@@ -98,6 +99,23 @@ public interface UserApi {
         consumes = { "application/json" },
         method = RequestMethod.POST)
     default ResponseEntity<Void> setTempAccessTokenForUser(@ApiParam(value = "Security Object"  )  @Valid @RequestBody UserSecurityResource body) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default UserApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Update user avatar", nickname = "updateAvatar", notes = "Set a new user avatar", tags={ "user", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Updated user avatar"),
+        @ApiResponse(code = 405, message = "Failed to update avatar") })
+    @RequestMapping(value = "/user/avatar",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> updateAvatar(@ApiParam(value = "AvatarDTO"  )  @Valid @RequestBody AvatarDTOResource body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default UserApi interface so no example is generated");

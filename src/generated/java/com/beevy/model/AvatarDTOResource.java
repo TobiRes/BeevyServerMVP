@@ -10,45 +10,22 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * UserSecurityResource
+ * AvatarDTOResource
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T12:58:08.193+02:00")
 
-public class UserSecurityResource   {
-  @JsonProperty("username")
-  private String username = null;
-
+public class AvatarDTOResource   {
   @JsonProperty("userID")
   private String userID = null;
 
   @JsonProperty("token")
   private String token = null;
 
-  @JsonProperty("tempToken")
-  private String tempToken = null;
+  @JsonProperty("avatar")
+  private String avatar = null;
 
-  public UserSecurityResource username(String username) {
-    this.username = username;
-    return this;
-  }
-
-  /**
-   * Get username
-   * @return username
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getUsername() {
-    return username;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public UserSecurityResource userID(String userID) {
+  public AvatarDTOResource userID(String userID) {
     this.userID = userID;
     return this;
   }
@@ -68,7 +45,7 @@ public class UserSecurityResource   {
     this.userID = userID;
   }
 
-  public UserSecurityResource token(String token) {
+  public AvatarDTOResource token(String token) {
     this.token = token;
     return this;
   }
@@ -88,24 +65,24 @@ public class UserSecurityResource   {
     this.token = token;
   }
 
-  public UserSecurityResource tempToken(String tempToken) {
-    this.tempToken = tempToken;
+  public AvatarDTOResource avatar(String avatar) {
+    this.avatar = avatar;
     return this;
   }
 
   /**
-   * Get tempToken
-   * @return tempToken
+   * Get avatar
+   * @return avatar
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getTempToken() {
-    return tempToken;
+  public String getAvatar() {
+    return avatar;
   }
 
-  public void setTempToken(String tempToken) {
-    this.tempToken = tempToken;
+  public void setAvatar(String avatar) {
+    this.avatar = avatar;
   }
 
 
@@ -117,27 +94,25 @@ public class UserSecurityResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserSecurityResource userSecurity = (UserSecurityResource) o;
-    return Objects.equals(this.username, userSecurity.username) &&
-        Objects.equals(this.userID, userSecurity.userID) &&
-        Objects.equals(this.token, userSecurity.token) &&
-        Objects.equals(this.tempToken, userSecurity.tempToken);
+    AvatarDTOResource avatarDTO = (AvatarDTOResource) o;
+    return Objects.equals(this.userID, avatarDTO.userID) &&
+        Objects.equals(this.token, avatarDTO.token) &&
+        Objects.equals(this.avatar, avatarDTO.avatar);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, userID, token, tempToken);
+    return Objects.hash(userID, token, avatar);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserSecurityResource {\n");
+    sb.append("class AvatarDTOResource {\n");
     
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("    tempToken: ").append(toIndentedString(tempToken)).append("\n");
+    sb.append("    avatar: ").append(toIndentedString(avatar)).append("\n");
     sb.append("}");
     return sb.toString();
   }
