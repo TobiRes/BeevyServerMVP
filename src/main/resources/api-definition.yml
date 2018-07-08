@@ -206,6 +206,28 @@ paths:
           description: Joined event
         '405':
           description: Failed to join event
+  /event/report:
+    post:
+      tags:
+        - event
+      summary: Report an event
+      description: Report an event and send mail to admin team
+      operationId: reportEvent
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Report Event Data
+          schema:
+            $ref: '#/definitions/ReportDTO'
+      responses:
+        '201':
+          description: Joined event
+        '405':
+          description: Failed to join event
   /event/{userID}/{tempAccessToken}:
       parameters:
         - $ref: '#/parameters/userID'
@@ -343,6 +365,17 @@ definitions:
       token:
         type: string
       avatar:
+        type: string
+  ReportDTO:
+    type: object
+    properties:
+      userID:
+        type: string
+      token:
+        type: string
+      eventID:
+        type: string
+      reason:
         type: string
   DeleteEventDTO:
     type: object

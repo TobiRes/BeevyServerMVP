@@ -15,11 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 import java.time.Instant;
 import java.time.OffsetDateTime;
@@ -40,6 +43,9 @@ public class EventApiController implements EventApi {
 
     @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private JavaMailSender sender;
 
     private EventResourceToEntityConverter eventResourceToEntityConverter = new EventResourceToEntityConverter();
     private EventEntityToResourceConverter eventEntityToResourceConverter = new EventEntityToResourceConverter();
@@ -369,5 +375,42 @@ public class EventApiController implements EventApi {
         OffsetDateTime offsetDateTime = OffsetDateTime.parse(ISODate, dateTimeFormatter);
         Date formattedDate = Date.from(Instant.from(offsetDateTime));
         return formattedDate;
+    }
+
+    @Override
+    @CrossOrigin
+    public ResponseEntity<Void> reportEvent(@ApiParam(value = "Report Event Data"  )  @Valid @RequestBody ReportDTOResource body) {
+        if(body.getEventID() == null || body.getReason() == null || body.getToken() == null || body.getUserID() == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        User user = userRepository.findByUserID(body.getUserID());
+        Event reportedEvent = eventRepository.findByEventID(body.getEventID());
+        if(user == null || reportedEvent == null || !user.getToken().equals(body.getToken())){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        sendMail(user.getUsername(),"tobias.reski@gmail.com", body.getReason(), body.getEventID(), reportedEvent.getTitle(), reportedEvent.getSummary(), reportedEvent.getDescription());
+        sendMail(user.getUsername(),"clara.deitmar@gmail.com", body.getReason(), body.getEventID(), reportedEvent.getTitle(), reportedEvent.getSummary(), reportedEvent.getDescription());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private void sendMail(String reportingUser, String mailAddress, String reportReason, String eventID, String eventTitle, String eventSummary, String eventDescription){
+        MimeMessage message = sender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+        try {
+            helper.setTo(mailAddress);
+            helper.setText("Der User "
+                    + reportingUser +" hat das Event mit dem Titel:<br><br>"
+                    + eventTitle + "<br><br>Der Beschreibung: <br><br>'"
+                    + eventDescription + "'<br><br> Und der Zusammenfassung: <br><br>'"
+                    + eventSummary + "'<br><br> Gemeldet. Als Grund gab er an:<br><br><b>'"
+                    + reportReason + "'</b><br><br>"
+                    + "EventID: "
+                    + eventID, true);
+            helper.setSubject("Event " + eventTitle + " wurde gemeldet.");
+            sender.send(message);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 }

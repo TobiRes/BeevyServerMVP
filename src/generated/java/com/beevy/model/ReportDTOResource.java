@@ -10,22 +10,25 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * AvatarDTOResource
+ * ReportDTOResource
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T20:26:38.717+02:00")
 
-public class AvatarDTOResource   {
+public class ReportDTOResource   {
   @JsonProperty("userID")
   private String userID = null;
 
   @JsonProperty("token")
   private String token = null;
 
-  @JsonProperty("avatar")
-  private String avatar = null;
+  @JsonProperty("eventID")
+  private String eventID = null;
 
-  public AvatarDTOResource userID(String userID) {
+  @JsonProperty("reason")
+  private String reason = null;
+
+  public ReportDTOResource userID(String userID) {
     this.userID = userID;
     return this;
   }
@@ -45,7 +48,7 @@ public class AvatarDTOResource   {
     this.userID = userID;
   }
 
-  public AvatarDTOResource token(String token) {
+  public ReportDTOResource token(String token) {
     this.token = token;
     return this;
   }
@@ -65,24 +68,44 @@ public class AvatarDTOResource   {
     this.token = token;
   }
 
-  public AvatarDTOResource avatar(String avatar) {
-    this.avatar = avatar;
+  public ReportDTOResource eventID(String eventID) {
+    this.eventID = eventID;
     return this;
   }
 
   /**
-   * Get avatar
-   * @return avatar
+   * Get eventID
+   * @return eventID
   **/
   @ApiModelProperty(value = "")
 
 
-  public String getAvatar() {
-    return avatar;
+  public String getEventID() {
+    return eventID;
   }
 
-  public void setAvatar(String avatar) {
-    this.avatar = avatar;
+  public void setEventID(String eventID) {
+    this.eventID = eventID;
+  }
+
+  public ReportDTOResource reason(String reason) {
+    this.reason = reason;
+    return this;
+  }
+
+  /**
+   * Get reason
+   * @return reason
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getReason() {
+    return reason;
+  }
+
+  public void setReason(String reason) {
+    this.reason = reason;
   }
 
 
@@ -94,25 +117,27 @@ public class AvatarDTOResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AvatarDTOResource avatarDTO = (AvatarDTOResource) o;
-    return Objects.equals(this.userID, avatarDTO.userID) &&
-        Objects.equals(this.token, avatarDTO.token) &&
-        Objects.equals(this.avatar, avatarDTO.avatar);
+    ReportDTOResource reportDTO = (ReportDTOResource) o;
+    return Objects.equals(this.userID, reportDTO.userID) &&
+        Objects.equals(this.token, reportDTO.token) &&
+        Objects.equals(this.eventID, reportDTO.eventID) &&
+        Objects.equals(this.reason, reportDTO.reason);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userID, token, avatar);
+    return Objects.hash(userID, token, eventID, reason);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AvatarDTOResource {\n");
+    sb.append("class ReportDTOResource {\n");
     
     sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
     sb.append("    token: ").append(toIndentedString(token)).append("\n");
-    sb.append("    avatar: ").append(toIndentedString(avatar)).append("\n");
+    sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
+    sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("}");
     return sb.toString();
   }

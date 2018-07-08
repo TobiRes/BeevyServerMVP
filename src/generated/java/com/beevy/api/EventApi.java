@@ -8,6 +8,7 @@ package com.beevy.api;
 import com.beevy.model.DeleteEventDTOResource;
 import com.beevy.model.EventResource;
 import com.beevy.model.JoinEventDataResource;
+import com.beevy.model.ReportDTOResource;
 import com.beevy.model.UserEventsResource;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
@@ -31,7 +32,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T19:54:16.380+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T20:26:38.717+02:00")
 
 @Api(value = "event", description = "the event API")
 public interface EventApi {
@@ -143,6 +144,23 @@ public interface EventApi {
         consumes = { "application/json" },
         method = RequestMethod.POST)
     default ResponseEntity<Void> joinEvent(@ApiParam(value = "Join Event Data"  )  @Valid @RequestBody JoinEventDataResource body) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+
+    @ApiOperation(value = "Report an event", nickname = "reportEvent", notes = "Report an event and send mail to admin team", tags={ "event", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 201, message = "Joined event"),
+        @ApiResponse(code = 405, message = "Failed to join event") })
+    @RequestMapping(value = "/event/report",
+        produces = { "application/json" }, 
+        consumes = { "application/json" },
+        method = RequestMethod.POST)
+    default ResponseEntity<Void> reportEvent(@ApiParam(value = "Report Event Data"  )  @Valid @RequestBody ReportDTOResource body) {
         if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
         } else {
             log.warn("ObjectMapper or HttpServletRequest not configured in default EventApi interface so no example is generated");

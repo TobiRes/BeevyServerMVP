@@ -160,6 +160,7 @@ public class UserApiController implements UserApi {
         List<String> createdEventsOfUser = user.getCreatedEvents();
         if (createdEventsOfUser != null) {
             createdEventsOfUser.forEach(eventID -> {
+                //TODO reduce load
                 Event createdEvent = eventRepository.findByEventID(eventID);
                 MinimalUserResource eventAdmin = createdEvent.getAdmin();
                 eventAdmin.setAvatar(user.getCurrentAvatar());
