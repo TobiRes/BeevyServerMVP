@@ -130,7 +130,7 @@ public class EventApiController implements EventApi {
         if(body.getAddress().getZip().toString().length() != 5){
             return false;
         }
-        if(body.getAddress().getCity().length() < 5 || body.getAddress().getCity().length() > 25) {
+        if(body.getAddress().getCity().length() < 4 || body.getAddress().getCity().length() > 25) {
             return false;
         }
         if(body.getAddress().getStreet().length() < 5 || body.getAddress().getStreet().length() > 25) {
