@@ -133,6 +133,9 @@ public class EventApiController implements EventApi {
         if (body.getAddress().getCity().length() < 4 || body.getAddress().getCity().length() > 25) {
             return false;
         }
+        if(tagsIncorrect(body.getTags())){
+            return false;
+        }
         if (body.getAddress().getStreet().length() < 5 || body.getAddress().getStreet().length() > 25) {
             return false;
         }
@@ -140,6 +143,14 @@ public class EventApiController implements EventApi {
             return true;
         }
         return false;
+    }
+
+    private boolean tagsIncorrect(List<String> tags) {
+        if(tags == null || tags.size() > 10){
+            return false;
+        } else {
+            return tags.stream().anyMatch(tag -> tag == null || tag.length() < 2 || tag.length() > 15);
+        }
     }
 
     private boolean notAllDataEntered(EventResource body) {
@@ -159,6 +170,7 @@ public class EventApiController implements EventApi {
                 .description(body.getDescription())
                 .type(body.getType())
                 .date(body.getDate())
+                .tags(body.getTags())
                 .endDate(body.getEndDate())
                 .address(body.getAddress())
                 .registeredMembers(body.getRegisteredMembers())

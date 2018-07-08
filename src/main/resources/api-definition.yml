@@ -295,6 +295,10 @@ definitions:
         type: string
       address:
         $ref: '#/definitions/Address'
+      tags:
+        type: array
+        items:
+          type: string
       registeredMembers:
         type: array
         items:

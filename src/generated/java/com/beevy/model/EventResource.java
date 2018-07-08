@@ -18,7 +18,7 @@ import javax.validation.constraints.*;
  * EventResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T12:58:08.193+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-07-08T19:54:16.380+02:00")
 
 public class EventResource   {
   @JsonProperty("eventID")
@@ -80,6 +80,10 @@ public class EventResource   {
 
   @JsonProperty("address")
   private AddressResource address = null;
+
+  @JsonProperty("tags")
+  @Valid
+  private List<String> tags = null;
 
   @JsonProperty("registeredMembers")
   @Valid
@@ -273,6 +277,34 @@ public class EventResource   {
     this.address = address;
   }
 
+  public EventResource tags(List<String> tags) {
+    this.tags = tags;
+    return this;
+  }
+
+  public EventResource addTagsItem(String tagsItem) {
+    if (this.tags == null) {
+      this.tags = new ArrayList<>();
+    }
+    this.tags.add(tagsItem);
+    return this;
+  }
+
+  /**
+   * Get tags
+   * @return tags
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public List<String> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<String> tags) {
+    this.tags = tags;
+  }
+
   public EventResource registeredMembers(List<String> registeredMembers) {
     this.registeredMembers = registeredMembers;
     return this;
@@ -360,6 +392,7 @@ public class EventResource   {
         Objects.equals(this.date, event.date) &&
         Objects.equals(this.endDate, event.endDate) &&
         Objects.equals(this.address, event.address) &&
+        Objects.equals(this.tags, event.tags) &&
         Objects.equals(this.registeredMembers, event.registeredMembers) &&
         Objects.equals(this.possibleMemberCount, event.possibleMemberCount) &&
         Objects.equals(this.currentMemberCount, event.currentMemberCount);
@@ -367,7 +400,7 @@ public class EventResource   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(eventID, admin, title, summary, description, type, date, endDate, address, registeredMembers, possibleMemberCount, currentMemberCount);
+    return Objects.hash(eventID, admin, title, summary, description, type, date, endDate, address, tags, registeredMembers, possibleMemberCount, currentMemberCount);
   }
 
   @Override
@@ -384,6 +417,7 @@ public class EventResource   {
     sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    address: ").append(toIndentedString(address)).append("\n");
+    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    registeredMembers: ").append(toIndentedString(registeredMembers)).append("\n");
     sb.append("    possibleMemberCount: ").append(toIndentedString(possibleMemberCount)).append("\n");
     sb.append("    currentMemberCount: ").append(toIndentedString(currentMemberCount)).append("\n");

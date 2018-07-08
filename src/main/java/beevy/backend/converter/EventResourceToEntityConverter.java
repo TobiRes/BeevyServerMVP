@@ -22,6 +22,7 @@ public class EventResourceToEntityConverter {
                 .description(source.getDescription())
                 .type(source.getType())
                 .date(source.getDate())
+                .tags(source.getTags())
                 .endDate(source.getEndDate())
                 .address(source.getAddress())
                 .registeredMembers(source.getRegisteredMembers())

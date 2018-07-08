@@ -25,6 +25,7 @@ public class Event {
     private String date;
     private String endDate;
     private AddressResource address;
+    private List<String> tags;
     private List<String> registeredMembers;
     private Integer possibleMemberCount;
     private Integer currentMemberCount;
