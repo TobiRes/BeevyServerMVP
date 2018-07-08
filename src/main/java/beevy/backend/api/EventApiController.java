@@ -46,17 +46,17 @@ public class EventApiController implements EventApi {
 
     @Override
     @CrossOrigin
-    public ResponseEntity<Void> deleteEvent(@ApiParam(value = "Delete Event Object"  )  @Valid @RequestBody DeleteEventDTOResource body) {
+    public ResponseEntity<Void> deleteEvent(@ApiParam(value = "Delete Event Object") @Valid @RequestBody DeleteEventDTOResource body) {
 
         User user = userRepository.findByUserID(body.getUserID());
         Event event = eventRepository.findByEventID(body.getEventID());
 
         //Check if User is admin
-        if(user == null || event == null || !userIsAdminAndAllowedToDelete(body, user.getToken(), event.getAdmin().getUserID())) {
+        if (user == null || event == null || !userIsAdminAndAllowedToDelete(body, user.getToken(), event.getAdmin().getUserID())) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        if(!deleteEventInUserCreatedEvents(user, body.getEventID())){
+        if (!deleteEventInUserCreatedEvents(user, body.getEventID())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         deleteEventFromAllJoinedMembers(event.getRegisteredMembers(), body.getEventID(), body.getUserID());
@@ -66,7 +66,7 @@ public class EventApiController implements EventApi {
     }
 
     private void deleteComments(List<String> baseComments) {
-        if(baseComments != null){
+        if (baseComments != null) {
             baseComments.forEach(comment -> {
                 commentRepository.delete(comment);
             });
@@ -75,7 +75,7 @@ public class EventApiController implements EventApi {
 
     private void deleteEventFromAllJoinedMembers(List<String> registeredMembers, String eventID, String adminID) {
         registeredMembers.forEach(member -> {
-            if(!member.equals(adminID)){
+            if (!member.equals(adminID)) {
                 User joinedMember = userRepository.findByUserID(member);
                 List<String> joinedEvents = joinedMember.getJoinedEvents();
                 joinedEvents.remove(eventID);
@@ -87,7 +87,7 @@ public class EventApiController implements EventApi {
 
     private boolean deleteEventInUserCreatedEvents(User user, String eventID) {
         List<String> createdEvents = user.getCreatedEvents();
-        if(createdEvents.remove(eventID)) {
+        if (createdEvents.remove(eventID)) {
             user.setCreatedEvents(createdEvents);
             userRepository.save(user);
             return true;
@@ -115,28 +115,28 @@ public class EventApiController implements EventApi {
 
     private boolean allEventDataCorrect(EventResource body) {
         //TODO: ALWAYS KEEP CONSISTENT WITH FRONTEND
-        if(notAllDataEntered(body)){
+        if (notAllDataEntered(body)) {
             return false;
         }
-        if(body.getTitle().length() > 22 || body.getTitle().length() < 3) {
+        if (body.getTitle().length() > 22 || body.getTitle().length() < 3) {
             return false;
         }
-        if(body.getSummary().length() > 42 || body.getSummary().length() < 10){
+        if (body.getSummary().length() > 42 || body.getSummary().length() < 10) {
             return false;
         }
-        if(body.getDescription().length() > 500 || body.getDescription().length() < 15){
+        if (body.getDescription().length() > 500 || body.getDescription().length() < 15) {
             return false;
         }
-        if(body.getAddress().getZip().toString().length() != 5){
+        if (body.getAddress().getZip().toString().length() != 5) {
             return false;
         }
-        if(body.getAddress().getCity().length() < 4 || body.getAddress().getCity().length() > 25) {
+        if (body.getAddress().getCity().length() < 4 || body.getAddress().getCity().length() > 25) {
             return false;
         }
-        if(body.getAddress().getStreet().length() < 5 || body.getAddress().getStreet().length() > 25) {
+        if (body.getAddress().getStreet().length() < 5 || body.getAddress().getStreet().length() > 25) {
             return false;
         }
-        if(body.getType() != EventResource.TypeEnum.ACTIVITY || body.getType() != EventResource.TypeEnum.HANGOUT || body.getType() != EventResource.TypeEnum.PROJECT){
+        if (body.getType() != EventResource.TypeEnum.ACTIVITY || body.getType() != EventResource.TypeEnum.HANGOUT || body.getType() != EventResource.TypeEnum.PROJECT) {
             return true;
         }
         return false;
@@ -169,7 +169,7 @@ public class EventApiController implements EventApi {
     private void addEventToCreatedEventsOfUser(String eventID, String userID) {
         User user = userRepository.findByUserID(userID);
         List<String> createdEvents = new ArrayList<>();
-        if(user.getCreatedEvents() != null) {
+        if (user.getCreatedEvents() != null) {
             createdEvents = user.getCreatedEvents();
             createdEvents.add(eventID);
         } else {
@@ -223,12 +223,12 @@ public class EventApiController implements EventApi {
 
     private UserEventsResource getJoinedAndCreatedEventsOfUser(List<String> joinedEventIDs, List<String> createdEventIDs) {
         UserEventsResource userEventsResource = new UserEventsResource();
-        if(joinedEventIDs != null){
+        if (joinedEventIDs != null) {
             List<EventResource> joinedEvents = findJoinedEvents(joinedEventIDs);
             List<EventResource> sortedJoinedEvents = sortEventsByDate(joinedEvents);
             userEventsResource.setJoinedEvents(sortedJoinedEvents);
         }
-        if(createdEventIDs != null) {
+        if (createdEventIDs != null) {
             List<EventResource> createdEvents = findCreatedEvents(createdEventIDs);
             List<EventResource> sortedCreatedEvents = sortEventsByDate(createdEvents);
             userEventsResource.setCreatedEvents(sortedCreatedEvents);
@@ -241,7 +241,7 @@ public class EventApiController implements EventApi {
         if (createdEvents != null) {
             createdEvents.forEach(eventID -> {
                 Event createdEvent = eventRepository.findByEventID(eventID);
-                if(createdEvent != null){
+                if (createdEvent != null) {
                     allCreatedEvents.add(eventEntityToResourceConverter.toResource(createdEvent));
                 }
             });
@@ -324,7 +324,7 @@ public class EventApiController implements EventApi {
         return sortedEventList;
     }
 
-    private List<EventResource> sortEventsByDate(List<EventResource> unsortedList){
+    private List<EventResource> sortEventsByDate(List<EventResource> unsortedList) {
         List<EventResource> newEventList = unsortedList.stream().collect(Collectors.toList());
         Collections.sort(newEventList, new Comparator<EventResource>() {
             public int compare(EventResource event1, EventResource event2) {
@@ -345,14 +345,14 @@ public class EventApiController implements EventApi {
                 Date eventDate = getDateFromISOSTring(eventResource.getDate());
                 //0 if same Date, -1 if before, 1 if after
                 return eventDate.compareTo(new Date()) > -1;
-            } catch (Exception e){
+            } catch (Exception e) {
                 return false;
             }
         }).collect(Collectors.toList());
         return filteredList;
     }
 
-    private Date getDateFromISOSTring(String ISODate){
+    private Date getDateFromISOSTring(String ISODate) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME;
         OffsetDateTime offsetDateTime = OffsetDateTime.parse(ISODate, dateTimeFormatter);
         Date formattedDate = Date.from(Instant.from(offsetDateTime));

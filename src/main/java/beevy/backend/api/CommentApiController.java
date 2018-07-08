@@ -44,21 +44,21 @@ public class CommentApiController implements CommentApi {
     private CommentEntityToResourceConverter commentEntityToResourceConverter = new CommentEntityToResourceConverter();
 
     @Override
-    public ResponseEntity<Void> addComment(@ApiParam(value = "Comment Data"  )  @Valid @RequestBody CommentDTOResource body) {
+    public ResponseEntity<Void> addComment(@ApiParam(value = "Comment Data") @Valid @RequestBody CommentDTOResource body) {
 
         final User user = userRepository.findByUserID(body.getUserID());
         final Event event = eventRepository.findByEventID(body.getEventID());
 
-        if(user == null || event == null || notAllRequiredDataAvailableOrNotValidFormat(body, user, event)){
+        if (user == null || event == null || notAllRequiredDataAvailableOrNotValidFormat(body, user, event)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
 
         Comment newComment = buildComment(body, user.getUsername());
-        if(body.getRepliedTo() == null || event.getBaseComments() == null){
+        if (body.getRepliedTo() == null || event.getBaseComments() == null) {
             addCommentToBaseOfEvent(event, newComment);
         } else {
             Comment existingComment = commentRepository.findByCommentID(body.getRepliedTo());
-            if(existingComment == null) {
+            if (existingComment == null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             addCommentToExistingComment(newComment, existingComment);
@@ -69,19 +69,19 @@ public class CommentApiController implements CommentApi {
     }
 
     @Override
-    public ResponseEntity<List<CommentResource>> getComments(@ApiParam(value = "ID of a User",required=true) @PathVariable("eventID") String eventID, @ApiParam(value = "ID of a User",required=true) @PathVariable("userID") String userID, @ApiParam(value = "tempAccessToken",required=true) @PathVariable("tempAccessToken") String tempAccessToken) {
+    public ResponseEntity<List<CommentResource>> getComments(@ApiParam(value = "ID of a User", required = true) @PathVariable("eventID") String eventID, @ApiParam(value = "ID of a User", required = true) @PathVariable("userID") String userID, @ApiParam(value = "tempAccessToken", required = true) @PathVariable("tempAccessToken") String tempAccessToken) {
         User user = userRepository.findByUserID(userID);
         Event event = eventRepository.findByEventID(eventID);
-        if(userNotAllowedToLoadComments(user, event, tempAccessToken)){
-            if(user.getTempAccessToken() != null){
+        if (userNotAllowedToLoadComments(user, event, tempAccessToken)) {
+            if (user.getTempAccessToken() != null) {
                 user.setTempAccessToken(null);
                 userRepository.save(user);
             }
-           return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         } else {
             user.setTempAccessToken(null);
             userRepository.save(user);
-            if(event.getBaseComments() == null){
+            if (event.getBaseComments() == null) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             } else {
                 List<String> existingCommentIDs = event.getBaseComments();
@@ -98,7 +98,7 @@ public class CommentApiController implements CommentApi {
     private void addCommentToExistingComment(Comment newComment, Comment existingComment) {
         List<Comment> commentsOfExistingComment = new ArrayList<>();
 
-        if(existingComment.getComments() != null){
+        if (existingComment.getComments() != null) {
             commentsOfExistingComment = existingComment.getComments();
         }
         commentsOfExistingComment.add(newComment);
@@ -106,9 +106,9 @@ public class CommentApiController implements CommentApi {
         commentRepository.save(existingComment);
     }
 
-    private void addCommentToBaseOfEvent(Event event, Comment comment){
+    private void addCommentToBaseOfEvent(Event event, Comment comment) {
         List<String> commentList = new ArrayList<>();
-        if(event.getBaseComments() != null){
+        if (event.getBaseComments() != null) {
             commentList = event.getBaseComments();
         }
         commentList.add(comment.getCommentID());

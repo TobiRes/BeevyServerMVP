@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CommentEntityToResourceConverter {
 
-    public CommentResource toResource (Comment comment){
+    public CommentResource toResource(Comment comment) {
         return new CommentResource()
                 .commentID(comment.getCommentID())
                 .author(comment.getCommentAuthor())
@@ -23,7 +23,7 @@ public class CommentEntityToResourceConverter {
     }
 
     private List<CommentResource> addComments(Comment comment) {
-        if(comment.getComments() == null){
+        if (comment.getComments() == null) {
             return null;
         } else {
             List<Comment> comments = comment.getComments();

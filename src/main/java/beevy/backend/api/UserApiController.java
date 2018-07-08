@@ -6,7 +6,10 @@ import beevy.backend.model.User;
 import beevy.backend.repositories.EventRepository;
 import beevy.backend.repositories.UserRepository;
 import com.beevy.api.UserApi;
-import com.beevy.model.*;
+import com.beevy.model.AvatarDTOResource;
+import com.beevy.model.MinimalUserResource;
+import com.beevy.model.UserResource;
+import com.beevy.model.UserSecurityResource;
 import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +48,7 @@ public class UserApiController implements UserApi {
     public ResponseEntity<Void> registerUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserResource body) {
         if (allRequiredDataAvailable(body) && mailValid(body.getMail())) {
             final User user = userRepository.findByUserID(body.getUserID());
-            if(user != null){
+            if (user != null) {
                 //TODO: Handle case where user is already registered
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
@@ -142,9 +145,9 @@ public class UserApiController implements UserApi {
 
     @Override
     @CrossOrigin
-    public ResponseEntity<Void> updateAvatar(@ApiParam(value = "AvatarDTO"  )  @Valid @RequestBody AvatarDTOResource body) {
+    public ResponseEntity<Void> updateAvatar(@ApiParam(value = "AvatarDTO") @Valid @RequestBody AvatarDTOResource body) {
         User user = userRepository.findByUserID(body.getUserID());
-        if(user == null || !user.getToken().equals(body.getToken()) || body.getAvatar() == null || !avatarIsValidFormat(body)){
+        if (user == null || !user.getToken().equals(body.getToken()) || body.getAvatar() == null || !avatarIsValidFormat(body)) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         user.setCurrentAvatar(body.getAvatar());
@@ -155,7 +158,7 @@ public class UserApiController implements UserApi {
 
     private void updateAvatarInEvents(User user) {
         List<String> createdEventsOfUser = user.getCreatedEvents();
-        if(createdEventsOfUser != null){
+        if (createdEventsOfUser != null) {
             createdEventsOfUser.forEach(eventID -> {
                 Event createdEvent = eventRepository.findByEventID(eventID);
                 MinimalUserResource eventAdmin = createdEvent.getAdmin();
@@ -171,7 +174,7 @@ public class UserApiController implements UserApi {
             //Get the number after 'avatar_'
             final int i = new Scanner(body.getAvatar().substring(7)).useDelimiter("\\D+").nextInt();
             return body.getAvatar().toLowerCase().contains("avatar_") && i > 0 && i < 13;
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return false;
         }
     }
