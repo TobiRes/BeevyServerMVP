@@ -48,8 +48,7 @@ public class UserApiController implements UserApi {
     public ResponseEntity<Void> registerUser(@ApiParam(value = "Security Object") @Valid @RequestBody UserResource body) {
         if (allRequiredDataAvailable(body) && mailValid(body.getMail())) {
             final User user = userRepository.findByUserID(body.getUserID());
-            if (user != null) {
-                //TODO: Handle case where user is already registered
+            if (user != null && user.getToken() != null) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             final String registerToken = generateRandomString();
