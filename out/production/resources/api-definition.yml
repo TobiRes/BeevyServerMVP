@@ -206,6 +206,28 @@ paths:
           description: Joined event
         '405':
           description: Failed to join event
+  /event/leave:
+    post:
+      tags:
+        - event
+      summary: Leave an event
+      description: Leave an existing event
+      operationId: leaveEvent
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Join Event Data
+          schema:
+            $ref: '#/definitions/LeaveEventDTO'
+      responses:
+        '201':
+          description: Left event
+        '405':
+          description: Failed to leave event
   /event/report:
     post:
       tags:
@@ -376,6 +398,15 @@ definitions:
       eventID:
         type: string
       reason:
+        type: string
+  LeaveEventDTO:
+    type: object
+    properties:
+      userID:
+        type: string
+      token:
+        type: string
+      eventID:
         type: string
   DeleteEventDTO:
     type: object

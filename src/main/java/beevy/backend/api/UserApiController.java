@@ -115,7 +115,7 @@ public class UserApiController implements UserApi {
         final User user = userRepository.findByUserID(userID);
         if (user == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else if (user.getTempAccessToken() == null || !user.getTempAccessToken().equals(tempAccessToken)) {
+        } else if (user.getTempAccessToken() == null || !user.getTempAccessToken().toLowerCase().equals(tempAccessToken.toLowerCase())) {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         } else {
             if (user.getToken() == null) {

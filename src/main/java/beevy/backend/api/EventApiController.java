@@ -224,6 +224,39 @@ public class EventApiController implements EventApi {
 
     @Override
     @CrossOrigin
+    public ResponseEntity<Void> leaveEvent(@ApiParam(value = "Join Event Data"  )  @Valid @RequestBody LeaveEventDTOResource body) {
+        if(body.getEventID() == null || body.getToken() == null || body.getUserID() == null){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        User user = userRepository.findByUserID(body.getUserID());
+        Event event = eventRepository.findByEventID(body.getEventID());
+
+        if(user == null || event == null || !event.getRegisteredMembers().contains(user.getUserID()) || !body.getToken().equals(user.getToken())){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        if(event.getAdmin().getUserID().equals(user.getUserID())){
+            return deleteEvent(new DeleteEventDTOResource().eventID(body.getEventID()).userID(body.getUserID()).token(body.getToken()));
+        }
+
+        List<String> registeredMembers = event.getRegisteredMembers();
+        List<String> joinedEventsOfUser = user.getJoinedEvents();
+        int currentMemberCount = event.getCurrentMemberCount();
+        registeredMembers.remove(user.getUserID());
+        joinedEventsOfUser.remove(event.getEventID());
+        currentMemberCount -= 1;
+        event.setRegisteredMembers(registeredMembers);
+        user.setJoinedEvents(joinedEventsOfUser);
+        event.setCurrentMemberCount(currentMemberCount);
+
+        userRepository.save(user);
+        eventRepository.save(event);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    @CrossOrigin
     public ResponseEntity<UserEventsResource> getUserEvents(@PathVariable("userID") String userID, @ApiParam(value = "tempAccessToken", required = true) @PathVariable("tempAccessToken") String tempAccessToken) {
         final User user = userRepository.findByUserID(userID);
         if (user == null) {
@@ -278,7 +311,7 @@ public class EventApiController implements EventApi {
 
     private boolean checkIfUserIsAllowedToJoinEvent(Event event, JoinEventDataResource body) {
         User user = userRepository.findByUserID(body.getUserID());
-        if (user == null || event.getAdmin().getUserID() == body.getUserID() || userAlreadyJoinedEvent(event, user)) {
+        if (user == null || event.getAdmin().getUserID() == body.getUserID() || userAlreadyJoinedEvent(event, user) || event.getCurrentMemberCount().equals(event.getPossibleMemberCount())) {
             return false;
         }
         return true;
