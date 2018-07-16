@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5ca4be7e-8a64-4943-a57e-093e1f11355b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/fileSnapshots.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/fileSnapshots.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.0/taskHistory/taskHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/UserApiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/beevy/backend/api/UserApiController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/CommentApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/CommentApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/EventApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/EventApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/api/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/api/UserApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/AddressResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/AddressResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/AvatarDTOResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/AvatarDTOResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentDTOResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentDTOResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/CommentResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/DeleteEventDTOResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/DeleteEventDTOResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/EventResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/JoinEventDataResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/JoinEventDataResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/MinimalUserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/MinimalUserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/ReportDTOResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/ReportDTOResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserEventsResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserEventsResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserSecurityResource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/generated/java/com/beevy/model/UserSecurityResource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/beevy/backend/api/UserApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/api-definition.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/api-definition.yml" afterDir="false" />
-    </list>
+    <list default="true" id="5ca4be7e-8a64-4943-a57e-093e1f11355b" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -108,8 +82,8 @@
       <file leaf-file-name="EventApiController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="256" lean-forward="true" selection-start-line="256" selection-end-line="256" />
+            <state relative-caret-position="932">
+              <caret line="238" column="66" lean-forward="true" selection-start-line="238" selection-start-column="66" selection-end-line="238" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#deleteComments#0;class#EventApiController#0" />
@@ -1096,15 +1070,15 @@
       <workItem from="1531123568615" duration="601000" />
       <workItem from="1531137814744" duration="34000" />
       <workItem from="1531159552571" duration="2138000" />
-      <workItem from="1531211289876" duration="2172000" />
+      <workItem from="1531211289876" duration="2985000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="98307000" />
+    <option name="totallyTimeSpent" value="99120000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -1501,8 +1475,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/beevy/backend/api/EventApiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="256" lean-forward="true" selection-start-line="256" selection-end-line="256" />
+        <state relative-caret-position="932">
+          <caret line="238" column="66" lean-forward="true" selection-start-line="238" selection-start-column="66" selection-end-line="238" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#deleteComments#0;class#EventApiController#0" />

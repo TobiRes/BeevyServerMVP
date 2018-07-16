@@ -360,14 +360,6 @@ definitions:
         type: integer
       city:
         type: string
-      joinedEvents:
-        type: array
-        items:
-          type: string
-      createdEvents:
-        type: array
-        items:
-          type: string
   MinimalUser:
     type: object
     properties:
