@@ -32,6 +32,30 @@ parameters:
     required: true
     type: string
 paths:
+  /event/create:
+      post:
+        tags:
+          - event
+        summary: Create an event
+        description: Create an event for Beevy
+        operationId: createEvent
+        consumes:
+          - application/json
+        produces:
+          - application/json
+        parameters:
+          - in: body
+            name: body
+            description: Event Object
+            schema:
+              $ref: '#/definitions/Event'
+        responses:
+          '201':
+            description: Created event
+          '401':
+            description: Unauthorized
+          '405':
+            description: Failed to create event
   /user/register:
     post:
       tags:
@@ -313,7 +337,94 @@ paths:
               $ref: '#/definitions/Comment'
         '405':
           description: Failed to get comments
+  /admin/delete/event:
+    post:
+      tags:
+        - admin
+      summary: Delete an event
+      description: Delete an event and all dependencies as an admin
+      operationId: adminDeleteEvent
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Admin Event Data
+          schema:
+            $ref: '#/definitions/AdminEventDelete'
+      responses:
+        '201':
+          description: Deleted event
+        '405':
+          description: Failed to delete event
+  /admin/delete/user:
+    post:
+      tags:
+        - admin
+      summary: Delete a user
+      description: Delete a user from the db including all dependencies
+      operationId: adminDeleteUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User Delete Data
+          schema:
+            $ref: '#/definitions/AdminUserDelete'
+      responses:
+        '201':
+          description: Deleted user
+        '405':
+          description: Failed to delete user
+  /admin/delete/comment:
+    post:
+      tags:
+        - admin
+      summary: Delete a comment
+      description: Delete a comment from the db including all dependencies
+      operationId: adminDeleteComment
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Comment Data
+          schema:
+            $ref: '#/definitions/AdminCommentDelete'
+      responses:
+        '201':
+          description: Deleted comment
+        '405':
+          description: Failed to delete comment
 definitions:
+  AdminEventDelete:
+    type: object
+    properties:
+      eventID:
+        type: string
+      adminToken:
+        type: string
+  AdminUserDelete:
+    type: object
+    properties:
+      userID:
+        type: string
+      adminToken:
+        type: string
+  AdminCommentDelete:
+    type: object
+    properties:
+      commentID:
+        type: string
+      adminToken:
+        type: string
   Event:
     type: object
     properties:

@@ -10,62 +10,19 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * JoinEventDataResource
+ * AdminEventDeleteResource
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-01T10:20:41.953+02:00")
 
-public class JoinEventDataResource   {
-  @JsonProperty("userID")
-  private String userID = null;
-
-  @JsonProperty("token")
-  private String token = null;
-
+public class AdminEventDeleteResource   {
   @JsonProperty("eventID")
   private String eventID = null;
 
-  public JoinEventDataResource userID(String userID) {
-    this.userID = userID;
-    return this;
-  }
+  @JsonProperty("adminToken")
+  private String adminToken = null;
 
-  /**
-   * Get userID
-   * @return userID
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getUserID() {
-    return userID;
-  }
-
-  public void setUserID(String userID) {
-    this.userID = userID;
-  }
-
-  public JoinEventDataResource token(String token) {
-    this.token = token;
-    return this;
-  }
-
-  /**
-   * Get token
-   * @return token
-  **/
-  @ApiModelProperty(value = "")
-
-
-  public String getToken() {
-    return token;
-  }
-
-  public void setToken(String token) {
-    this.token = token;
-  }
-
-  public JoinEventDataResource eventID(String eventID) {
+  public AdminEventDeleteResource eventID(String eventID) {
     this.eventID = eventID;
     return this;
   }
@@ -85,6 +42,26 @@ public class JoinEventDataResource   {
     this.eventID = eventID;
   }
 
+  public AdminEventDeleteResource adminToken(String adminToken) {
+    this.adminToken = adminToken;
+    return this;
+  }
+
+  /**
+   * Get adminToken
+   * @return adminToken
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getAdminToken() {
+    return adminToken;
+  }
+
+  public void setAdminToken(String adminToken) {
+    this.adminToken = adminToken;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -94,25 +71,23 @@ public class JoinEventDataResource   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    JoinEventDataResource joinEventData = (JoinEventDataResource) o;
-    return Objects.equals(this.userID, joinEventData.userID) &&
-        Objects.equals(this.token, joinEventData.token) &&
-        Objects.equals(this.eventID, joinEventData.eventID);
+    AdminEventDeleteResource adminEventDelete = (AdminEventDeleteResource) o;
+    return Objects.equals(this.eventID, adminEventDelete.eventID) &&
+        Objects.equals(this.adminToken, adminEventDelete.adminToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(userID, token, eventID);
+    return Objects.hash(eventID, adminToken);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class JoinEventDataResource {\n");
+    sb.append("class AdminEventDeleteResource {\n");
     
-    sb.append("    userID: ").append(toIndentedString(userID)).append("\n");
-    sb.append("    token: ").append(toIndentedString(token)).append("\n");
     sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
+    sb.append("    adminToken: ").append(toIndentedString(adminToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }
