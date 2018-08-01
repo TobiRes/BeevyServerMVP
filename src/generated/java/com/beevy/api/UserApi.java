@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-01T11:14:59.938+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-01T11:41:49.543+02:00")
 
 @Api(value = "user", description = "the user API")
 public interface UserApi {
@@ -48,6 +48,22 @@ public interface UserApi {
     default Optional<String> getAcceptHeader() {
         return getRequest().map(r -> r.getHeader("Accept"));
     }
+
+    @ApiOperation(value = "Check if a user exists", nickname = "checkForUserState", notes = "Check if a user is registered", tags={ "user", })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "successful operation"),
+        @ApiResponse(code = 404, message = "User not found") })
+    @RequestMapping(value = "/user/state/{userID}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    default ResponseEntity<Void> checkForUserState(@ApiParam(value = "ID of a User",required=true) @PathVariable("userID") String userID) {
+        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
+        } else {
+            log.warn("ObjectMapper or HttpServletRequest not configured in default UserApi interface so no example is generated");
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
 
     @ApiOperation(value = "Return security token for a user", nickname = "getUserToken", notes = "Get security token", response = String.class, tags={ "user", })
     @ApiResponses(value = { 

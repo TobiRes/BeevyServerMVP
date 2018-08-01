@@ -122,6 +122,22 @@ paths:
           description: Saved temporary access token
         '405':
           description: Failed to create temporary access token
+  /user/state/{userID}:
+    parameters:
+      - $ref: '#/parameters/userID'
+    get:
+      tags:
+        - user
+      summary: Check if a user exists
+      description: Check if a user is registered
+      operationId: checkForUserState
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: successful operation
+        '404':
+          description: User not found
   /user/{username}/{userID}/{tempAccessToken}:
     parameters:
       - $ref: '#/parameters/username'

@@ -144,6 +144,16 @@ public class UserApiController implements UserApi {
 
     @Override
     @CrossOrigin
+    public ResponseEntity<Void> checkForUserState(@ApiParam(value = "ID of a User",required=true) @PathVariable("userID") String userID) {
+        User user = userRepository.findByUserID(userID);
+        if(user != null){
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    @CrossOrigin
     public ResponseEntity<Void> updateAvatar(@ApiParam(value = "AvatarDTO") @Valid @RequestBody AvatarDTOResource body) {
         User user = userRepository.findByUserID(body.getUserID());
         if (user == null || !user.getToken().equals(body.getToken()) || body.getAvatar() == null || !avatarIsValidFormat(body)) {
