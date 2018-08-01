@@ -102,11 +102,55 @@ public class AdminApiController implements AdminApi {
 
     @Override
     public ResponseEntity<Void> adminDeleteUser(@ApiParam(value = "User Delete Data"  )  @Valid @RequestBody AdminUserDeleteResource body) {
-        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
-        } else {
-            log.warn("ObjectMapper or HttpServletRequest not configured in default AdminApi interface so no example is generated");
+        //Find all joined Events
+        //Delete in registered Members of joined Events
+        //Find all created Events
+        //Delete all created Events
+        if(!body.getAdminToken().equals("13ghJWEz!!")){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        User userToBeDeleted = userRepository.findByUserID(body.getUserID());
+
+        List<String> joinedEvents = userToBeDeleted.getJoinedEvents();
+        List<String> createdEvents = userToBeDeleted.getCreatedEvents();
+
+        if(joinedEvents != null){
+            deleteUserInRegisteredMembersOfEvents(joinedEvents, body.getUserID());
+        }
+
+        if(createdEvents != null){
+            deleteEventAndAllItsDependencies(createdEvents, body.getUserID());
+        }
+
+        userRepository.delete(body.getUserID());
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private void deleteUserInRegisteredMembersOfEvents(List<String> joinedEvents, String userID) {
+        joinedEvents.forEach(joinedEvent -> {
+            Event joinedEventEntity = eventRepository.findByEventID(joinedEvent);
+            List<String> registeredMemberList = joinedEventEntity.getRegisteredMembers();
+            List<String> newRegisteredMemberList = new ArrayList<>();
+            registeredMemberList.forEach(member -> {
+                if(!member.equals(userID)){
+                    newRegisteredMemberList.add(member);
+                }
+            });
+            joinedEventEntity.setRegisteredMembers(newRegisteredMemberList);
+            int currentMemberCount = joinedEventEntity.getCurrentMemberCount() - 1;
+            joinedEventEntity.setCurrentMemberCount(currentMemberCount);
+            eventRepository.save(joinedEventEntity);
+        });
+    }
+
+    private void deleteEventAndAllItsDependencies(List<String> createdEvents, String adminID) {
+        createdEvents.forEach(createdEvent -> {
+            Event eventToBeDeleted = eventRepository.findByEventID(createdEvent);
+            deleteEventInJoinedEventsOfMembers(eventToBeDeleted.getRegisteredMembers(), createdEvent, adminID);
+            deleteEventComments(createdEvent);
+            eventRepository.delete(createdEvent);
+        });
     }
 
     @Override
