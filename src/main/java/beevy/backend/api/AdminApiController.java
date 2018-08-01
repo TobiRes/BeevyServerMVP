@@ -102,10 +102,6 @@ public class AdminApiController implements AdminApi {
 
     @Override
     public ResponseEntity<Void> adminDeleteUser(@ApiParam(value = "User Delete Data"  )  @Valid @RequestBody AdminUserDeleteResource body) {
-        //Find all joined Events
-        //Delete in registered Members of joined Events
-        //Find all created Events
-        //Delete all created Events
         if(!body.getAdminToken().equals("13ghJWEz!!")){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
@@ -155,11 +151,30 @@ public class AdminApiController implements AdminApi {
 
     @Override
     public ResponseEntity<Void> adminDeleteComment(@ApiParam(value = "Comment Data"  )  @Valid @RequestBody AdminCommentDeleteResource body) {
-        if(getObjectMapper().isPresent() && getAcceptHeader().isPresent()) {
-        } else {
-            log.warn("ObjectMapper or HttpServletRequest not configured in default AdminApi interface so no example is generated");
+        if(!body.getAdminToken().equals("13ghJWEz!!")){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+        Comment comment = commentRepository.findByCommentID(body.getCommentID());
+        if(comment != null){
+            commentRepository.delete(comment);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        List<Comment> commentsOfEvent = commentRepository.findAllByEventID(body.getEventID());
+        commentsOfEvent.forEach(singleComment -> {
+            if(singleComment.getComments() != null){
+                List<Comment> secondLevelComments = singleComment.getComments();
+                List<Comment> newSecondLevelComments = new ArrayList<>();
+                secondLevelComments.forEach(secondLevelComment -> {
+                    if(!secondLevelComment.getCommentID().equals(body.getCommentID())){
+                        newSecondLevelComments.add(secondLevelComment);
+                    }
+                });
+                singleComment.setComments(newSecondLevelComments);
+                commentRepository.save(singleComment);
+            }
+        });
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

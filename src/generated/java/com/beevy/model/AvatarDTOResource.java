@@ -13,7 +13,7 @@ import javax.validation.constraints.*;
  * AvatarDTOResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-01T10:20:41.953+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-01T11:14:59.938+02:00")
 
 public class AvatarDTOResource   {
   @JsonProperty("userID")

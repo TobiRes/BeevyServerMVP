@@ -13,11 +13,14 @@ import javax.validation.constraints.*;
  * AdminCommentDeleteResource
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-01T10:20:41.953+02:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-08-01T11:14:59.938+02:00")
 
 public class AdminCommentDeleteResource   {
   @JsonProperty("commentID")
   private String commentID = null;
+
+  @JsonProperty("eventID")
+  private String eventID = null;
 
   @JsonProperty("adminToken")
   private String adminToken = null;
@@ -40,6 +43,26 @@ public class AdminCommentDeleteResource   {
 
   public void setCommentID(String commentID) {
     this.commentID = commentID;
+  }
+
+  public AdminCommentDeleteResource eventID(String eventID) {
+    this.eventID = eventID;
+    return this;
+  }
+
+  /**
+   * Get eventID
+   * @return eventID
+  **/
+  @ApiModelProperty(value = "")
+
+
+  public String getEventID() {
+    return eventID;
+  }
+
+  public void setEventID(String eventID) {
+    this.eventID = eventID;
   }
 
   public AdminCommentDeleteResource adminToken(String adminToken) {
@@ -73,12 +96,13 @@ public class AdminCommentDeleteResource   {
     }
     AdminCommentDeleteResource adminCommentDelete = (AdminCommentDeleteResource) o;
     return Objects.equals(this.commentID, adminCommentDelete.commentID) &&
+        Objects.equals(this.eventID, adminCommentDelete.eventID) &&
         Objects.equals(this.adminToken, adminCommentDelete.adminToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(commentID, adminToken);
+    return Objects.hash(commentID, eventID, adminToken);
   }
 
   @Override
@@ -87,6 +111,7 @@ public class AdminCommentDeleteResource   {
     sb.append("class AdminCommentDeleteResource {\n");
     
     sb.append("    commentID: ").append(toIndentedString(commentID)).append("\n");
+    sb.append("    eventID: ").append(toIndentedString(eventID)).append("\n");
     sb.append("    adminToken: ").append(toIndentedString(adminToken)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -423,6 +423,8 @@ definitions:
     properties:
       commentID:
         type: string
+      eventID:
+        type: string
       adminToken:
         type: string
   Event:
